@@ -4,6 +4,7 @@ import Difference from '../Components/Difference'
 import Brands from '../Components/Brands'
 import HomeCards from '../Components/HomeCards'
 import Trusted from '../Components/Trusted'
+import NewsPaper from '../Components/NewsPaper'
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
         <Brands/>
         <HomeCards/>
         <Trusted/>
+        <NewsPaper/>
     </div>
   )
 }
