@@ -1,5 +1,9 @@
 import React from 'react'
 import { VscFeedback } from "react-icons/vsc";
+import reviewPic from '../Assets/Images/review.jpg'
+import servicePic from '../Assets/Images/Service.jpg'
+import performancePic from '../Assets/Images/performance.jpg'
+import starsPic from '../Assets/Images/stars.jpg'
 
 const Difference = () => {
   return (
@@ -7,19 +11,19 @@ const Difference = () => {
         <h1 className='text-4xl font-poppins font-semibold text-white my-16 text-center'>THE SENEX <span className='text-red-600'>DIFFERENCE</span></h1>
         <div className='w-[80%] h-full flex items-center justify-between mx-auto'>
             <div className='w-[80%] h-full flex flex-col items-center justify-center mx-auto'>
-                <VscFeedback className='text-white size-16'/>
+                <img src={reviewPic} alt="" className='mb-3'/>
                 <p className=' text-wrap text-white text-center mt-2 font-semibold'>Over 250,000<br/> Happy Users</p>
             </div>
             <div className='w-[80%] h-full flex flex-col items-center justify-center'>
-                <VscFeedback className='text-white size-16'/>
+                <img src={performancePic} alt="" className='mb-3'/>
                 <p className=' text-wrap text-white text-center mt-2 font-semibold'>Maximum<br/> Performance</p>
             </div>
             <div className='w-[80%] h-full flex flex-col items-center justify-center'>
-                <VscFeedback className='text-white size-16'/>
+                <img src={starsPic} alt="" className='mb-3'/>
                 <p className=' text-wrap text-white text-center mt-2 font-semibold'>Top Reviewed<br/> Custom PC Brand</p>
             </div>
             <div className='w-[80%] h-full flex flex-col items-center justify-center'>
-                <VscFeedback className='text-white size-16'/>
+                <img src={servicePic} alt="" className='mb-3'/>
                 <p className='text-wrap text-white text-center mt-2 font-semibold'>Unbeatable<br/> Aftersales Service</p>
             </div>
         </div>
