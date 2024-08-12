@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { CartContext } from '../Components/CartContext'; // Adjust the path as needed
 import { IoClose, IoMenu } from 'react-icons/io5';
 import Sidebar2 from './Sidebar2';
+import logo from "../Assets/Images/logo.png"
 
 const Navbar = () => {
     const location = useLocation();
@@ -75,7 +76,9 @@ const Navbar = () => {
         <div className='w-[90%] md:w-[85%] mx-auto relative'>
             <div className='flex justify-between items-center w-full h-[100px] md:h-[120px]'>
                 <div>
-                    <Link to='/' className='text-3xl md:text-4xl lg:text-6xl font-bold text-red-600 cursor-pointer mr-2 md:mr-0'>SENƎX</Link>
+                    <Link to='/' className='text-3xl md:text-4xl lg:text-6xl font-bold text-red-600 cursor-pointer mr-2 md:mr-0'>
+                        <img src={logo} alt="" className='w-[200px]' />
+                    </Link>
                 </div>
                 <div className='flex items-center float-to-right'>
                     <ul className='hidden md:flex gap-2 md:gap-4 lg:gap-8 font-bold text-[10px] sm:text-xs md:text-sm lg:text-lg mr-3 sm:mr-6 md:mr-10 lg:mr-14'>

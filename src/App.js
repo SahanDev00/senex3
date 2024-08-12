@@ -9,7 +9,7 @@ import SliderComponent from './Components/SliderComponent';
 import Cards from './Components/Cards';
 import Home from './Pages/Home';
 import Product from './Pages/Product';
-import bgPic from "./Assets/Images/background1.webp"
+import bgPic from "./Assets/Images/BackgroundPic.jpg"
 //import bgPic2 from "./Assets/Images/Background2.jpg"
 //import bgPic3 from "./Assets/Images/farcry.jpg"
 import Login from './Pages/Login';
