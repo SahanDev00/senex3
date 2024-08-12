@@ -7,7 +7,7 @@ import { IoPricetagsOutline } from "react-icons/io5";
 
 const Features = () => {
   return (
-    <div className='w-[90%] lg:w-[85%] p-2 xl:w-[70%] h-[200px] md:h-[100px] relative mx-auto flex border border-white  justify-evenly items-center bg-black/50 mt-8 mb-8'>
+    <div className='w-[90%] lg:w-[85%] p-2 xl:w-[70%] h-[200px] md:h-[100px] relative mx-auto flex border border-white  justify-evenly items-center bg-black/50 mt-8 mb-14'>
         <div className='w-full h-full md:flex md:justify-evenly grid grid-cols-3'>
             <div className='flex items-center border-r pl-1 md:pr-10 border-red-600'>
                 <FaTruckFast className='text-red-600 size-7 lg:size-8 xl:size-10 '/>

@@ -24,6 +24,7 @@ const CustomDots = ({ dots }) => {
 };
 
 const RecentlyViewed = () => {
+
   const [bestSellingItems, setBestSellingItems] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showMessage, setShowMessage] = useState(false);
@@ -49,14 +50,15 @@ const RecentlyViewed = () => {
 
   const handleAddToCart = (e, product) => {
     e.stopPropagation();
-    addToCart(product);
+    if (product.stock > 0) {
+      addToCart(product);
+      setMessage(`${product.name} has been added to the cart.`);
+      setShowMessage(true);
 
-    setMessage(`${product.name} has been added to the cart.`);
-    setShowMessage(true);
-
-    setTimeout(() => {
-      setShowMessage(false);
-    }, 3000);
+      setTimeout(() => {
+        setShowMessage(false);
+      }, 3000);
+    }
   };
 
   const settings = {
@@ -113,28 +115,31 @@ const RecentlyViewed = () => {
       },
     ]
   };
-  
 
   return (
-    <div className='w-[95%] bg-black/30 flex mx-auto mt-10 relative border-gray-500 items-center rounded-xl justify-center'>
+    <div className='w-[95%] bg-black/30 flex mx-auto mt-16 relative border-gray-500 items-center rounded-xl justify-center mb-16'>
       <div className='w-[95%] h-[95%]'>
-      <p className='flex justify-center uppercase text-sm font-semibold text-white mt-5 font-mono'>Recommended for you</p>
-        <h1 className='font-semibold text-2xl sm:text-3xl text-white font-poppins text-center'>RECENTLY VIEWED ITEMS</h1>
+        <p className='flex justify-center uppercase text-sm font-semibold text-white mt-5 font-mono'>Recemended for you</p>
+        <h1 className='font-semibold text-2xl sm:text-3xl text-center text-white font-poppins'>RECENTLY VIEWED ITEMS</h1>
 
         <div className='mt-4 w-[80%] mx-auto sm:w-full h-[370px]'>
           <Slider {...settings}>
             {bestSellingItems.map((product) => (
               <div key={product.id} className='p-4'>
                 <div
-                  className='sm:w-[260px] bg-black/60 hover:scale-105 duration-300 sm:h-[320px] rounded-xl mx-auto p-4 shadow hover:shadow-md border border-gray-500 flex-shrink-0 cursor-pointer'
+                  className='sm:w-[260px]  bg-black/60 hover:scale-105 duration-300 rounded-xl mx-auto p-4 shadow hover:shadow-md border border-gray-500 flex-shrink-0 cursor-pointer'
                   onClick={() => setSelectedProduct(product)}
                 >
                   <img className='w-full h-40 object-cover mb-4 rounded-xl border-white' src={product.image} alt={product.name} />
                   <h1 className='text-xl text-center mt-2 font-poppins font-semibold text-white'>{product.name}</h1>
                   <p className='text-white text-center font-poppins'>${product.price}</p>
+                  <p className={`text-center font-poppins mb-2 ${product.stock > 0 ? 'text-green-500' : 'text-red-500'}`}>
+                    {product.stock > 0 ? 'In Stock' : 'Out of Stock'}
+                  </p>
                   <button
-                    className='py-2 font-poppins flex mx-auto px-4 rounded mt-2 bg-red-500 text-white'
+                    className={`py-2 font-poppins flex mx-auto px-4 rounded mt-2 ${product.stock > 0 ? 'bg-red-500 text-white' : 'bg-gray-500 text-gray-300 cursor-not-allowed'}`}
                     onClick={(e) => handleAddToCart(e, product)}
+                    disabled={product.stock <= 0}
                   >
                     Add To Cart
                   </button>
