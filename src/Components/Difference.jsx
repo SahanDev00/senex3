@@ -1,5 +1,4 @@
 import React from 'react'
-import { VscFeedback } from "react-icons/vsc";
 import reviewPic from '../Assets/Images/review.jpg'
 import servicePic from '../Assets/Images/Service.jpg'
 import performancePic from '../Assets/Images/performance.jpg'
