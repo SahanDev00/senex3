@@ -49,7 +49,7 @@ export default function BasicDemo({ product }) {
                 thumbnail={thumbnailTemplate} 
                 circular
                 autoPlay
-                transitionInterval={3000}
+                transitionInterval={4000}
                 showItemNavigators
                 showThumbnails
             />

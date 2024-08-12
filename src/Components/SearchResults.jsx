@@ -12,8 +12,8 @@ const SearchResults = () => {
   const { searchQuery } = useContext(SearchContext);
   const { addToCart } = useContext(CartContext);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [notification, setNotification] = useState(''); // State for notification message
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for sidebar visibility
+  const [notification, setNotification] = useState('');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get('q') || searchQuery;
@@ -35,48 +35,51 @@ const SearchResults = () => {
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top on page change
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleAddToCart = (product, e) => {
-    e.stopPropagation(); // Prevent the modal from opening
-    addToCart(product);
-    
-    // Show notification message
-    setNotification(`${product.name} has been added to the cart.`);
-    
-    // Hide notification message after 3 seconds
-    setTimeout(() => {
-      setNotification('');
-    }, 3000);
+    e.stopPropagation();
+    if (product.stock > 0) {
+      addToCart(product);
+      setNotification(`${product.name} has been added to the cart.`);
+      setTimeout(() => {
+        setNotification('');
+      }, 3000);
+    } else {
+      setNotification(`${product.name} is out of stock.`);
+      setTimeout(() => {
+        setNotification('');
+      }, 3000);
+    }
   };
 
-  
-  // Function to toggle the sidebar visibility
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
-    <div className=" sm:w-[97%] md:w-[94%] lg:w-[91%] p-4 relative font-poppins">
-      {filteredProducts.length === 0 ? (
-        <NotFound searchTerm={query} />
-      ) : (
+    <div className="sm:w-[97%] xl:w-[91%] p-4 relative font-poppins">
+      <h1 className="text-2xl text-white font-bold mb-3">Search Results for: {query}</h1>
+      {filteredProducts.length > 0 ? (
         <div>
-          <h2 className="text-2xl ml-2 font-bold mb-2 text-white">Search Results for "{query}"</h2>
-          <p className='ml-2 mt-1 mb-3 text-white'>{filteredProducts.length} products found</p>
+          <p className="text-white md:mb-2">{filteredProducts.length} products found</p>
           <div className='w-[200px] mb-2 h-[50px] flex md:hidden items-center'>
             <button className='px-4 py-1 text-white border' onClick={toggleSidebar}>Filters</button>
           </div>
-          <div className="grid grid-cols-2 2xl:grid-cols-4 xl:grid-cols-3 gap-6">
-            {currentProducts.map((product, index) => (
-              <div key={index} className="border bg-black/40 border-gray-500 hover:scale-105 duration-300 m-1 p-4 rounded hover:shadow-lg shadow cursor-pointer" onClick={() => setSelectedProduct(product)}>
-                <img src={product.image} alt={product.name} className="md:w-full md:h-48 md:object-cover mb-4" />
-                <h2 className=" md:text-xl text-center text-white font-semibold">{product.name}</h2>
-                <p className=" text-center text-white">${Number(product.price).toFixed(2)}</p> {/* Ensure price is formatted */}
+          <div className="grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+            {currentProducts.map((product) => (
+              <div key={product.id} className="border bg-black/40 hover:scale-105 duration-300 m-1 p-5 rounded hover:shadow-lg shadow cursor-pointer" onClick={() => setSelectedProduct(product)}>
+                <img src={product.image} alt={product.name} className="w-full h-48 object-cover mb-4" />
+                <h2 className="text-xl text-white text-center font-semibold">{product.name}</h2>
+                <p className="text-center text-white">${Number(product.price).toFixed(2)}</p>
+                <p className={`text-center ${product.stock > 0 ? 'text-green-500' : 'text-red-500'}`}>
+                  {product.stock > 0 ? 'In Stock' : 'Out of Stock'}
+                </p>
                 <button
-                  className="mt-2 text-xs md:text-sm flex mx-auto bg-red-500 text-white py-2 px-4 rounded"
-                  onClick={(e) => handleAddToCart(product, e)} // Handle Add to Cart
+                  className={`mt-2 text-xs md:text-sm flex mx-auto ${product.stock > 0 ? 'bg-red-500' : 'bg-gray-500'} text-white py-2 px-4 rounded`}
+                  onClick={(e) => handleAddToCart(product, e)}
+                  disabled={product.stock <= 0} // Disable button if out of stock
                 >
                   Add to Cart
                 </button>
@@ -95,16 +98,16 @@ const SearchResults = () => {
             ))}
           </div>
         </div>
+      ) : (
+        <NotFound />
       )}
-      
-      {/* Notification message */}
+
       {notification && (
         <div className="fixed bottom-4 right-4 bg-green-500 text-white md:py-2 md:px-4 md:text-[16px] text-sm py-1 px-2 rounded shadow-lg z-50">
           {notification}
         </div>
       )}
 
-      {/* Modal for Product Description */}
       {selectedProduct && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white rounded-lg p-8 w-3/4 max-w-4xl relative">
@@ -119,7 +122,6 @@ const SearchResults = () => {
         </div>
       )}
 
-      {/* Sidebar for Filters */}
       {isSidebarOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="rounded-lg p-8 w-3/4 max-w-4xl relative border bg-black/80">
@@ -133,7 +135,6 @@ const SearchResults = () => {
           </div>
         </div>
       )}
-
     </div>
   );
 };

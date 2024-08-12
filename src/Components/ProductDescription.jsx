@@ -39,6 +39,11 @@ const ProductDescription = ({ product }) => {
           <h2 className="text-xl font-semibold mb-2 font-poppins">{product.name}</h2>
           <p className="text-gray-600 mb-4 font-poppins">${formatPrice(product.price)}</p>
 
+          {/* Stock Status */}
+          <p className={`mb-4 ${product.stock > 0 ? 'text-green-500' : 'text-red-500'}`}>
+            {product.stock > 0 ? 'In Stock' : 'Out of Stock'}
+          </p>
+
           {/* Toggle Buttons */}
           <div className="flex mb-4">
             <button
@@ -79,6 +84,7 @@ const ProductDescription = ({ product }) => {
             <button
               onClick={handleDecrease}
               className="bg-gray-200 text-gray-700 px-3 py-1 rounded-l focus:outline-none"
+              disabled={product.stock <= 0} // Disable if out of stock
             >
               -
             </button>
@@ -91,13 +97,16 @@ const ProductDescription = ({ product }) => {
             <button
               onClick={handleIncrease}
               className="bg-gray-200 text-gray-700 px-3 py-1 rounded-r focus:outline-none"
+              disabled={product.stock <= 0} // Disable if out of stock
             >
               +
             </button>
           </div>
+
           <button
             onClick={handleAddToCart}
-            className="bg-blue-500 font-poppins text-white py-2 px-4 rounded"
+            className={`bg-blue-500 font-poppins text-white py-2 px-4 rounded ${product.stock <= 0 ? 'cursor-not-allowed opacity-50' : ''}`}
+            disabled={product.stock <= 0} // Disable if out of stock
           >
             Add to Cart
           </button>
