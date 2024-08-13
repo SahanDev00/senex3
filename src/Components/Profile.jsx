@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const Profile = () => {
   return (
-    <div className=' w-[90%] mx-auto relative font-poppins'>
+    <div className=' w-[90%] mx-auto relative font-poppins 2xl:h-[98vh]'>
         <h1 className='text-3xl md:text-4xl text-white font-bold text-center my-10 uppercase'>Personal Details</h1>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-5 my-5'>
             <div className='w-full p-5 space-y-2 border-2 rounded-xl border-gray-400 bg-black/50 shadow-lg'>
