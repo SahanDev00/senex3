@@ -83,7 +83,8 @@ const Navbar = () => {
                 <div className='flex items-center float-to-right'>
                     <ul className='hidden md:flex gap-2 md:gap-4 lg:gap-8 font-bold text-[10px] sm:text-xs md:text-sm lg:text-lg mr-3 sm:mr-6 md:mr-10 lg:mr-14'>
                         <Link to='/' exact className={`cursor-pointer hover:text-red-600 pl-1 md:pl-2 font-poppins ${isActive('/') ? "text-red-500 border-l-2 border-red-500" : "text-white"}`}>HOME</Link>
-                        <Link to='/product' exact className={`cursor-pointer hover:text-red-600 pl-1 md:pl-2 font-poppins ${isActive('/product') ? "text-red-500 border-l-2 border-red-500" : "text-white"}`}>PRODUCTS</Link>
+                        <Link to='/product' exact className={`cursor-pointer hover:text-red-600 pl-1 md:pl-2 font-poppins ${isActive('/product') ? "text-red-500 border-l-2 border-red-500" : "text-white"}`}>STORE</Link>
+                        <Link to='/service-center' exact className={`cursor-pointer hover:text-red-600 pl-1 md:pl-2 font-poppins ${isActive('/service-center') ? "text-red-500 border-l-2 border-red-500" : "text-white"}`}>SERVICE CENTER</Link>
                         <Link to='/about-us' className={`cursor-pointer hover:text-red-600 pl-1 md:pl-2 font-poppins ${isActive('/about-us') ? "text-red-500 border-l-2 border-red-500" : "text-white"}`}>ABOUT US</Link>
                         <Link to='/contact-us' className={`cursor-pointer hover:text-red-600 pl-1 md:pl-2 font-poppins ${isActive('/contact-us') ? "text-red-500 border-l-2 border-red-500" : "text-white"}`}>CONTACT US</Link>
                     </ul>

@@ -1,16 +1,17 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Categories } from '../products';
-import { RiArrowDropRightLine } from "react-icons/ri";
 import { Link, useLocation } from 'react-router-dom';
 import { SearchContext } from '../SearchContext';
 import FilterSection from './FilterSection'; // Import FilterSection
+import SubCats from './SubCats'; // Import SubCats
 
 const Sidebar = () => {
   const { clearSearchQuery } = useContext(SearchContext);
   const location = useLocation(); // Get the current location
 
   const [collapsedSections, setCollapsedSections] = useState({});
-  const [selectedSubCategory, setSelectedSubCategory] = useState(null); // State for selected subcategory
+  const [selectedCategory, setSelectedCategory] = useState(null); // State for selected category
+  const [subCategories, setSubCategories] = useState([]); // State for subcategories
 
   const toggleCollapse = (section) => {
     setCollapsedSections((prev) => {
@@ -24,14 +25,17 @@ const Sidebar = () => {
       return newSections;
     });
   };
-  
-  const handleSubCategoryClick = (subCategory) => {
+
+  const handleCategoryClick = (category) => {
     clearSearchQuery();
-    setSelectedSubCategory(subCategory);
+    setSelectedCategory(category);
+    const categoryObj = Categories.find((cat) => cat.category === category);
+    setSubCategories(categoryObj ? categoryObj.subCat || [] : []); // Set subcategories from the selected category
   };
 
   const handleCloseFilterSection = () => {
-    setSelectedSubCategory(null);
+    setSelectedCategory(null);
+    setSubCategories([]); // Clear subcategories when the filter section is closed
   };
 
   useEffect(() => {
@@ -42,46 +46,43 @@ const Sidebar = () => {
   }, [location.pathname]);
 
   return (
-    <div className="lg:flex font-poppins hidden ">
-      <div className=' lg:w-[200px] xl:w-[200px] mxl:h-[570px] 2xl:w-[250px] border-red-600 border md:ml-20 lg:ml-10 xl:ml-10 mxl:ml-16 lxl:ml-32 2xl:ml-36 mt-4 h-[780px] lg:h-[600px] xl:h-[550px]  2xl:h-[780px] overflow-y-auto bg-white'>
-        <div className='w-full h-[50px] border bg-red-600 border-white'>
-          <h1 className='flex items-center justify-center text-white w-full h-full uppercase font-semibold text-lg'>Categories</h1>
-        </div>
-        <div className='my-4 ml-3 '>
+    <div className="lg:flex font-poppins hidden">
+      <div className='lg:w-[200px] xl:w-[200px] mxl:h-[570px] 2xl:w-[300px] mt-4 h-[780px] lg:h-[600px] xl:h-[550px] 2xl:h-[780px]'>
+        <div className=''>
           <ul>
             {Categories.map((category, index) => (
-              <li key={index}>
-                <h3 className='flex items-center cursor-pointer mt-1 mb-2 text-sm uppercase' onClick={() => toggleCollapse(category.category)}>
-                  <RiArrowDropRightLine
-                    className={`text-gray-500 transition-transform duration-200 ${
-                      collapsedSections[category.category] ? 'rotate-90' : ''
-                    }`}
-                    size={25}
-                  />{' '} {category.category}
-                </h3>
-                {collapsedSections[category.category] && (
-                  <ul>
-                    {category.subCat.map((subCategory, subIndex) => (
-                      <li className='mb-2 uppercase ml-9 text-sm cursor-pointer' key={`${index}-${subIndex}`}>
-                        <Link 
-                          onClick={() => handleSubCategoryClick(subCategory.name)} // Call handleSubCategoryClick on click
-                          to={`/product/products/${subCategory.name}`}
-                        >
-                          {subCategory.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-                <hr />
-              </li>
+              <Link 
+                key={index} 
+                onClick={() => handleCategoryClick(category.category)} 
+                to={`/product/products/${category.category}`}
+              >
+                <li className='bg-stone-700 w-full hover:bg-red-600 hover:scale-110 hover:shadow-xl duration-100 group'>
+                  <h3 
+                    className='flex items-center text-stone-300 font-bold cursor-pointer group-hover:text-white py-4 mt-1 mb-1 text-sm uppercase hover:translate-x-3 transition'
+                    onClick={() => toggleCollapse(category.category)}
+                  >
+                    <category.icon
+                      className={`text-black group-hover:text-white transition-transform duration-200 mr-2 ml-1 ${
+                        collapsedSections[category.category] ? '' : ''
+                      }`}
+                      size={35}
+                    />
+                    {category.category}
+                  </h3>
+                </li>
+              </Link>
             ))}
           </ul>
         </div>
       </div>
-      {/* Render FilterSection component if a subcategory is selected */}
-      {selectedSubCategory && (
-        <FilterSection subCategory={selectedSubCategory} onClose={handleCloseFilterSection} />
+      {selectedCategory && (
+        <div className=''>
+          <SubCats subCategories={subCategories} onClose={handleCloseFilterSection}  /> {/* Pass subCategories to SubCats */}
+          <FilterSection 
+            category={selectedCategory} 
+            onClose={handleCloseFilterSection} 
+          />
+        </div>
       )}
     </div>
   );

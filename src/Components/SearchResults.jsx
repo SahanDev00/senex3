@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import NotFound from './NotFound';
 import { Categories } from '../products';
 import { SearchContext } from '../SearchContext';
 import { CartContext } from '../Components/CartContext';
@@ -27,7 +26,7 @@ const SearchResults = () => {
   );
 
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 12;
+  const productsPerPage = 16;
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -70,7 +69,7 @@ const SearchResults = () => {
           <div className="grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
             {currentProducts.map((product) => (
               <div key={product.id} className="border bg-black/40 hover:scale-105 duration-300 m-1 p-5 rounded hover:shadow-lg shadow cursor-pointer" onClick={() => setSelectedProduct(product)}>
-                <img src={product.image} alt={product.name} className="w-full h-48 object-cover mb-4" />
+                <img src={product.image} alt={product.name} className="w-full mb-4" />
                 <h2 className="text-xl text-white text-center font-semibold">{product.name}</h2>
                 <p className="text-center text-white">${Number(product.price).toFixed(2)}</p>
                 <p className={`text-center ${product.stock > 0 ? 'text-green-500' : 'text-red-500'}`}>
@@ -99,7 +98,7 @@ const SearchResults = () => {
           </div>
         </div>
       ) : (
-        <NotFound />
+        <h1 className="text-lg text-white mb-3">Sorry, the item "{query}" is not available !!!</h1>
       )}
 
       {notification && (

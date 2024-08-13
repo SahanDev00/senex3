@@ -8,7 +8,7 @@ import FilterSection2 from './FilterSection2';
 
 const ProductsPage = () => {
   const { searchQuery, clearSearchQuery } = useContext(SearchContext);
-  const { subCategoryName } = useParams();
+  const { categoryName } = useParams(); // Updated to categoryName
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [notification, setNotification] = useState('');
   const { addToCart } = useContext(CartContext);
@@ -16,25 +16,29 @@ const ProductsPage = () => {
 
   useEffect(() => {
     clearSearchQuery();
-  }, [subCategoryName, clearSearchQuery]);
+  }, [categoryName, clearSearchQuery]);
 
-  const findProducts = (subCategoryName) => {
+  const findProducts = (categoryName) => {
+    let products = [];
     for (const category of Categories) {
-      for (const subCat of category.subCat) {
-        if (subCat.name === subCategoryName) {
-          return subCat.products.filter((product) =>
-            product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      if (category.category === categoryName) {
+        for (const subCat of category.subCat) {
+          products = products.concat(
+            subCat.products.filter((product) =>
+              product.name.toLowerCase().includes(searchQuery.toLowerCase())
+            )
           );
         }
+        break; // Break once the category is found and products are aggregated
       }
     }
-    return [];
+    return products;
   };
 
-  const products = findProducts(subCategoryName);
+  const products = findProducts(categoryName);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 12;
+  const productsPerPage = 16;
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -52,7 +56,7 @@ const ProductsPage = () => {
       setTimeout(() => {
         setNotification('');
       }, 3000);
-    } else {
+    } else {  
       setNotification(`${product.name} is out of stock.`);
       setTimeout(() => {
         setNotification('');
@@ -65,8 +69,8 @@ const ProductsPage = () => {
   };
 
   return (
-    <div className="xl:w-[91%] p-4 relative font-poppins">
-      <h1 className="text-2xl text-white font-bold mb-3">{subCategoryName} Products</h1>
+    <div className="xl:w-[91%] p-4 relative font-poppins ml-3">
+      <h1 className="text-2xl text-white font-bold mb-3">{categoryName} Products</h1>
       {products.length > 0 ? (
         <div>
           <p className="text-white md:mb-2">{products.length} products found</p>
@@ -76,7 +80,7 @@ const ProductsPage = () => {
           <div className="grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
             {currentProducts.map((product) => (
               <div key={product.id} className="border bg-black/40 hover:scale-105 duration-300 m-1 p-5 rounded hover:shadow-lg shadow cursor-pointer" onClick={() => setSelectedProduct(product)}>
-                <img src={product.image} alt={product.name} className="w-full h-48 object-cover mb-4" />
+                <img src={product.image} alt={product.name} className="w-full mb-4" />
                 <h2 className="text-xl text-white text-center font-semibold">{product.name}</h2>
                 <p className="text-center text-white">${Number(product.price).toFixed(2)}</p>
                 <p className={`text-center ${product.stock > 0 ? 'text-green-500' : 'text-red-500'}`}>

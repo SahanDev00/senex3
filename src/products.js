@@ -3,10 +3,12 @@ import monitor from "./Assets/Images/monitor.webp";
 import computer from "./Assets/Images/PCpng.webp";
 import cmos from "./Assets/Images/cmospng.webp";
 import laptop from "./Assets/Images/Lappng.webp";
+import { FaApple } from "react-icons/fa";
 
 export const Categories = [
   {
-    category: 'Computers',
+    category: 'APPLE STORE',
+    icon: FaApple,
     subCat: [
       {
         name: 'Asus1',
@@ -120,7 +122,8 @@ export const Categories = [
     ]
   },
   {
-    category: 'Monitors',
+    category: 'GIFT VOUCHER',
+    icon: FaApple,
     subCat: [
       {
         name: 'Asus',
@@ -236,7 +239,8 @@ export const Categories = [
     ]
   },
   {
-    category: 'Batteries',
+    category: 'DESKTOP COMPUTERS',
+    icon: FaApple,
     subCat: [
       {
         name: 'CMOS',
@@ -315,7 +319,8 @@ export const Categories = [
     ]
   },
   {
-    category: 'Cables',
+    category: 'LAPTOPS',
+    icon: FaApple,
     subCat: [
       {
         name: 'VGA Cables',
@@ -431,7 +436,8 @@ export const Categories = [
     ]
   },
   {
-    category: 'Laptops',
+    category: 'LAPTOP ACCESSORIES',
+    icon: FaApple,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -533,5 +539,580 @@ export const Categories = [
         ]
       }
     ]
-  }
+  },
+  {
+    category: 'PRINTERS AND ACCESSORIES',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'MONITORS',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'MOTHERBOARD',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'PROCESSOR',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'MEMORY (RAM)',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'STORAGE',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'POWER SUPPLY',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'GRAPHIC CARD',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'COMPUTER CASING',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'KEYBOARD AND MOUSE',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'MOUSE PAD',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'SPEAKER',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'HEADPHONES AND MIC',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'COOLING AND LIGHTING',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'GAMING CONSOLES',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'UPS AND BATTERY',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'NETWORK ACCESSORIES',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'CABLES (HDMI, USB, AUDIO)',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'CONVERTERS',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'HUBS (USB, HDMI, VGA)',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'VORUS GUARD AND SOFTWARE',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'ENCLOSURE AND DOCKING',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
+  {
+    category: 'CLEANING TOOLS',
+    icon: FaApple,
+    subCat: [
+      {
+        name: 'Asus Laptop',
+        products: [
+          { 
+            id: 1, 
+            name: 'Asus Laptop 1', 
+            price: '1000', 
+            image: laptop,
+            description: "High-performance laptop with an Intel i7 processor, 16GB RAM, and 512GB SSD.",
+            specs: "Intel i7, 16GB RAM, 512GB SSD, 15.6-inch display",
+            stock: '1',
+            SubImage: [
+              { src: cmos, alt: 'Sub Image 1' },
+              { src: laptop, alt: 'Sub Image 2' },
+              { src: monitor, alt: 'Sub Image 3' }
+            ],
+          }
+        ]
+      }
+    ]
+  },
 ];

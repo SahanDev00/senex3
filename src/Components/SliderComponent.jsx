@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import banner from "../Assets/Images/banner.webp"
-import banner2 from "../Assets/Images/banner2.webp"
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import HeroPic from '../Assets/Images/Hero.webp';
+import subzero from '../Assets/Images/subzero.png';
 
 
 const SliderComponent = () => {
@@ -12,7 +12,7 @@ const SliderComponent = () => {
       text: 'Save up to 20%',
       heading: 'CATCH BIG',
       headingSpan: 'DEALS',
-      Pic: banner,
+      Pic: HeroPic,
       btnText: 'CLAIM',
       btnColour: "#22c55e",
       textColour: "#22c55e"
@@ -21,7 +21,7 @@ const SliderComponent = () => {
       text: 'Save up to 50%',
       heading: 'SUPPER',
       headingSpan: 'SALE',
-      Pic: banner2,
+      Pic: subzero,
       btnText: 'BUY NOW',
       btnColour: "#1d4ed8",
       textColour: "#1d4ed8"
@@ -43,7 +43,7 @@ const SliderComponent = () => {
   };
 
   return (
-    <div className='mt-5 w-[330px] xxs:w-[370px] xs:w-[370px] mx-auto ml-5 lg:ml-0 mxl:ml-4 lxl:ml-0 2xl:ml-1 sm:ml-6 ssm:ml-7 md:ml-8 sm:w-[600px] ssm:w-[480px] md:w-[650px] lg:w-[710px] xl:w-[950px] mxl:w-[980px] 2xl:w-[1325px] 3xl:w-[1450px] h-[200px] sm:h-[400px] md:h-[260px] mxl:h-[250px] lg:h-[280px] xl:h-[240px] 2xl:h-[400px] font-poppins rounded-lg cursor-grab active:cursor-grabbing'>
+    <div className='mt-5 w-[330px] xxs:w-[370px] xs:w-[370px] mx-auto ml-5 lg:ml-0 mxl:ml-4 lxl:ml-0 2xl:ml-7 sm:ml-6 ssm:ml-7 md:ml-8 sm:w-[600px] ssm:w-[480px] md:w-[650px] lg:w-[710px] xl:w-[950px] mxl:w-[980px] 2xl:w-[1524px] 3xl:w-[1450px] h-[200px] sm:h-[400px] md:h-[260px] mxl:h-[250px] lg:h-[280px] xl:h-[240px] 2xl:h-[400px] font-poppins rounded-lg cursor-grab active:cursor-grabbing'>
       <Slider {...settings} className='w-full h-[200px] sm:h-[400px] md:h-[260px] mxl:h-[250px] xl:h-[240px] 2xl:h-[400px] lg:h-[280px]'>
           {details.map((detail, index) => (
             <div key={index}>
@@ -56,8 +56,8 @@ const SliderComponent = () => {
                   {detail.btnText}
                 </button>
               </div>
-              <div className='w-full h-[200px] sm:h-[400px] md:h-[260px] xl:h-[240px] mxl:h-[250px] lg:h-[280px] rounded-lg 2xl:h-[400px]'>
-                  <img src={detail.Pic} alt="Banner" className='w-full h-full object-cover rounded-lg' />
+              <div className='w-full h-[200px] bg-black/30 sm:h-[400px] md:h-[260px] relative xl:h-[240px] mxl:h-[250px] lg:h-[280px] rounded-lg 2xl:h-[400px]'>
+                  <img src={detail.Pic} alt="Banner" className=' right-0 h-full absolute rounded-lg' />
               </div>
             </div>
           ))}
