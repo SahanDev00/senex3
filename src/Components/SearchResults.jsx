@@ -58,7 +58,7 @@ const SearchResults = () => {
   };
 
   return (
-    <div className="sm:w-[97%] xl:w-[91%] p-4 relative font-poppins">
+    <div className="sm:w-[97%] xl:w-[91%] p-4 relative font-poppins ml-3">
       <h1 className="text-2xl text-white font-bold mb-3">Search Results for: {query}</h1>
       {filteredProducts.length > 0 ? (
         <div>
