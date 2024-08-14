@@ -1,6 +1,13 @@
 import React from 'react';
+import FilterPrice from './FilterPrice';
 
 const FilterSection = ({ onClose }) => {
+
+  const handlePriceChange = (min, max) => {
+    console.log(`Min Price: ${min}, Max Price: ${max}`);
+    // Handle the price filtering logic here
+  };
+
   return (
     <div className="lg:w-[170px] xl:w-[180px] mxl:w-[224px] border-r bg-black/30 border-red-600 py-5">
         <div className="w-full h-[50px] flex items-center justify-between px-2">
@@ -25,6 +32,7 @@ const FilterSection = ({ onClose }) => {
             </li>
             {/* Add more filters as needed */}
           </ul>
+          <FilterPrice minPrice={1500} maxPrice={3000} onPriceChange={handlePriceChange} />
         </div>
       </div>
   );

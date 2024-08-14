@@ -77,7 +77,7 @@ const Navbar = () => {
             <div className='flex justify-between items-center w-full h-[100px] md:h-[120px]'>
                 <div>
                     <Link to='/' className='text-3xl md:text-4xl lg:text-6xl font-bold text-red-600 cursor-pointer mr-2 md:mr-0'>
-                        <img src={logo} alt="" className='w-[200px]' />
+                        <img src={logo} alt="" className='w-[200px] bg-black/50' />
                     </Link>
                 </div>
                 <div className='flex items-center float-to-right'>
