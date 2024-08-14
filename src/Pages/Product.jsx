@@ -3,9 +3,6 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from '../Components/Sidebar';
 import Searchbar from '../Components/Searchbar';
 import { SearchContext } from '../SearchContext';
-import BestSelling from '../Components/BestSelling';
-import RecentlyViewed from '../Components/RecentlyViewed';
-import Features from '../Components/Features';
 
 const Product = () => {
     const { setSearchQuery } = useContext(SearchContext);
@@ -23,9 +20,6 @@ const Product = () => {
                     </div>
                 </div>
             </div>
-            <BestSelling />
-            <RecentlyViewed />
-            <Features />
         </div>
     );
 }

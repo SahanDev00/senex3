@@ -106,10 +106,10 @@ const Tabs = () => {
             <h2 className='text-2xl font-bold mb-2 text-white'>Special Offers</h2>
             <p className='text-white'>Here are the special offers available right now.</p>
             {/* Add more content related to Special Offers */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-poppins mt-5">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 font-poppins mt-5">
                 {offers.map(product => (
                     <div key={product.id} className="product-card p-4 shadow-md border rounded">
-                        <img src={product.pic} alt="" />
+                        <img src={product.pic} alt="" className='h-[200px] mx-auto' />
                         <h2 className="text-xl font-bold text-white">{product.name}</h2>
                         <p className='text-white/80 my-2'>{product.description}</p>
                         <p className="text-xl font-bold text-white">${product.price}</p>
@@ -123,10 +123,10 @@ const Tabs = () => {
             <h2 className='text-2xl font-bold mb-2 text-white'>New Arrivals</h2>
             <p className='text-white'>Check out the new arrivals in our store.</p>
             {/* Add more content related to New Arrivals */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-poppins mt-5">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 font-poppins mt-5">
                 {arrivals.map(product => (
                     <div key={product.id} className="product-card p-4 shadow-md border rounded">
-                        <img src={product.pic} alt="" />
+                        <img src={product.pic} alt="" className='h-[200px] mx-auto' />
                         <h2 className="text-xl font-bold text-white">{product.name}</h2>
                         <p className='text-white/80 my-2'>{product.description}</p>
                         <p className="text-xl font-bold text-white">${product.price}</p>

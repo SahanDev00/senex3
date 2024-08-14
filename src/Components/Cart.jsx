@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../Components/CartContext';
 import { Link } from 'react-router-dom';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import logo from "../Assets/Images/logo.png"
 
 const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
@@ -16,6 +19,34 @@ const Cart = () => {
       const itemPrice = parseFloat(formatPrice(item.price)) * item.quantity;
       return total + itemPrice;
     }, 0).toFixed(2);
+  };
+
+  const generatePDF = () => {
+    const doc = new jsPDF();
+
+    doc.setFontSize(18);
+    doc.text('Quotation', 14, 28);
+    doc.addImage(logo, "PNG", 5, 5, 50, 0);
+
+    const tableColumn = ['Product', 'Quantity', 'Price', 'Total'];
+    const tableRows = [];
+
+    cartItems.forEach(item => {
+      const itemData = [
+        item.name,
+        item.quantity,
+        `$${formatPrice(item.price)}`,
+        `$${(parseFloat(formatPrice(item.price)) * item.quantity).toFixed(2)}`
+      ];
+      tableRows.push(itemData);
+    });
+
+    doc.autoTable(tableColumn, tableRows, { startY: 30 });
+
+    const total = calculateTotal();
+    doc.text(`Total: $${total}`, 14, doc.previousAutoTable.finalY + 10);
+
+    doc.save('senex_quotation.pdf');
   };
 
   return (
@@ -68,6 +99,9 @@ const Cart = () => {
             <Link to='/checkout'>
               <button className="bg-blue-500 text-white py-2 px-4 rounded font-poppins">Checkout</button>
             </Link>
+          </div>
+          <div className="flex items-center justify-end mt-4">
+            <button onClick={generatePDF} className="bg-green-500 text-white py-2 px-4 rounded font-poppins">Download Quotation</button>
           </div>
         </div>
       )}
