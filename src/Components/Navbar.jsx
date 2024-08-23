@@ -73,15 +73,15 @@ const Navbar = () => {
     };
     
     return (
-        <div className='w-[90%] md:w-[85%] mx-auto relative'>
+        <div className='w-[90%] md:w-[95%] lg:w-[85%] mx-auto relative'>
             <div className='flex justify-between items-center w-full h-[100px] md:h-[120px]'>
                 <div>
-                    <Link to='/' className='text-3xl md:text-4xl lg:text-6xl font-bold text-red-600 cursor-pointer mr-2 md:mr-0'>
-                        <img src={logo} alt="" className='w-[200px] bg-black/50' />
+                    <Link to='/' className='text-3xl md:text-4xl lg:text-6xl font-bold text-red-600 cursor-pointer mr-2 md:mr-0 flex justify-center items-center'>
+                        <img src={logo} alt="" className='w-[180px] lg:w-[200px] bg-black/50' />
                     </Link>
                 </div>
                 <div className='flex items-center float-to-right'>
-                    <ul className='hidden md:flex gap-2 md:gap-4 lg:gap-8 font-bold text-[10px] sm:text-xs md:text-sm lg:text-lg mr-3 sm:mr-6 md:mr-10 lg:mr-14'>
+                    <ul className='hidden md:flex gap-2 md:gap-3 lg:gap-5 font-bold text-[10px] sm:text-xs md:text-sm lg:text-sm xl:text-lg mr-3 sm:mr-6 md:mr-6 lg:mr-8'>
                         <Link to='/' exact className={`cursor-pointer hover:text-red-600 pl-1 md:pl-2 font-poppins ${isActive('/') ? "text-red-500 border-l-2 border-red-500" : "text-white"}`}>HOME</Link>
                         <Link to='/product' exact className={`cursor-pointer hover:text-red-600 pl-1 md:pl-2 font-poppins ${isActive('/product') ? "text-red-500 border-l-2 border-red-500" : "text-white"}`}>STORE</Link>
                         <Link to='/service-center' exact className={`cursor-pointer hover:text-red-600 pl-1 md:pl-2 font-poppins ${isActive('/service-center') ? "text-red-500 border-l-2 border-red-500" : "text-white"}`}>SERVICE CENTER</Link>
@@ -119,6 +119,7 @@ const Navbar = () => {
                             <ul className='flex-col space-y-3'>
                                 <Link to='/' exact className={`cursor-pointer block hover:text-red-600 pl-1 md:pl-2 font-poppins ${isActive('/') ? "text-red-500 border-l-2 border-red-500" : "text-white"}`}>HOME</Link>
                                 <Link to='/product' exact className={`cursor-pointer block hover:text-red-600 pl-1 md:pl-2 font-poppins ${isActive('/product') ? "text-red-500 border-l-2 border-red-500" : "text-white"}`}>PRODUCTS</Link>
+                                <Link to='/service-center' exact className={`cursor-pointer block hover:text-red-600 pl-1 md:pl-2 font-poppins ${isActive('/service-center') ? "text-red-500 border-l-2 border-red-500" : "text-white"}`}>SERVICE CENTER</Link>
                                 <p onClick={handleNav2} className='cursor-pointer text-white block hover:text-red-600 pl-1 md:pl-2 font-poppins'>CATEGORIES</p>
                                 <Link to='/about-us' className={`cursor-pointer block hover:text-red-600 pl-1 md:pl-2 font-poppins ${isActive('/about-us') ? "text-red-500 border-l-2 border-red-500" : "text-white"}`}>ABOUT US</Link>
                                 <Link to='/contact-us' className={`cursor-pointer block hover:text-red-600 pl-1 md:pl-2 font-poppins ${isActive('/contact-us') ? "text-red-500 border-l-2 border-red-500" : "text-white"}`}>CONTACT US</Link>

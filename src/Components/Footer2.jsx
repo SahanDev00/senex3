@@ -6,16 +6,17 @@ import { FaTwitter } from "react-icons/fa6";
 
 const Footer2 = () => {
   return (
-    <div className='w-full h-[60px] bg-neutral-700'>
-        <div className='w-[80%] mx-auto h-full flex items-center justify-between'>
-            <img src={paymentPic} alt="" />
-            <p className='text-center mt-2 font-poppins text-xs md:text-[16px] text-white '>Copyright © <span className='font-semibold'>Exesmart</span> - All rights Reserved</p>
-            <div className='flex items-center justify-between gap-4'>
-                <FaFacebook size={25} className='text-white hover:text-red-300 cursor-pointer'/>
-                <FaWhatsapp size={25} className='text-white hover:text-red-300 cursor-pointer'/>
-                <FaTwitter size={25} className='text-white hover:text-red-300 cursor-pointer'/>
+    <div className='w-full sm:mt-0 mt-20 h-[60px] bg-neutral-700'>
+        <div className='w-[90%] lg:w-[80%] gap-2 mx-auto h-full flex items-center justify-between'>
+            <img src={paymentPic} alt="" className='w-[100px] md:w-[200px]' />
+            <p className='text-center hidden sm:flex mt-2 font-poppins text-xs md:text-[16px] text-white '>Copyright © <span className='font-semibold'>Exesmart</span> - All rights Reserved</p>
+            <div className='flex items-center justify-between gap-2 md:gap-4'>
+                <FaFacebook className='text-white hover:text-red-300 cursor-pointer size-5 md:size-8'/>
+                <FaWhatsapp className='text-white hover:text-red-300 cursor-pointer size-5 md:size-8'/>
+                <FaTwitter className='text-white hover:text-red-300 cursor-pointer size-5 md:size-8'/>
             </div>
         </div>
+        <p className='text-center mx-auto py-3 sm:hidden w-full font-poppins text-xs md:text-[16px] text-white bg-neutral-700'>Copyright © <span className='font-semibold'>Exesmart</span> - All rights Reserved</p>
     </div>
   )
 }

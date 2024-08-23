@@ -4,6 +4,9 @@ import computer from "./Assets/Images/PCpng.webp";
 import cmos from "./Assets/Images/cmospng.webp";
 import laptop from "./Assets/Images/Lappng.webp";
 import { FaApple } from "react-icons/fa";
+import { FaComputer } from "react-icons/fa6";
+import { FaGift } from "react-icons/fa6";
+import { MdOutlineLaptopMac } from "react-icons/md";
 
 export const Categories = [
   {
@@ -123,7 +126,7 @@ export const Categories = [
   },
   {
     category: 'GIFT VOUCHER',
-    icon: FaApple,
+    icon: FaGift,
     subCat: [
       {
         name: 'Asus',
@@ -240,7 +243,7 @@ export const Categories = [
   },
   {
     category: 'DESKTOP COMPUTERS',
-    icon: FaApple,
+    icon: FaComputer,
     subCat: [
       {
         name: 'CMOS',
@@ -320,7 +323,7 @@ export const Categories = [
   },
   {
     category: 'LAPTOPS',
-    icon: FaApple,
+    icon: MdOutlineLaptopMac,
     subCat: [
       {
         name: 'VGA Cables',
@@ -1041,7 +1044,7 @@ export const Categories = [
     ]
   },
   {
-    category: 'VORUS GUARD AND SOFTWARE',
+    category: 'VIRUS GUARD AND SOFTWARE',
     icon: FaApple,
     subCat: [
       {

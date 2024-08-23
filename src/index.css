@@ -67,3 +67,6 @@
     display: none;
 }
 
+.slick-list {
+  height: 100% !important; 
+}

@@ -39,13 +39,13 @@ const Trusted = () => {
 
       {/* Collapsible Testimonials Section */}
       {isTestimonialsVisible && (
-        <div className='w-[60%] mt-10 mx-auto'>
+        <div className='w-[90%] md:w-[60%] mt-10 mx-auto'>
           <Slider {...sliderSettings}>
             {testimonials.map((testimonial, index) => (
               <div key={index} className='text-white text-center p-4'>
                 <img src={testimonial.pic} className='w-[70px] mx-auto' alt="" />
-                <p className='text-xl mb-2'>"{testimonial.text}"</p>
-                <p className='text-lg font-semibold'>- {testimonial.author}</p>
+                <p className='text-lg md:text-xl mb-2'>"{testimonial.text}"</p>
+                <p className='text-sm md:text-lg font-semibold'>- {testimonial.author}</p>
               </div>
             ))}
           </Slider>

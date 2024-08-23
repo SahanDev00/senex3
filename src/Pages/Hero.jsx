@@ -43,12 +43,12 @@ const Hero = () => {
   };
 
   return (
-    <div className='w-[95%] h-[400px] sm:h-[600px] md:h-full mx-auto relative mb-14'>
-      <Slider {...settings}>
+    <div className='w-[87%] md:w-[93%] mx-auto relative mb-14'>
+      <Slider {...settings} className='h-full'>
         {sliderData.map((slide, index) => (
-          <div key={index} className='w-full flex items-center justify-center'>
-            <div className='w-[95%] md:w-[85%] xl:h-[78vh] mt-3 mb-5 flex mx-auto'>
-              <div className='md:mt-[90px] z-10 sm:mt-[60px] mt-[50px] lg:mt-[10vh] xl:mt-[20vh] w-full float-up ml-6 sm:ml-10'>
+          <div key={index} className='w-full h-full flex items-center justify-center'>
+            <div className='w-[95%] h-full lg:w-[90%] xl:h-[78vh] mt-3 mb-5 flex mx-auto'>
+              <div className='md:mt-[90px] h-full z-10 sm:mt-[60px] mt-[50px] lg:mt-[10vh] xl:mt-[20vh] w-full float-up lg:ml-10'>
                 <h1 className='text-5xl lg:text-7xl font-bold text-red-600 drop-shadow-md cursor-default font-poppins'>
                   {slide.heading}
                 </h1>
@@ -63,7 +63,7 @@ const Hero = () => {
                 </Link>
               </div>
               <div className='absolute mt-10 md:mt-0 md:relative md:flex mx-auto items-center opacity-50 md:opacity-100'>
-                <img className='w-[590px] md:bg-transparent bg-black/30 md:w-[700px] lg:w-[900px] xl:w-[1100px] md:ml-10 md:float-to-right z-10 drop-shadow' src={slide.image} alt="" />
+                <img className='w-[400px] md:bg-transparent bg-black/30 sm:w-[400px] md:w-[700px] lg:w-[900px] xl:w-[1100px] md:ml-10 md:float-to-right z-10 drop-shadow' src={slide.image} alt="" />
               </div>
             </div>
           </div>
