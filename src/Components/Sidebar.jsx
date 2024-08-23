@@ -58,7 +58,7 @@ const Sidebar = () => {
               >
                 <li className='bg-stone-700 w-full hover:bg-red-600 hover:scale-110 hover:shadow-xl duration-100 group'>
                   <h3 
-                    className='flex items-center text-stone-300 font-bold cursor-pointer group-hover:text-white py-4 mt-1 mb-1 text-xs lg:text-sm uppercase hover:translate-x-3 transition'
+                    className='flex items-center ml-2 text-stone-300 font-bold cursor-pointer group-hover:text-white py-4 mt-1 mb-1 text-xs lg:text-sm uppercase hover:translate-x-3 transition'
                     onClick={() => toggleCollapse(category.category)}
                   >
                     <category.icon

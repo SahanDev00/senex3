@@ -3,10 +3,19 @@ import monitor from "./Assets/Images/monitor.webp";
 import computer from "./Assets/Images/PCpng.webp";
 import cmos from "./Assets/Images/cmospng.webp";
 import laptop from "./Assets/Images/Lappng.webp";
-import { FaApple } from "react-icons/fa";
-import { FaComputer } from "react-icons/fa6";
+import { FaApple, FaMemory, FaNetworkWired, FaPowerOff } from "react-icons/fa";
+import { FaComputer, FaHardDrive } from "react-icons/fa6";
 import { FaGift } from "react-icons/fa6";
-import { MdOutlineLaptopMac } from "react-icons/md";
+import { BsFillMotherboardFill, BsKeyboardFill, BsMouse2Fill, BsPc, BsShieldFillCheck, BsSpeakerFill } from "react-icons/bs";
+import { MdDeviceHub, MdDock, MdOutlineLaptopMac, MdOutlineUsb } from "react-icons/md";
+import { AiFillPrinter } from "react-icons/ai";
+import { PiGraphicsCardFill, PiMonitorFill } from "react-icons/pi";
+import { GiProcessor } from "react-icons/gi";
+import { TbDeviceIpadHorizontal } from "react-icons/tb";
+import { IoGameController, IoHeadsetSharp } from "react-icons/io5";
+import { GrFanOption } from "react-icons/gr";
+import { RiBatterySaverFill } from "react-icons/ri";
+import { SiCcleaner, SiConvertio } from "react-icons/si";
 
 export const Categories = [
   {
@@ -440,7 +449,7 @@ export const Categories = [
   },
   {
     category: 'LAPTOP ACCESSORIES',
-    icon: FaApple,
+    icon: BsKeyboardFill,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -545,7 +554,7 @@ export const Categories = [
   },
   {
     category: 'PRINTERS AND ACCESSORIES',
-    icon: FaApple,
+    icon: AiFillPrinter,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -570,7 +579,7 @@ export const Categories = [
   },
   {
     category: 'MONITORS',
-    icon: FaApple,
+    icon: PiMonitorFill,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -595,7 +604,7 @@ export const Categories = [
   },
   {
     category: 'MOTHERBOARD',
-    icon: FaApple,
+    icon: BsFillMotherboardFill,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -620,7 +629,7 @@ export const Categories = [
   },
   {
     category: 'PROCESSOR',
-    icon: FaApple,
+    icon: GiProcessor,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -645,7 +654,7 @@ export const Categories = [
   },
   {
     category: 'MEMORY (RAM)',
-    icon: FaApple,
+    icon: FaMemory,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -670,7 +679,7 @@ export const Categories = [
   },
   {
     category: 'STORAGE',
-    icon: FaApple,
+    icon: FaHardDrive,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -695,7 +704,7 @@ export const Categories = [
   },
   {
     category: 'POWER SUPPLY',
-    icon: FaApple,
+    icon: FaPowerOff,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -720,7 +729,7 @@ export const Categories = [
   },
   {
     category: 'GRAPHIC CARD',
-    icon: FaApple,
+    icon: PiGraphicsCardFill,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -745,7 +754,7 @@ export const Categories = [
   },
   {
     category: 'COMPUTER CASING',
-    icon: FaApple,
+    icon: BsPc,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -770,7 +779,7 @@ export const Categories = [
   },
   {
     category: 'KEYBOARD AND MOUSE',
-    icon: FaApple,
+    icon: BsMouse2Fill,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -795,7 +804,7 @@ export const Categories = [
   },
   {
     category: 'MOUSE PAD',
-    icon: FaApple,
+    icon: TbDeviceIpadHorizontal,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -820,7 +829,7 @@ export const Categories = [
   },
   {
     category: 'SPEAKER',
-    icon: FaApple,
+    icon: BsSpeakerFill,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -845,7 +854,7 @@ export const Categories = [
   },
   {
     category: 'HEADPHONES AND MIC',
-    icon: FaApple,
+    icon: IoHeadsetSharp,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -870,7 +879,7 @@ export const Categories = [
   },
   {
     category: 'COOLING AND LIGHTING',
-    icon: FaApple,
+    icon: GrFanOption,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -895,7 +904,7 @@ export const Categories = [
   },
   {
     category: 'GAMING CONSOLES',
-    icon: FaApple,
+    icon: IoGameController,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -920,7 +929,7 @@ export const Categories = [
   },
   {
     category: 'UPS AND BATTERY',
-    icon: FaApple,
+    icon: RiBatterySaverFill,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -945,7 +954,7 @@ export const Categories = [
   },
   {
     category: 'NETWORK ACCESSORIES',
-    icon: FaApple,
+    icon: FaNetworkWired,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -970,7 +979,7 @@ export const Categories = [
   },
   {
     category: 'CABLES (HDMI, USB, AUDIO)',
-    icon: FaApple,
+    icon: MdOutlineUsb,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -995,7 +1004,7 @@ export const Categories = [
   },
   {
     category: 'CONVERTERS',
-    icon: FaApple,
+    icon: SiConvertio,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -1020,7 +1029,7 @@ export const Categories = [
   },
   {
     category: 'HUBS (USB, HDMI, VGA)',
-    icon: FaApple,
+    icon: MdDeviceHub,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -1045,7 +1054,7 @@ export const Categories = [
   },
   {
     category: 'VIRUS GUARD AND SOFTWARE',
-    icon: FaApple,
+    icon: BsShieldFillCheck,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -1070,7 +1079,7 @@ export const Categories = [
   },
   {
     category: 'ENCLOSURE AND DOCKING',
-    icon: FaApple,
+    icon: MdDock,
     subCat: [
       {
         name: 'Asus Laptop',
@@ -1095,7 +1104,7 @@ export const Categories = [
   },
   {
     category: 'CLEANING TOOLS',
-    icon: FaApple,
+    icon: SiCcleaner,
     subCat: [
       {
         name: 'Asus Laptop',

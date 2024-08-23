@@ -63,7 +63,7 @@ const Hero = () => {
                 </Link>
               </div>
               <div className='absolute mt-10 md:mt-0 md:relative md:flex mx-auto items-center opacity-50 md:opacity-100'>
-                <img className='w-[400px] md:bg-transparent bg-black/30 sm:w-[400px] md:w-[700px] lg:w-[900px] xl:w-[1100px] md:ml-10 md:float-to-right z-10 drop-shadow' src={slide.image} alt="" />
+                <img className='w-[320px] md:bg-transparent bg-black/30 sm:w-[400px] md:w-[700px] lg:w-[900px] xl:w-[1100px] md:ml-10 md:float-to-right z-10 drop-shadow' src={slide.image} alt="" />
               </div>
             </div>
           </div>

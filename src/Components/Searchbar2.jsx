@@ -25,7 +25,7 @@ const Searchbar2 = ({ onSearch }) => {
   };
 
   return (
-    <div className='w-[90%] mt-4 flex items-center h-[50px]'>
+    <div className='w-[100%] mt-4 flex items-center h-[50px]'>
       <form onSubmit={handleSubmit} className='w-full h-full flex'>
         <input
           type='text'
