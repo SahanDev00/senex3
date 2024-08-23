@@ -39,7 +39,7 @@ const OrderDetails = () => {
       ];
 
   return (
-    <div className='w-full min-h-[820px] mb-5 mx-auto relative'>
+    <div className='w-full min-h-[750px] mb-5 mx-auto relative'>
         <h1 className='text-3xl text-center my-8 font-bold text-white font-poppins'>Order Details : 0987643</h1>
         <div className='overflow-x-auto container mx-auto'>
         <table className='min-w-full bg-black/70 text-white border border-gray-200'>

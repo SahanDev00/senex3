@@ -6,7 +6,7 @@ import { FaTwitter } from "react-icons/fa6";
 
 const Footer2 = () => {
   return (
-    <div className='w-full sm:mt-0 mt-20 h-[60px] bg-neutral-700'>
+    <div className='w-full sm:mt-0 mt-20 h-[60px] bg-neutral-700 relative'>
         <div className='w-[90%] lg:w-[80%] gap-2 mx-auto h-full flex items-center justify-between'>
             <img src={paymentPic} alt="" className='w-[100px] md:w-[200px]' />
             <p className='text-center hidden sm:flex mt-2 font-poppins text-xs md:text-[16px] text-white '>Copyright © <span className='font-semibold'>Exesmart</span> - All rights Reserved</p>

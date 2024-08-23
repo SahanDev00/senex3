@@ -3,7 +3,7 @@ import Countries from '../Components/Countries'
 
 const EditProfile = () => {
   return (
-    <div className='relative container mx-auto'>
+    <div className='relative xl:h-[720px] container xl:mt-20 mx-auto'>
       <div>
         <h1 className='text-3xl text-white mt-5 font-bold text-center font-poppins'>Edit Your Details</h1>
               <form className='mt-3 mb-10'>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const EditPassword = () => {
   return (
-    <div className='container h-[450px] relative mx-auto '>
+    <div className='container h-[450px] xl:h-[720px] relative mx-auto '>
         <h1 className='text-3xl text-white font-semibold text-center mt-16 mb-4 uppercase font-poppins'>Change Your Password</h1>
         <div className='w-full flex justify-center items-center'>
             <div className='w-full text-center mt-5'>

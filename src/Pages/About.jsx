@@ -7,7 +7,7 @@ import HeadsetPic from "../Assets/Images/headset.webp"
 
 const About = () => {
   return (
-    <div className='w-full lg:h-[740px] mxl:h-[740px] 2xl:h-[740px] md:h-[700px] h-[750px] sm:h-[600px] relative mx-auto '>
+    <div className='w-full lg:h-[740px] mxl:h-[740px] 2xl:h-[770px] md:h-[700px] h-[750px] sm:h-[600px] relative mx-auto '>
       <div className='w-full h-full absolute z-10'>
         <div className='absolute mt-[120px] mxl:mt-[90px] 2xl:mt-[120px] md:mx-10'>
           <img className='w-[200px] md:w-[270px] lg:w-[380px] float-to-left hidden xl:block' src={ComputerPic1} alt="" />

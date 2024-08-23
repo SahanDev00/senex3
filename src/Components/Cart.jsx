@@ -50,7 +50,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="w-[95%] mx-auto mt-10 lg:min-h-[600px] xl:min-h-[700px] relative pb-5">
+    <div className="w-[95%] mx-auto mt-10 lg:min-h-[600px] xl:min-h-[730px] relative pb-5">
       <h1 className="text-2xl md:text-3xl font-bold mb-4 text-white text-center font-poppins">Shopping Cart</h1>
       {cartItems.length === 0 ? (
         <p className='text-white ml-10 md:ml-40 text-sm md:text-xl font-poppins'>Your cart is empty.</p>
