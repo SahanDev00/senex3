@@ -11,9 +11,9 @@ const FilterSection = ({ onClose }) => {
   return (
     <div className="lg:w-[170px] xl:w-[180px] mxl:w-[224px] border-r bg-black/30 border-red-600 py-5">
         <div className="w-full h-[50px] flex items-center justify-between px-2">
-          <h2 className="text-xl font-semibold text-white ml-4">FILTERS</h2>
+          <h2 className="text-xl font-semibold text-white ml-2">FILTERS</h2>
         </div>
-        <div className="my-3 ml-6">
+        <div className="my-3 ml-3">
           <ul className='h-full text-white'>
             <li className="mb-2 uppercase text-sm cursor-pointer">
               <label className="flex items-center">

@@ -43,7 +43,7 @@ const SliderComponent = () => {
   };
 
   return (
-    <div className='mt-5 w-[330px] xxs:w-[370px] xs:w-[370px] mx-auto ml-5 lg:ml-0 mxl:ml-4 lxl:ml-0 2xl:ml-7 sm:ml-6 ssm:ml-7 md:ml-8 sm:w-[600px] ssm:w-[480px] md:w-[650px] lg:w-[710px] xl:w-[950px] mxl:w-[950px] 2xl:w-[1480px] 3xl:w-[1450px] h-[200px] sm:h-[400px] md:h-[260px] mxl:h-[250px] lg:h-[280px] xl:h-[240px] 2xl:h-[400px] font-poppins rounded-lg cursor-grab active:cursor-grabbing'>
+    <div className='mt-5 w-[330px] xxs:w-[370px] xs:w-[370px] mx-auto ml-5 lg:ml-0 mxl:ml-4 lxl:ml-0 2xl:ml-7 sm:ml-6 ssm:ml-7 md:ml-8 sm:w-[600px] ssm:w-[480px] md:w-[650px] lg:w-[750px] xl:w-[950px] mxl:w-[950px] 2xl:w-[1480px] 3xl:w-[1450px] h-[200px] sm:h-[400px] md:h-[260px] mxl:h-[250px] lg:h-[280px] xl:h-[240px] 2xl:h-[400px] font-poppins rounded-lg cursor-grab active:cursor-grabbing'>
       <Slider {...settings} className='w-full h-[200px] sm:h-[400px] md:h-[260px] mxl:h-[250px] xl:h-[240px] 2xl:h-[400px] lg:h-[280px]'>
           {details.map((detail, index) => (
             <div key={index}>
