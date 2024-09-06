@@ -32,8 +32,8 @@ const Sidebar = () => {
     setSelectedCategory(categoryMainName);
   
     const apiKey = process.env.REACT_APP_API_KEY;
-    const subCategoriesUrl = `http://admin.extreme.exesmart.com/API/CategorySub/GetList?APIKey=${apiKey}&KeyW=&CategoryMainID=${categoryMainID}`;
-  
+    const subCategoriesUrl = `/API/CategorySub/GetList?APIKey=${apiKey}&KeyW=&CategoryMainID=${categoryMainID}`;
+    
     fetch(subCategoriesUrl)
       .then((response) => {
         if (!response.ok) {
@@ -73,6 +73,7 @@ const Sidebar = () => {
     }
   
     const url = `/API/CategoryMain/GetList?APIKey=${apiKey}`;
+    console.log(url)
   
     fetch(url)
       .then((response) => {
