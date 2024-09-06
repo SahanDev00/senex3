@@ -32,7 +32,7 @@ const Sidebar = () => {
     setSelectedCategory(categoryMainName);
   
     const apiKey = process.env.REACT_APP_API_KEY;
-    const subCategoriesUrl = `/API/CategorySub/GetList?APIKey=${apiKey}&KeyW=&CategoryMainID=${categoryMainID}`;
+    const subCategoriesUrl = `http://admin.extreme.exesmart.com/API/CategorySub/GetList?APIKey=${apiKey}&KeyW=&CategoryMainID=${categoryMainID}`;
   
     fetch(subCategoriesUrl)
       .then((response) => {
