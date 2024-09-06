@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { SearchContext } from '../SearchContext';
+//import { SearchContext } from '../SearchContext';
 import ProductDescription from './ProductDescription';
 import { CartContext } from '../Components/CartContext';
 import FilterSection2 from './FilterSection2';
 import { Helmet } from 'react-helmet';
 
 const ProductsPage = () => {
-  const { searchQuery } = useContext(SearchContext);
+  // const { searchQuery } = useContext(SearchContext);
   const { categoryName } = useParams();
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -49,7 +49,7 @@ const ProductsPage = () => {
         setError(error); // Set the error
         setLoading(false); // Stop loading
       });
-  }, [categoryName]);
+  }, [categoryName, categoryMainName]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 16;

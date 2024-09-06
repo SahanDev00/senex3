@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, {  useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { SearchContext } from '../SearchContext';
+//import { SearchContext } from '../SearchContext';
 import FilterSection from './FilterSection'; // Import FilterSection
 import SubCats from './SubCats'; // Import SubCats
 
 const Sidebar = () => {
-  const { clearSearchQuery } = useContext(SearchContext);
+  //const { clearSearchQuery } = useContext(SearchContext);
   const location = useLocation(); // Get the current location
 
   const [collapsedSections, setCollapsedSections] = useState({});
