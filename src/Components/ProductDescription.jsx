@@ -32,16 +32,16 @@ const ProductDescription = ({ product }) => {
 
   return (
     <div className="w-full">
-      <h1 className="text-2xl font-bold mb-3 font-poppins">{product.name}</h1>
+      <h1 className="text-2xl font-bold mb-3 font-poppins">{product.itemName}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <BasicDemo product={product} />
         <div>
-          <h2 className="text-xl font-semibold mb-2 font-poppins">{product.name}</h2>
-          <p className="text-gray-600 mb-4 font-poppins">${formatPrice(product.price)}</p>
+          <h2 className="text-xl font-semibold mb-2 font-poppins">{product.itemName}</h2>
+          <p className="text-gray-600 mb-4 font-poppins">${formatPrice(product.retailPrice)}</p>
 
           {/* Stock Status */}
-          <p className={`mb-4 ${product.stock > 0 ? 'text-green-500' : 'text-red-500'}`}>
-            {product.stock > 0 ? 'In Stock' : 'Out of Stock'}
+          <p className={`mb-4 ${product.stockAvailable === "A" ? 'text-green-500' : 'text-red-500'}`}>
+            {product.stockAvailable === "A" ? 'In Stock' : 'Out of Stock'}
           </p>
 
           {/* Toggle Buttons */}
@@ -63,7 +63,7 @@ const ProductDescription = ({ product }) => {
           {/* Content Area */}
           <div className="mb-4">
             {view === 'description' ? (
-              <p className="md:text-[16px] text-sm">{product.description}</p>
+              <p className="md:text-[16px] text-sm">{product.itemDescription}</p>
             ) : (
               <ul>
                 {product.specifications && product.specifications.length > 0 ? (

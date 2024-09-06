@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import loginPic from '../Assets/Images/login.webp';
 import signUpPic from '../Assets/Images/signup.webp';
 import Countries from '../Components/Countries';
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true); // State to track whether it's login or sign-up view
@@ -11,12 +12,13 @@ const Login = () => {
   };
 
   return (
-    <div className='w-full h-full relative flex items-center py-5'>
-      <div className='w-[70%] h-full flex mx-auto items-center md:bg-white rounded-3xl'>
+    <div className='w-full h-[70vh] sm:h-[85vh] md:h-[85vh] relative flex items-center py-5'>
+      <Helmet><title>SENEX | Account Center</title></Helmet>
+      <div className='w-[70%] h-full flex mx-auto items-center  rounded-3xl'>
         {isLogin ? (
           // Login
           <div className='w-full h-[450px] md:h-[550px] items-center md:grid grid-cols-2'>
-            <div className='md:border-r-2'>
+            <div className='md:bg-white h-full flex flex-col justify-center rounded-l-3xl'>
               <h1 className='text-2xl md:text-4xl font-bold text-red-600 cursor-pointer text-center'>SENƎX</h1>
               <h1 className='text-3xl md:text-5xl font-semibold text-white md:text-black mt-2 ml-5 text-center'>WELCOME BACK !!!</h1>
               <p className='text-gray-300 md:text-gray-800 font-semibold text-center mt-2'>Please enter your details...</p>

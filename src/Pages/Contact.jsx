@@ -1,9 +1,11 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 //import farcry from '../Assets/Images/farcry.jpg'
 
 const Contact = () => {
   return (
     <div className="flex w-full flex-col relative items-center mt-3 h-full">
+      <Helmet><title>SENEX | Contact Us</title></Helmet>
       {/* Map */}
       <div className="w-full h-[823px]">
         <h1 className='text-3xl md:text-4xl text-white font-bold mt-9 text-center'>

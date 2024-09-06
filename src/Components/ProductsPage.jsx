@@ -1,41 +1,55 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { Categories } from '../products';
 import { SearchContext } from '../SearchContext';
 import ProductDescription from './ProductDescription';
 import { CartContext } from '../Components/CartContext';
 import FilterSection2 from './FilterSection2';
+import { Helmet } from 'react-helmet';
 
 const ProductsPage = () => {
-  const { searchQuery, clearSearchQuery } = useContext(SearchContext);
-  const { categoryName } = useParams(); // Updated to categoryName
+  const { searchQuery } = useContext(SearchContext);
+  const { categoryName } = useParams();
+  const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [notification, setNotification] = useState('');
   const { addToCart } = useContext(CartContext);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [categoryMainName, setCategoryMainName] = useState('');
 
   useEffect(() => {
-    clearSearchQuery();
-  }, [categoryName, clearSearchQuery]);
+    const apiKey = process.env.REACT_APP_API_KEY;
+    const url = `/API/Item/GetList?APIKey=${apiKey}&CategoryMainID=${categoryName}&CategorySubID=&BrandID=`;
+    console.log(url)
 
-  const findProducts = (categoryName) => {
-    let products = [];
-    for (const category of Categories) {
-      if (category.category === categoryName) {
-        for (const subCat of category.subCat) {
-          products = products.concat(
-            subCat.products.filter((product) =>
-              product.name.toLowerCase().includes(searchQuery.toLowerCase())
-            )
-          );
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
-        break; // Break once the category is found and products are aggregated
-      }
-    }
-    return products;
-  };
-
-  const products = findProducts(categoryName);
+        return response.json();
+      })
+      .then((result) => {
+        if (result.success && Array.isArray(result.data)) {
+          setProducts(result.data); // Set the products to state
+          // Check if there are products and extract categoryMainName from the first product
+          if (result.data.length > 0) {
+            setCategoryMainName(result.data[0].categoryMainName || 'Default Category');
+          } else {
+            setCategoryMainName('No Category');
+          }
+          console.log(categoryMainName)
+        } else {
+          throw new Error('Unexpected response format');
+        }
+        setLoading(false); // Stop loading
+      })
+      .catch((error) => {
+        setError(error); // Set the error
+        setLoading(false); // Stop loading
+      });
+  }, [categoryName]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 16;
@@ -50,13 +64,13 @@ const ProductsPage = () => {
   };
 
   const handleAddToCart = (product) => {
-    if (product.stock > 0) { // Check stock before adding to cart
+    if (product.stock > 0) {
       addToCart(product);
       setNotification(`${product.name} has been added to the cart.`);
       setTimeout(() => {
         setNotification('');
       }, 3000);
-    } else {  
+    } else {
       setNotification(`${product.name} is out of stock.`);
       setTimeout(() => {
         setNotification('');
@@ -68,9 +82,12 @@ const ProductsPage = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  
   return (
     <div className="xl:w-[91%] p-4 relative font-poppins ml-3">
-      <h1 className="text-2xl text-white font-bold mb-3">{categoryName} Products</h1>
+      <h1 className="text-2xl text-white font-bold mb-3">{categoryMainName} Products</h1>
       {products.length > 0 ? (
         <div>
           <p className="text-white md:mb-2">{products.length} products found</p>
@@ -80,19 +97,20 @@ const ProductsPage = () => {
           <div className="grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
             {currentProducts.map((product) => (
               <div key={product.id} className="border bg-black/40 hover:scale-105 duration-300 m-1 p-5 rounded hover:shadow-lg shadow cursor-pointer" onClick={() => setSelectedProduct(product)}>
-                <img src={product.image} alt={product.name} className="w-full mb-4" />
-                <h2 className="text-xl text-white text-center font-semibold">{product.name}</h2>
-                <p className="text-center text-white">${Number(product.price).toFixed(2)}</p>
-                <p className={`text-center ${product.stock > 0 ? 'text-green-500' : 'text-red-500'}`}>
-                  {product.stock > 0 ? 'In Stock' : 'Out of Stock'}
+                <Helmet><title>SENEX | {categoryMainName}</title></Helmet>
+                <img src={`http://extreme.exesmart.com/Uploads/${product.cacheID}.jpg`} alt={product.name} className="w-full mb-4" />
+                <h2 className="text-xl text-white text-center font-semibold">{product.itemName}</h2>
+                <p className="text-center text-white">${Number(product.retailPrice).toFixed(2)}</p>
+                <p className={`text-center ${product.stockAvailable === "A" ? 'text-green-500' : 'text-red-500'}`}>
+                  {product.stockAvailable === "A" ? 'In Stock' : 'Out of Stock'}
                 </p>
                 <button
-                  className={`mt-2 text-xs md:text-sm flex mx-auto ${product.stock > 0 ? 'bg-red-500' : 'bg-gray-500'} text-white py-2 px-4 rounded`}
+                  className={`mt-2 text-xs md:text-sm flex mx-auto ${product.stockAvailable === 'A' ? 'bg-red-500' : 'bg-gray-500'} text-white py-2 px-4 rounded`}
                   onClick={(e) => {
                     e.stopPropagation();
                     handleAddToCart(product);
                   }}
-                  disabled={product.stock <= 0} // Disable button if out of stock
+                  disabled={product.stockAvailable === ''}
                 >
                   Add to Cart
                 </button>
@@ -114,7 +132,7 @@ const ProductsPage = () => {
       ) : (
         <p className='text-white'>0 products found</p>
       )}
-      
+
       {notification && (
         <div className="fixed bottom-4 right-4 bg-green-500 text-white md:py-2 md:px-4 md:text-[16px] text-sm py-1 px-2 rounded shadow-lg z-50">
           {notification}

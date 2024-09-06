@@ -12,7 +12,7 @@ const FilterSection2 = ({ subCategory }) => {
         <ul className='text-white'>
           <li className="mb-2 uppercase text-sm cursor-pointer">
             <label>
-              <input type="checkbox" className="mr-2 font-poppins" /> Filter 1
+              <input type="checkbox" className="mr-2 font-poppins" /> Filter 
             </label>
           </li>
           <li className="mb-2 uppercase text-sm cursor-pointer">

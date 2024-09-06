@@ -1,8 +1,10 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 
 const EditPassword = () => {
   return (
     <div className='container h-[450px] xl:h-[720px] relative mx-auto '>
+        <Helmet><title>SENEX | Edit Password</title></Helmet>
         <h1 className='text-3xl text-white font-semibold text-center mt-16 mb-4 uppercase font-poppins'>Change Your Password</h1>
         <div className='w-full flex justify-center items-center'>
             <div className='w-full text-center mt-5'>
