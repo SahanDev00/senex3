@@ -32,7 +32,7 @@ const Searchbar2 = ({ onSearch }) => {
           placeholder='Search a product...'
           value={searchQuery}
           onChange={handleChange}
-          className='border w-full h-full pl-5 bg-white rounded-l-lg border-red-600'
+          className='border w-full h-full xl:w-[80%] pl-5 bg-white rounded-l-lg border-red-600'
         />
         <button type='submit' className='w-[50px] h-[50px] rounded-r-md bg-red-600 flex items-center hover:cursor-pointer'>
             <IoSearch size={25} className='mx-auto text-white' />

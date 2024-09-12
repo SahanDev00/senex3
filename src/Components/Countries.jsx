@@ -24,13 +24,13 @@ const countries = [
   "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
 ];
 
-const CountryDropdown = () => {
+const CountryDropdown = ({ value, onChange, name }) => {
   return (
     <div>
       <label className='font-semibold text-sm' htmlFor="country">Country</label>
       <select 
         id="country" 
-        name="country" 
+        name={name} value={value} onChange={onChange}
         className='block w-full cursor-pointer mx-auto rounded-lg pl-3 py-1 border-red-500 border-2 mb-2 mt-1' 
         required
       >

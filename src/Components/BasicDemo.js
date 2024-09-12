@@ -21,23 +21,24 @@ export default function BasicDemo({ product }) {
     ];
 
     useEffect(() => {
-        if (product && product.SubImage) {
-            setImages(product.SubImage.map((subImage) => ({
-                itemImageSrc: subImage.src,
-                thumbnailImageSrc: subImage.src,
-                alt: subImage.alt
+        if (product) {
+            setImages(product.map((subImage, index) => ({
+                itemID: index, // Using index as a unique identifier
+                itemImageSrc: 'http://extreme.exesmart.com/Uploads/ITM_00021.jpg', // Static image URL
+                thumbnailImageSrc: 'http://extreme.exesmart.com/Uploads/ITM_00021.jpg', // Static image URL
+                alt: subImage.alt || 'Image' // Default alt text if none provided
             })));
         }
     }, [product]);
 
-    const itemTemplate = (item) => {
-        return <img className=' bg-white' src={item.itemImageSrc} alt={item.alt} style={{ width: '100%' }} />;
-    }
+    const itemTemplate = (item) => (
+        <img className='bg-white' src={item.itemImageSrc} alt={item.alt} style={{ width: '100%' }} />
+    );
 
-    const thumbnailTemplate = (item) => {
-        return <img className='md:block hidden' src={item.thumbnailImageSrc} alt={item.alt} />;
-    }
-
+    const thumbnailTemplate = (item) => (
+        <img className='md:block hidden' src={item.thumbnailImageSrc} alt={item.alt} />
+    );
+    
     return (
         <div className="card bg-white">
             <Galleria

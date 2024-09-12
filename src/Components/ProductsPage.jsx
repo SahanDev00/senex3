@@ -1,14 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-//import { SearchContext } from '../SearchContext';
 import ProductDescription from './ProductDescription';
 import { CartContext } from '../Components/CartContext';
 import FilterSection2 from './FilterSection2';
 import { Helmet } from 'react-helmet';
 
 const ProductsPage = () => {
-  // const { searchQuery } = useContext(SearchContext);
-  const { categoryName } = useParams();
+  const { categoryName, subCategoryID } = useParams(); // Add subCategoryID
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [notification, setNotification] = useState('');
@@ -20,10 +18,14 @@ const ProductsPage = () => {
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
-    const url = `/API/Item/GetList?APIKey=${apiKey}&CategoryMainID=${categoryName}&CategorySubID=&BrandID=`;
-    console.log(url)
+    const url = `http://admin.extreme.exesmart.com/API/Item?CategoryMainID=${categoryName}&CategorySubID=${subCategoryID || ''}&BrandID=`;
+    console.log('Fetching URL:', url);
 
-    fetch(url)
+    fetch(url,{
+      method: 'GET',
+      headers: {
+        'APIKey': apiKey,
+      }, })
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -33,23 +35,24 @@ const ProductsPage = () => {
       .then((result) => {
         if (result.success && Array.isArray(result.data)) {
           setProducts(result.data); // Set the products to state
+          console.log(result.data)
+
           // Check if there are products and extract categoryMainName from the first product
           if (result.data.length > 0) {
             setCategoryMainName(result.data[0].categoryMainName || 'Default Category');
           } else {
             setCategoryMainName('No Category');
           }
-          console.log(categoryMainName)
         } else {
           throw new Error('Unexpected response format');
         }
         setLoading(false); // Stop loading
       })
       .catch((error) => {
-        setError(error); // Set the error
+        setError(error.message || 'An error occurred'); // Set the error
         setLoading(false); // Stop loading
       });
-  }, [categoryName, categoryMainName]);
+  }, [categoryName, subCategoryID]); // Update dependency to include subCategoryID
 
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 16;
@@ -82,9 +85,9 @@ const ProductsPage = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-  
+  if (loading) return <p className='text-white'>Loading...</p>;
+  if (error) return <p className='text-white'>Error: {error.message}</p>;
+
   return (
     <div className="xl:w-[91%] p-4 relative font-poppins ml-3">
       <h1 className="text-2xl text-white font-bold mb-3">{categoryMainName} Products</h1>

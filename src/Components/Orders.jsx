@@ -1,34 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Orders = () => {
-  // Sample order data
-  const orders = [
-    {
-      id: '123456',
-      address: '123 Main St, City, Country',
-      date: '2024-07-19',
-      total: '$150.00',
-      status: 'Pending',
-      paidStatus: 'Not Paid'
-    },
-    {
-      id: '789012',
-      address: '456 Elm St, City, Country',
-      date: '2024-07-18',
-      total: '$250.00',
-      status: 'Completed',
-      paidStatus: 'Paid'
-    },
-    {
-      id: '345678',
-      address: '789 Oak St, City, Country',
-      date: '2024-07-17',
-      total: '$75.00',
-      status: 'Rejected',
-      paidStatus: 'Not Paid'
-    },
-  ];
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    // Fetch order data from API
+    const fetchOrders = async () => {
+      const api = 'http://admin.extreme.exesmart.com/Api/Order?CustomerID=CUS_00001';
+      
+      try {
+        const apiKey = process.env.REACT_APP_API_KEY;
+        const response = await fetch(api,  {
+          method: 'GET',
+          headers: {
+            'APIKey': apiKey,
+          },});
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
+          setOrders(result.data);
+        } else {
+          console.error('Error fetching orders:', result.errorMessage);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+  if (orders.length === 0) {
+    return <div className='text-white h-[85vh] w-[80%] mx-auto relative'>
+      <h1 className='font-semibold mt-5'>You Don't Have Orders Yet!!!</h1>
+    </div>
+  }
 
   return (
     <div className='w-[90%] md:min-h-[700px] lg:min-h-[650px] xl:min-h-[700px] 2xl:min-h-[800px] relative mx-auto px-4 py-8 mb-5'>
@@ -48,18 +55,18 @@ const Orders = () => {
           </thead>
           <tbody>
             {orders.map(order => (
-              <tr key={order.id}>
-                <td className='px-4 py-2 border-b border-gray-200 font-poppins'>{order.id}</td>
-                <td className='px-4 py-2 border-b border-gray-200 font-poppins'>{order.address}</td>
-                <td className='px-4 py-2 border-b border-gray-200 font-poppins'>{order.date}</td>
-                <td className='px-4 py-2 border-b border-gray-200 font-poppins'>{order.total}</td>
-                <td className={`px-4 py-2 border-b border-gray-200 font-poppins ${order.status === 'Pending' ? 'text-yellow-500' : order.status === 'Completed' ? 'text-green-500' : 'text-red-500'}`}>
-                  {order.status}
+              <tr key={order.orderID}>
+                <td className='px-4 py-2 border-b border-gray-200 font-poppins'>{order.orderID}</td>
+                <td className='px-4 py-2 border-b border-gray-200 font-poppins'>{order.addressDisplay}</td>
+                <td className='px-4 py-2 border-b border-gray-200 font-poppins'>{order.orderDateDisplay}</td>
+                <td className='px-4 py-2 border-b border-gray-200 font-poppins'>{order.itemTotalDisplay}</td>
+                <td className={`px-4 py-2 border-b border-gray-200 font-poppins ${order.orderStatusClass === 'success' ? 'text-green-500' : 'text-red-500'}`}>
+                  {order.orderStatusText}
                 </td>
-                <td className={`px-4 font-poppins py-2 border-b border-gray-200 ${order.paidStatus === 'Paid' ? 'text-green-500' : 'text-red-500'}`}>
-                  {order.paidStatus}
+                <td className={`px-4 py-2 border-b border-gray-200 font-poppins ${order.paidStatusClass === 'success' ? 'text-green-500' : 'text-red-500'}`}>
+                  {order.paidStatusText}
                 </td>
-                <td className='px-4 font-poppins py-2 border-b border-gray-200'>
+                <td className='px-4 py-2 border-b border-gray-200 font-poppins'>
                     <Link to='/order-details'>
                         <button className='bg-blue-500 font-poppins text-white px-4 py-2 rounded hover:bg-blue-600'>
                             View

@@ -1,12 +1,37 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { CartContext } from '../Components/CartContext'; // Import CartContext
-import BasicDemo from './BasicDemo';
 
 const ProductDescription = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const [showMessage, setShowMessage] = useState(false); // State for showing the message
   const [view, setView] = useState('description'); // State for toggling between description and specifications
+  const [selectedImage, setSelectedImage] = useState(`http://extreme.exesmart.com/Uploads/${product.cacheID}.jpg`); // State for selected image
+  const [specifications, setSpecifications] = useState([]); // State for specifications
   const { addToCart } = useContext(CartContext); // Use CartContext
+
+  useEffect(() => {
+    // Fetch specifications data
+    const fetchSpecifications = async () => {
+      const apiKey = process.env.REACT_APP_API_KEY;
+      try {
+        const response = await fetch('http://admin.extreme.exesmart.com/Api/Specification',{
+          headers: {
+            'APIKey': apiKey,
+          },
+        });
+        const data = await response.json();
+        if (data.success) {
+          // Filter specifications to find the one matching the product's itemID
+          const matchedSpecs = data.data.find(spec => spec.itemID === product.itemID);
+          setSpecifications(matchedSpecs ? [matchedSpecs] : []);
+        }
+      } catch (error) {
+        console.error('Error fetching specifications:', error);
+      }
+    };
+
+    fetchSpecifications();
+  }, [product.itemID]);
 
   const handleIncrease = () => {
     setQuantity(quantity + 1);
@@ -34,7 +59,23 @@ const ProductDescription = ({ product }) => {
     <div className="w-full">
       <h1 className="text-2xl font-bold mb-3 font-poppins">{product.itemName}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <BasicDemo product={product} />
+        <div>
+          {/* Main Image */}
+          <img src={selectedImage} alt={product.itemName} className="w-full mb-4" />
+
+          {/* Thumbnails */}
+          <div className="flex gap-2 mb-4">
+            {[...Array(4)].map((_, index) => (
+              <img
+                key={index}
+                src={selectedImage} // Use the same image for now
+                alt={`Thumbnail ${index + 1}`}
+                className={`w-20 h-20 object-cover mx-auto cursor-pointer ${selectedImage === `http://extreme.exesmart.com/Uploads/${product.cacheID}.jpg` ? 'border-2 border-blue-500' : ''}`}
+                onClick={() => setSelectedImage(`http://extreme.exesmart.com/Uploads/${product.cacheID}.jpg`)}
+              />
+            ))}
+          </div>
+        </div>
         <div>
           <h2 className="text-xl font-semibold mb-2 font-poppins">{product.itemName}</h2>
           <p className="text-gray-600 mb-4 font-poppins">${formatPrice(product.retailPrice)}</p>
@@ -66,10 +107,10 @@ const ProductDescription = ({ product }) => {
               <p className="md:text-[16px] text-sm">{product.itemDescription}</p>
             ) : (
               <ul>
-                {product.specifications && product.specifications.length > 0 ? (
-                  product.specifications.map((spec, index) => (
+                {specifications.length > 0 ? (
+                  specifications.map((spec, index) => (
                     <li key={index} className="mb-2">
-                      <span className="font-semibold font-poppins md:text-[16px] text-sm">{spec.name}:</span> {spec.value}
+                      <span className="font-semibold font-poppins md:text-[16px] text-sm">{spec.caption}:</span> {spec.description}
                     </li>
                   ))
                 ) : (

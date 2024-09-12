@@ -1,47 +1,44 @@
-import React from 'react'
-import pic from '../Assets/Images/computer.webp'
+import React, { useState, useEffect } from 'react';
 
 const OrderDetails = () => {
+  const [orderItems, setOrderItems] = useState([]);
+  const orderId = 'ORD00001'; // You can pass this dynamically if needed
 
-    const orders = [
-        {
-            product: 'RGB Keyboard',
-            pic: pic,
-            quantity: '4',
-            price: '$150.00',
-            discount: '0',
-            total: '$150.00'
+  useEffect(() => {
+    const fetchOrderItems = async () => {
+      const api = `http://admin.extreme.exesmart.com/Api/OrderItem?Page=0&OrderID=${orderId}`;
+      
+      try {
+        const apiKey = process.env.REACT_APP_API_KEY;
+        const response = await fetch(api, {
+          method: 'GET',
+          headers: {
+            'APIKey': apiKey,
           },
-          {
-            product: 'RGB Keyboard',
-            pic: pic,
-            quantity: '4',
-            price: '$150.00',
-            discount: '0',
-            total: '$150.00'
-          },
-          {
-            product: 'RGB Keyboard',
-            pic: pic,
-            quantity: '4',
-            price: '$150.00',
-            discount: '0',
-            total: '$150.00'
-          },
-        {
-          product: 'RGB Keyboard',
-          pic: pic,
-          quantity: '4',
-          price: '$150.00',
-          discount: '0',
-          total: '$150.00'
-        },
-      ];
+        });
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
+          setOrderItems(result.data);
+        } else {
+          console.error('Error fetching order items:', result.errorMessage);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchOrderItems();
+  }, [orderId]);
+
+  if (orderItems.length === 0) {
+    return <div className='text-white'>No order details available</div>;
+  }
 
   return (
     <div className='w-full min-h-[750px] mb-5 mx-auto relative'>
-        <h1 className='text-3xl text-center my-8 font-bold text-white font-poppins'>Order Details : 0987643</h1>
-        <div className='overflow-x-auto container mx-auto'>
+      <h1 className='text-3xl text-center my-8 font-bold text-white font-poppins'>Order Details: {orderId}</h1>
+      <div className='overflow-x-auto container mx-auto'>
         <table className='min-w-full bg-black/70 text-white border border-gray-200'>
           <thead>
             <tr>
@@ -53,20 +50,23 @@ const OrderDetails = () => {
             </tr>
           </thead>
           <tbody>
-            {orders.map(order => (
-              <tr key={order.id}>
-                <td className='px-4 py-2 border-b border-gray-200'><img className='w-[60px] inline-block mr-5' src={order.pic} alt="" />{order.product}</td>
-                <td className='px-4 py-2 border-b border-gray-200 text-center font-poppins'>{order.quantity}</td>
-                <td className='px-4 py-2 border-b border-gray-200 text-center font-poppins'>{order.price}</td>
-                <td className='px-4 py-2 border-b border-gray-200 text-center font-poppins'>{order.discount}</td>
-                <td className='px-4 py-2 border-b border-gray-200 text-center font-poppins'>{order.total}</td>
+            {orderItems.map(item => (
+              <tr key={item.orderItemID}>
+                <td className='px-4 py-2 border-b border-gray-200'>
+                  <img className='w-[60px] inline-block mr-5' src={`http://extreme.exesmart.com/Uploads/${item.itemID}.jpg`} alt={item.itemName} />
+                  {item.itemName}
+                </td>
+                <td className='px-4 py-2 border-b border-gray-200 text-center font-poppins'>{item.itemQty}</td>
+                <td className='px-4 py-2 border-b border-gray-200 text-center font-poppins'>{item.itemPriceDisplay}</td>
+                <td className='px-4 py-2 border-b border-gray-200 text-center font-poppins'>{item.itemDiscountDisplay}</td>
+                <td className='px-4 py-2 border-b border-gray-200 text-center font-poppins'>{item.lineTotalDisplay}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default OrderDetails
+export default OrderDetails;

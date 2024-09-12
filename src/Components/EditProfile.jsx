@@ -9,17 +9,29 @@ const EditProfile = () => {
       <div>
         <h1 className='text-3xl text-white mt-5 font-bold text-center font-poppins'>Edit Your Details</h1>
               <form className='mt-3 mb-10'>
-                <div className='flex gap-4 w-[80%] mx-auto'>
+                <div className='md:flex gap-4 w-[80%] mx-auto'>
                   <div className='w-full'>
                     <label className='font-semibold text-sm text-white font-poppins'>First Name</label>
-                    <input className='block w-full mx-auto rounded-lg pl-4 py-1 border-red-500 border-2 mb-2 mt-1' type="text" placeholder='Adam' required />
+                    <div className='flex flex-row-reverse items-center gap-1'>
+                      <input className='block w-full mx-auto rounded-lg pl-4 py-1 border-red-500 border-2 mb-2 mt-1' type="text" placeholder='Adam' required />
+                      <select name="salutation" className='border-red-500 border-2 py-1 mb-2 mt-1 rounded-lg'>
+                          <option value="Mr.">Mr.</option>
+                          <option value="Mrs.">Mrs.</option>
+                          <option value="Miss.">Miss.</option>
+                          <option value="Ms.">Ms.</option>
+                          <option value="M/s.">M/s.</option>
+                          <option value="Dr.">Dr.</option>
+                          <option value="Prof.">Prof.</option>
+                          <option value="Rev.">Rev.</option>
+                        </select>
+                    </div>
                   </div>
                   <div className='w-full'>
                     <label className='font-semibold text-sm text-white font-poppins'>Last Name</label>
                     <input className='block w-full mx-auto rounded-lg pl-4 py-1 border-red-500 border-2 mb-2 mt-1' type="text" placeholder='Nester' required />
                   </div>
                 </div>
-                <div className='flex gap-4 w-[80%] mx-auto'>
+                <div className='lg:flex gap-4 w-[80%] mx-auto'>
                   <div className='w-full'>
                     <label className='font-semibold text-sm text-white font-poppins'>Address Line 1</label>
                     <input className='block w-full mx-auto rounded-lg pl-4 py-1 border-red-500 border-2 mb-2 mt-1' type="text" placeholder='' required />

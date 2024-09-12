@@ -39,10 +39,10 @@ const Brands = () => {
         <br /> We take pride in working with these prestigious brands that meet the diverse requirements of the end-users.
         <br /> Explore our brands portfolio below.
       </p>
-      <div className='w-[95%] md:w-[70%] h-full mb-10 mt-5 mx-auto'>
+      <div className='w-[95%] md:w-[70%] h-full mb-10 mx-auto'>
         <Slider {...settings}>
           {logos.map((logo, index) => (
-            <div key={index} className='flex justify-center mx-auto w-full'>
+            <div key={index} className='flex justify-center mx-auto w-full '>
               <img src={logo.pic} className='w-[200px] mx-auto' alt={`Brand ${index}`} />
             </div>
           ))}
