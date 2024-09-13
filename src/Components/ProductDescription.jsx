@@ -8,7 +8,35 @@ const ProductDescription = ({ product }) => {
   const [selectedImage, setSelectedImage] = useState(`https://extremeadmin.worldpos.biz/Uploads/${product.cacheID}.jpg`); // State for selected image
   const [specifications, setSpecifications] = useState([]); // State for specifications
   const { addToCart } = useContext(CartContext); // Use CartContext
+  const [thumbnails, setThumbnails] = useState([]); // State for thumbnails
 
+  useEffect(() => {
+    // Fetch image data
+    const apiKey = process.env.REACT_APP_API_KEY;
+    const fetchImages = async () => {
+      try {
+        const response = await fetch(`https://extremeadmin.worldpos.biz/Api/ImageData/${product.itemID}`,{
+          headers: {
+            'APIKey': apiKey,
+          },
+        });
+        const data = await response.json();
+        if (data.success) {
+          const imageUrls = data.data.map(image => `https://extremeadmin.worldpos.biz/Uploads/${image.imageID}.jpg`,{
+            headers: {
+              'APIKey': apiKey,
+            },
+          });
+          setThumbnails(imageUrls);
+          setSelectedImage(imageUrls[0]); // Set the first image as the selected image
+        }
+      } catch (error) {
+        console.error('Error fetching images:', error);
+      }
+    };
+
+    fetchImages();
+  }, [product.itemID]);
   
   useEffect(() => {
     // Fetch specifications data
@@ -69,13 +97,13 @@ const ProductDescription = ({ product }) => {
 
           {/* Thumbnails */}
           <div className="flex gap-2 mb-4 flex-wrap">
-            {[...Array(4)].map((_, index) => (
+            {thumbnails.map((image, index) => (
               <img
                 key={index}
-                src={selectedImage} // Use the same image for now
+                src={image}
                 alt={`Thumbnail ${index + 1}`}
-                className={`w-20 h-20 object-cover mx-auto cursor-pointer ${selectedImage === `https://extremeadmin.worldpos.biz/Uploads/${product.cacheID}.jpg` ? 'border-2 border-blue-500' : ''}`}
-                onClick={() => setSelectedImage(`https://extremeadmin.worldpos.biz/Uploads/${product.cacheID}.jpg`)}
+                className={`w-20 h-20 object-cover mx-auto cursor-pointer ${selectedImage === image ? 'border-2 border-blue-500' : ''}`}
+                onClick={() => setSelectedImage(image)}
               />
             ))}
           </div>
