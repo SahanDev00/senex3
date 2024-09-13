@@ -4,7 +4,7 @@ import FilterPrice from './FilterPrice';
 const FilterSection = ({ onClose }) => {
 
   const handlePriceChange = (min, max) => {
-    console.log(`Min Price: ${min}, Max Price: ${max}`);
+   // console.log(`Min Price: ${min}, Max Price: ${max}`);
     // Handle the price filtering logic here
   };
 

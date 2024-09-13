@@ -19,7 +19,7 @@ const ProductsPage = () => {
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
     const url = `https://extremeadmin.worldpos.biz/API/Item?CategoryMainID=${categoryName}&CategorySubID=${subCategoryID || ''}&BrandID=`;
-    console.log('Fetching URL:', url);
+   // console.log('Fetching URL:', url);
 
     fetch(url,{
       method: 'GET',
@@ -35,7 +35,7 @@ const ProductsPage = () => {
       .then((result) => {
         if (result.success && Array.isArray(result.data)) {
           setProducts(result.data); // Set the products to state
-          console.log(result.data)
+         // console.log(result.data)
 
           // Check if there are products and extract categoryMainName from the first product
           if (result.data.length > 0) {
@@ -99,7 +99,7 @@ const ProductsPage = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
             {currentProducts.map((product) => (
-              <div key={product.id} className="border bg-black/40 hover:scale-105 duration-300 m-1 p-5 rounded hover:shadow-lg shadow cursor-pointer" onClick={() => setSelectedProduct(product)}>
+              <div key={product.itemID} className="border bg-black/40 hover:scale-105 duration-300 m-1 p-5 rounded hover:shadow-lg shadow cursor-pointer" onClick={() => setSelectedProduct(product)}>
                 <Helmet><title>SENEX | {categoryMainName}</title></Helmet>
                 <img src={`http://extreme.exesmart.com/Uploads/${product.cacheID}.jpg`} alt={product.name} className="w-full mb-4" />
                 <h2 className="text-xl text-white text-center font-semibold">{product.itemName}</h2>

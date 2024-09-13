@@ -14,7 +14,7 @@ const Checkout = () => {
   
       const itemQuantity = parseInt(item.quantity, 10) || 1;
       
-      console.log(`Item: ${item.itemName}, Price: ${itemPrice}, Quantity: ${itemQuantity}`);
+      //console.log(`Item: ${item.itemName}, Price: ${itemPrice}, Quantity: ${itemQuantity}`);
   
       return total + (itemPrice * itemQuantity);
     }, 0).toFixed(2);

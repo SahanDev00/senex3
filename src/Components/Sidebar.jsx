@@ -19,7 +19,7 @@ const Sidebar = () => {
   const handleSelectSubCategory = (subCategoryID) => {
     setSelectedSubCategory(subCategoryID);
     // Add logic to fetch products based on the selected subcategory
-    console.log(`Selected SubCategory ID: ${subCategoryID}`);
+  //  console.log(`Selected SubCategory ID: ${subCategoryID}`);
   };
 
   const toggleCollapse = (section) => {
