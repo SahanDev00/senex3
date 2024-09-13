@@ -18,7 +18,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
-    const url = `http://admin.extreme.exesmart.com/API/Item?CategoryMainID=${categoryName}&CategorySubID=${subCategoryID || ''}&BrandID=`;
+    const url = `https://extremeadmin.worldpos.biz/API/Item?CategoryMainID=${categoryName}&CategorySubID=${subCategoryID || ''}&BrandID=`;
     console.log('Fetching URL:', url);
 
     fetch(url,{
@@ -67,14 +67,14 @@ const ProductsPage = () => {
   };
 
   const handleAddToCart = (product) => {
-    if (product.stock > 0) {
+    if (product.stockAvailable === 'A') {
       addToCart(product);
-      setNotification(`${product.name} has been added to the cart.`);
+      setNotification(`${product.itemName} has been added to the cart.`);
       setTimeout(() => {
         setNotification('');
       }, 3000);
     } else {
-      setNotification(`${product.name} is out of stock.`);
+      setNotification(`${product.itemName} is out of stock.`);
       setTimeout(() => {
         setNotification('');
       }, 3000);
@@ -97,7 +97,7 @@ const ProductsPage = () => {
           <div className='w-[200px] mb-2 h-[50px] flex md:hidden items-center'>
             <button className='px-4 py-1 text-white border' onClick={toggleSidebar}>Filters</button>
           </div>
-          <div className="grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
             {currentProducts.map((product) => (
               <div key={product.id} className="border bg-black/40 hover:scale-105 duration-300 m-1 p-5 rounded hover:shadow-lg shadow cursor-pointer" onClick={() => setSelectedProduct(product)}>
                 <Helmet><title>SENEX | {categoryMainName}</title></Helmet>
@@ -113,7 +113,7 @@ const ProductsPage = () => {
                     e.stopPropagation();
                     handleAddToCart(product);
                   }}
-                  disabled={product.stockAvailable === ''}
+                  disabled={product.stockAvailable !== 'A'}
                 >
                   Add to Cart
                 </button>

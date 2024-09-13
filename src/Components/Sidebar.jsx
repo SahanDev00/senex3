@@ -42,7 +42,7 @@ const Sidebar = () => {
   
     // Define the API key and URL
     const apiKey = process.env.REACT_APP_API_KEY;
-    const url = `http://admin.extreme.exesmart.com/API/CategorySub?CategoryMainID=${categoryMainID}`;
+    const url = `https://extremeadmin.worldpos.biz/API/CategorySub?CategoryMainID=${categoryMainID}`;
   
     // Fetch subcategories from the API
     fetch(url, {
@@ -91,7 +91,7 @@ const Sidebar = () => {
   }, [location.pathname]);
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
-    fetch('http://admin.extreme.exesmart.com/Api/CategoryMain', {
+    fetch('https://extremeadmin.worldpos.biz/Api/CategoryMain', {
       method: 'GET',
       headers: {
         'APIKey': apiKey,

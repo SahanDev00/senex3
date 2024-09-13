@@ -58,7 +58,7 @@ function App() {
                   <Route path="/product/products/:categoryName" element={<ProductsPage />} />
                   <Route path="/product/products/:categoryName/:subCategoryID" element={<ProductsPage />} />
                   <Route path="/product/:productId" element={<ProductDescription />} />
-                  <Route path="search" element={<SearchResults />} />
+                  <Route path="/product/search" element={<SearchResults />} />
                 </Route>
                 <Route path="/about-us" element={<About />} />
                 <Route path="/contact-us" element={<Contact />} />

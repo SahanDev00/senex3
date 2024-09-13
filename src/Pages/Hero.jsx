@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
-import Searchbar2 from '../Components/Searchbar2';
-import { SearchContext } from '../SearchContext';
 import { Link } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const Hero = () => {
-  const { setSearchQuery } = useContext(SearchContext);
   const [slides, setSlides] = useState([]);
   const [error, setError] = useState(null);
 
@@ -30,7 +27,7 @@ const Hero = () => {
     const apiKey = process.env.REACT_APP_API_KEY;
     const fetchSlides = async () => {
       try {
-        const response = await fetch('http://admin.extreme.exesmart.com/Api/SlideBanner', {
+        const response = await fetch('https://extremeadmin.worldpos.biz/Api/SlideBanner', {
           method: 'GET',
           headers: {
             'APIKey': apiKey,
@@ -73,7 +70,6 @@ const Hero = () => {
                 <p className='text-sm sm:text-lg md:text-xl lg:text-2xl mt-4 leading-relaxed text-white drop-shadow-xl font-poppins'>
                   {slide.description}
                 </p>
-                <Searchbar2 onSearch={setSearchQuery} products={[]} />
                 <Link to={slide.buttonLink}>
                   <button className='md:px-6 md:py-3 px-4 py-2 text-xs md:text-[16px] font-poppins rounded-full mt-7 text-white font-semibold bg-red-600 border-white border-2 hover:scale-105 duration-300 hover:shadow-md active:scale-95'>
                     {slide.buttonName}
@@ -81,7 +77,7 @@ const Hero = () => {
                 </Link>
               </div>
               <div className='absolute mt-10 md:mt-0 md:relative md:flex mx-auto items-center opacity-50 md:opacity-100'>
-                <img className='w-[320px] md:bg-transparent bg-black/30 sm:w-[400px] md:w-[700px] lg:w-[900px] xl:w-[1100px] md:float-to-right z-10 drop-shadow' src={`http://extreme.exesmart.com/Uploads/${slide.slideBannerID}.jpg`} alt={slide.title} />
+                <img className='w-[320px] md:bg-transparent bg-black/30 sm:w-[400px] md:w-[700px] lg:w-[900px] xl:w-[1100px] md:float-to-right z-10 drop-shadow' src={`https://extremeadmin.worldpos.biz/Uploads/${slide.slideBannerID}.jpg`} alt={slide.title} />
               </div>
             </div>
           </div>

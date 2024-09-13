@@ -8,14 +8,24 @@ const Checkout = () => {
 
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => {
-      const itemPrice = parseFloat(item.price.replace(/[^0-9.]/g, '')) * item.quantity;
-      return total + itemPrice;
+      const itemPrice = typeof item.retailPrice === 'number'
+        ? item.retailPrice
+        : parseFloat(item.retailPrice?.replace(/[^0-9.]/g, '')) || 0;  // Default to 0 if undefined
+  
+      const itemQuantity = parseInt(item.quantity, 10) || 1;
+      
+      console.log(`Item: ${item.itemName}, Price: ${itemPrice}, Quantity: ${itemQuantity}`);
+  
+      return total + (itemPrice * itemQuantity);
     }, 0).toFixed(2);
   };
+  
+    
 
   const calculateItemsAndPieces = () => {
     const items = cartItems.length;
-    const pieces = cartItems.reduce((total, item) => total + item.quantity, 0);
+    // Sum up all item quantities
+    const pieces = cartItems.reduce((total, item) => total + (parseInt(item.quantity, 10) || 1), 0);
     return { items, pieces };
   };
 

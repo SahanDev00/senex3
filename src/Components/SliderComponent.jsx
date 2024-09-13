@@ -60,7 +60,7 @@ const SliderComponent = () => {
               </button>
             </div>
             <div className='w-full h-[200px] bg-black/30 sm:h-[400px] md:h-[260px] relative xl:h-[240px] mxl:h-[250px] lg:h-[280px] rounded-lg 2xl:h-[400px]'>
-              <img src={`http://extreme.exesmart.com/Uploads/${detail.slideBannerID}.jpg`} alt="Banner" className='right-0 h-full absolute rounded-lg' />
+              <img src={`https://extremeadmin.worldpos.biz/Uploads/${detail.slideBannerID}.jpg`} alt="Banner" className='right-0 h-full absolute rounded-lg' />
             </div>
           </div>
         ))}

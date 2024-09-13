@@ -6,7 +6,7 @@ const OrderDetails = () => {
 
   useEffect(() => {
     const fetchOrderItems = async () => {
-      const api = `http://admin.extreme.exesmart.com/Api/OrderItem?Page=0&OrderID=${orderId}`;
+      const api = `https://extremeadmin.worldpos.biz/Api/OrderItem?Page=0&OrderID=${orderId}`;
       
       try {
         const apiKey = process.env.REACT_APP_API_KEY;
@@ -53,7 +53,7 @@ const OrderDetails = () => {
             {orderItems.map(item => (
               <tr key={item.orderItemID}>
                 <td className='px-4 py-2 border-b border-gray-200'>
-                  <img className='w-[60px] inline-block mr-5' src={`http://extreme.exesmart.com/Uploads/${item.itemID}.jpg`} alt={item.itemName} />
+                  <img className='w-[60px] inline-block mr-5' src={`https://extremeadmin.worldpos.biz/Uploads/${item.itemID}.jpg`} alt={item.itemName} />
                   {item.itemName}
                 </td>
                 <td className='px-4 py-2 border-b border-gray-200 text-center font-poppins'>{item.itemQty}</td>

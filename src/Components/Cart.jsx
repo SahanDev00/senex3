@@ -10,21 +10,21 @@ const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
 
   const formatPrice = (price) => {
-    const cleanedPrice = price.replace(/[^0-9.]/g, '');
+    const priceString = typeof price === 'number' ? price.toString() : price; 
+    const cleanedPrice = priceString.replace(/[^0-9.]/g, '');
     const num = parseFloat(cleanedPrice);
     return isNaN(num) ? '0.00' : num.toFixed(2);
   };
 
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => {
-      const itemPrice = parseFloat(formatPrice(item.price)) * item.quantity;
+      const itemPrice = parseFloat(formatPrice(item.retailPrice)) * (item.quantity || 1); 
       return total + itemPrice;
     }, 0).toFixed(2);
   };
 
   const generatePDF = () => {
     const doc = new jsPDF();
-
     doc.setFontSize(18);
     doc.text('Quotation', 14, 28);
     doc.addImage(logo, "PNG", 5, 5, 50, 0);
@@ -34,10 +34,10 @@ const Cart = () => {
 
     cartItems.forEach(item => {
       const itemData = [
-        item.name,
+        item.itemName,
         item.quantity,
-        `$${formatPrice(item.price)}`,
-        `$${(parseFloat(formatPrice(item.price)) * item.quantity).toFixed(2)}`
+        `$${formatPrice(item.retailPrice)}`,
+        `$${(parseFloat(formatPrice(item.retailPrice)) * item.quantity).toFixed(2)}`
       ];
       tableRows.push(itemData);
     });
@@ -59,42 +59,34 @@ const Cart = () => {
       ) : (
         <div>
           <ul>
-            {cartItems.map((item) => (
-              <li key={item.id} className="flex justify-between mb-4 p-4 border-b">
-                <div className="flex items-center">
-                  <img src={item.image} alt={item.name} className="w-16 h-16 object-cover mr-4" />
-                  <div>
-                    <h2 className="sm:text-xl text-white font-semibold font-poppins">{item.name}</h2>
-                    <p className="text-white font-poppins text-sm sm:text-[16px]">Quantity: {item.quantity}</p>
-                  </div>
+          {cartItems.map((item) => (
+            <li key={item.itemID} className="flex justify-between mb-4 p-4 border-b">
+              <div className="flex items-center">
+                <img src={`https://extremeadmin.worldpos.biz/Uploads/${item.cacheID}.jpg`} alt={item.itemName} className="w-16 h-16 object-cover mr-4" />
+                <div>
+                  <h2 className="sm:text-xl text-white font-semibold">{item.itemName}</h2>
+                  <p className="text-white">Quantity: {isNaN(item.quantity) ? '0' : item.quantity}</p> {/* Safe handling for NaN */}
                 </div>
-                <div className="text-right ">
-                  <p className="text-sm sm:text-lg text-white font-semibold font-poppins">${formatPrice(item.price)}</p>
-                  <div className="flex items-center ml-4">
-                    <button
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className="bg-gray-600 text-white py-1 px-1 sm:px-2 rounded font-poppins text-xs sm:text-[16px]"
-                      disabled={item.quantity <= 1}
-                    >
-                      -
-                    </button>
-                    <span className="mx-2 text-white font-poppins text-sm sm:text-[16px]">{item.quantity}</span>
-                    <button
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="bg-gray-600 text-white py-1 px-1 sm:px-2 rounded font-poppins text-xs sm:text-[16px]"
-                    >
-                      +
-                    </button>
-                    <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="bg-red-500 text-white sm:py-1 px-1 sm:px-2 ml-4 sm:text-[16px] text-sm rounded font-poppins"
-                    >
-                      X
-                    </button>
-                  </div>
+              </div>
+              <div className="text-right">
+                <p className="text-sm sm:text-lg text-white font-semibold">
+                  ${isNaN(formatPrice(item.retailPrice)) ? '0.00' : formatPrice(item.retailPrice)} {/* Safe handling for NaN */}
+                </p>
+                <div className="flex items-center ml-4 text-white">
+                  <button onClick={() => updateQuantity(item.itemID, parseInt(item.quantity) - 1)} disabled={item.quantity <= 1}>
+                    -
+                  </button>
+                  <span className="mx-2 text-white">{isNaN(item.quantity) ? '0' : item.quantity}</span> {/* Safe handling for NaN */}
+                  <button onClick={() => updateQuantity(item.itemID, parseInt(item.quantity) + 1)}>
+                    +
+                  </button>
+                  <button onClick={() => removeFromCart(item.itemID)} className="bg-red-500 text-white rounded px-2 pb-1 ml-4">
+                    x
+                  </button>
                 </div>
-              </li>
-            ))}
+              </div>
+            </li>
+          ))}
           </ul>
           <div className="flex items-center justify-end mt-4">
             <p className="text-lg sm:text-xl text-white font-semibold font-poppins mr-4">Total: ${calculateTotal()}</p>

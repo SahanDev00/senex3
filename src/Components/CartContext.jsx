@@ -1,44 +1,37 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  // Initialize cartItems from localStorage or use an empty array if nothing is found
-  const [cartItems, setCartItems] = useState(() => {
-    const savedCart = localStorage.getItem('cartItems');
-    return savedCart ? JSON.parse(savedCart) : [];
-  });
+  const [cartItems, setCartItems] = useState([]);
 
-  useEffect(() => {
-    // Save cartItems to localStorage whenever it changes
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
-
-  const addToCart = (product, quantity = 1) => {
-    setCartItems(prevItems => {
-      const itemIndex = prevItems.findIndex(item => item.id === product.id);
-      if (itemIndex > -1) {
-        const updatedItems = [...prevItems];
-        updatedItems[itemIndex].quantity += quantity;
-        return updatedItems;
+  const addToCart = (product) => {
+    setCartItems((prevItems) => {
+      const existingProductIndex = prevItems.findIndex(item => item.itemID === product.itemID);
+  
+      if (existingProductIndex !== -1) {
+        // If the product is already in the cart, increase the quantity
+        const updatedCartItems = [...prevItems];
+        updatedCartItems[existingProductIndex].quantity = (updatedCartItems[existingProductIndex].quantity || 1) + 1;
+        return updatedCartItems;
+      } else {
+        // Add new product to the cart with default quantity of 1
+        return [...prevItems, { ...product, quantity: 1 }];
       }
-      return [...prevItems, { ...product, quantity }];
     });
   };
+  
+  
 
-  const removeFromCart = (productId) => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
+  const removeFromCart = (itemID) => {
+    setCartItems(prevItems => prevItems.filter(item => item.itemID !== itemID));
   };
 
-  const updateQuantity = (productId, quantity) => {
-    setCartItems(prevItems => {
-      const itemIndex = prevItems.findIndex(item => item.id === productId);
-      if (itemIndex > -1) {
-        const updatedItems = [...prevItems];
-        updatedItems[itemIndex].quantity = quantity;
-        return updatedItems;
-      }
-      return prevItems;
+  const updateQuantity = (itemID, newQuantity) => {
+    setCartItems((prevItems) => {
+      return prevItems.map(item => 
+        item.itemID === itemID ? { ...item, quantity: newQuantity } : item
+      );
     });
   };
 

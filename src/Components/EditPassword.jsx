@@ -10,7 +10,7 @@ const EditPassword = () => {
   // Fetch loginPassword when component mounts
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
-    fetch('http://admin.extreme.exesmart.com/api/Customer/CUS_00009', {
+    fetch('https://extremeadmin.worldpos.biz/api/Customer/CUS_00009', {
       headers: {
         'APIKey': apiKey,
       },
@@ -37,7 +37,7 @@ const EditPassword = () => {
       // Check if new password and confirm password match
       if (newPassword === confirmNewPassword) {
         // Call API to change the password with GET method and query parameters
-        fetch(`http://admin.extreme.exesmart.com/api/Customer/EditPassword?CustomerID=CUS_00009&LoginPassword=${encodeURIComponent(newPassword)}`, {
+        fetch(`https://extremeadmin.worldpos.biz/api/Customer/EditPassword?CustomerID=CUS_00009&LoginPassword=${encodeURIComponent(newPassword)}`, {
           method: 'PUT',
           headers: {
             'APIKey': apiKey,

@@ -5,16 +5,17 @@ const ProductDescription = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const [showMessage, setShowMessage] = useState(false); // State for showing the message
   const [view, setView] = useState('description'); // State for toggling between description and specifications
-  const [selectedImage, setSelectedImage] = useState(`http://extreme.exesmart.com/Uploads/${product.cacheID}.jpg`); // State for selected image
+  const [selectedImage, setSelectedImage] = useState(`https://extremeadmin.worldpos.biz/Uploads/${product.cacheID}.jpg`); // State for selected image
   const [specifications, setSpecifications] = useState([]); // State for specifications
   const { addToCart } = useContext(CartContext); // Use CartContext
 
+  
   useEffect(() => {
     // Fetch specifications data
     const fetchSpecifications = async () => {
       const apiKey = process.env.REACT_APP_API_KEY;
       try {
-        const response = await fetch('http://admin.extreme.exesmart.com/Api/Specification',{
+        const response = await fetch('https://extremeadmin.worldpos.biz/Api/Specification',{
           headers: {
             'APIKey': apiKey,
           },
@@ -44,10 +45,11 @@ const ProductDescription = ({ product }) => {
   };
 
   const handleAddToCart = () => {
-    addToCart(product, quantity); // Pass quantity to addToCart
-    setShowMessage(true); // Show the "Added to Cart" message
-    setTimeout(() => setShowMessage(false), 2000); // Hide the message after 2 seconds
+    addToCart(product, quantity); // Pass product and quantity to the cart
+    setShowMessage(true); // Show success message
+    setTimeout(() => setShowMessage(false), 2000); // Hide message after 2 seconds
   };
+  
 
   // Ensure product.price is a number
   const formatPrice = (price) => {
@@ -55,8 +57,10 @@ const ProductDescription = ({ product }) => {
     return isNaN(num) ? '0.00' : num.toFixed(2);
   };
 
+
+
   return (
-    <div className="w-full">
+    <div className="w-full max-h-[80vh] sm:max-h-[70vh] overflow-auto">
       <h1 className="text-2xl font-bold mb-3 font-poppins">{product.itemName}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
@@ -64,14 +68,14 @@ const ProductDescription = ({ product }) => {
           <img src={selectedImage} alt={product.itemName} className="w-full mb-4" />
 
           {/* Thumbnails */}
-          <div className="flex gap-2 mb-4">
+          <div className="flex gap-2 mb-4 flex-wrap">
             {[...Array(4)].map((_, index) => (
               <img
                 key={index}
                 src={selectedImage} // Use the same image for now
                 alt={`Thumbnail ${index + 1}`}
-                className={`w-20 h-20 object-cover mx-auto cursor-pointer ${selectedImage === `http://extreme.exesmart.com/Uploads/${product.cacheID}.jpg` ? 'border-2 border-blue-500' : ''}`}
-                onClick={() => setSelectedImage(`http://extreme.exesmart.com/Uploads/${product.cacheID}.jpg`)}
+                className={`w-20 h-20 object-cover mx-auto cursor-pointer ${selectedImage === `https://extremeadmin.worldpos.biz/Uploads/${product.cacheID}.jpg` ? 'border-2 border-blue-500' : ''}`}
+                onClick={() => setSelectedImage(`https://extremeadmin.worldpos.biz/Uploads/${product.cacheID}.jpg`)}
               />
             ))}
           </div>

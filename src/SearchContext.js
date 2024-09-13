@@ -6,6 +6,7 @@ export const SearchContext = createContext();
 export const SearchProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   const clearSearchQuery = () => {
     setSearchQuery('');
@@ -13,7 +14,7 @@ export const SearchProvider = ({ children }) => {
   };
 
   return (
-    <SearchContext.Provider value={{ searchQuery, setSearchQuery, filteredProducts, setFilteredProducts, clearSearchQuery }}>
+    <SearchContext.Provider value={{ searchQuery, setSearchQuery, filteredProducts, setFilteredProducts, clearSearchQuery, selectedCategory, setSelectedCategory, }}>
       {children}
     </SearchContext.Provider>
   );
