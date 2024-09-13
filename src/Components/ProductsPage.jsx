@@ -101,7 +101,7 @@ const ProductsPage = () => {
             {currentProducts.map((product) => (
               <div key={product.itemID} className="border bg-black/40 hover:scale-105 duration-300 m-1 p-5 rounded hover:shadow-lg shadow cursor-pointer" onClick={() => setSelectedProduct(product)}>
                 <Helmet><title>SENEX | {categoryMainName}</title></Helmet>
-                <img src={`http://extreme.exesmart.com/Uploads/${product.cacheID}.jpg`} alt={product.name} className="w-full mb-4" />
+                <img src={`https://extremeadmin.worldpos.biz/Uploads/${product.cacheID}.jpg`} alt={product.name} className="w-full mb-4" />
                 <h2 className="text-xl text-white text-center font-semibold">{product.itemName}</h2>
                 <p className="text-center text-white">${Number(product.retailPrice).toFixed(2)}</p>
                 <p className={`text-center ${product.stockAvailable === "A" ? 'text-green-500' : 'text-red-500'}`}>

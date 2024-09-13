@@ -9,7 +9,7 @@ const SliderComponent = () => {
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
-    fetch('http://admin.extreme.exesmart.com/Api/SlideBanner',{
+    fetch('https://extremeadmin.worldpos.biz/Api/SlideBanner',{
       method: 'GET',
       headers: {
         'APIKey': apiKey,
