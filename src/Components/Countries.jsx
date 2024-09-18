@@ -32,7 +32,6 @@ const CountryDropdown = ({ value, onChange, name }) => {
         id="country" 
         name={name} value={value} onChange={onChange}
         className='block w-full cursor-pointer mx-auto rounded-lg pl-3 py-1 border-red-500 border-2 mb-2 mt-1' 
-        required
       >
         <option value="" disabled selected>Select your country</option>
         {countries.map((country, index) => (

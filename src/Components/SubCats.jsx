@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const SubCats = ({ subCategories = [], onClose, onSelectSubCategory, categoryID, selectedSubCategory }) => {
   if (typeof onSelectSubCategory !== 'function') {
-    console.error('onSelectSubCategory is not a function');
     return null;
   }
 

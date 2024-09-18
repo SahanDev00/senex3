@@ -17,7 +17,7 @@ const Product = () => {
                 </div>
                 <div className="flex-1 flex flex-col">
                     <Searchbar onSearch={setSearchQuery} products={[]} />
-                    <div className="min-h-[1950px]">
+                    <div className="min-h-[90vh]">
                         <Outlet />
                     </div>
                 </div>

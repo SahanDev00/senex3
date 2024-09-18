@@ -67,7 +67,7 @@ function App() {
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/orders" element={<Orders />} />
-                <Route path="/order-details" element={<OrderDetails />} />
+                <Route path="/order-details/:orderID" element={<OrderDetails />} />
                 <Route path="/edit-profile" element={<EditProfile />} />
                 <Route path="/edit-password" element={<EditPassword />} />
               </Routes>

@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie'; 
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+  const [customerId, setCustomerId] = useState(null);
+
+  useEffect(() => {
+    // Retrieve customer ID from cookies or session storage
+    const customerDetails = Cookies.get('customerDetails') || sessionStorage.getItem('customerDetails');
+    if (customerDetails) {
+      const parsedDetails = JSON.parse(customerDetails);
+      setCustomerId(parsedDetails.customerID);
+    }
+  }, []);
 
   useEffect(() => {
     // Fetch order data from API
     const fetchOrders = async () => {
-      const api = 'https://extremeadmin.worldpos.biz/Api/Order?CustomerID=CUS_00001';
+      const api = 'https://extremeadmin.worldpos.biz/Api/Order?CustomerID=';
       
       try {
         const apiKey = process.env.REACT_APP_API_KEY;
-        const response = await fetch(api,  {
+        const response = await fetch(`${api}${customerId}`,  {
           method: 'GET',
           headers: {
             'APIKey': apiKey,
@@ -20,8 +31,6 @@ const Orders = () => {
         
         if (response.ok && result.success) {
           setOrders(result.data);
-        } else {
-          console.error('Error fetching orders:', result.errorMessage);
         }
       } catch (error) {
         console.error('Error:', error);
@@ -29,7 +38,7 @@ const Orders = () => {
     };
 
     fetchOrders();
-  }, []);
+  }, [customerId]);
 
   if (orders.length === 0) {
     return <div className='text-white h-[85vh] w-[80%] mx-auto relative'>
@@ -67,7 +76,7 @@ const Orders = () => {
                   {order.paidStatusText}
                 </td>
                 <td className='px-4 py-2 border-b border-gray-200 font-poppins'>
-                    <Link to='/order-details'>
+                    <Link to={`/order-details/${order.orderID}`}>
                         <button className='bg-blue-500 font-poppins text-white px-4 py-2 rounded hover:bg-blue-600'>
                             View
                         </button>

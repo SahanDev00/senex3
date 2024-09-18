@@ -8,6 +8,8 @@ export const CartProvider = ({ children }) => {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
+  const clearCart = () => setCartItems([]);
+
   useEffect(() => {
     // Save cartItems to localStorage whenever it changes
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -48,7 +50,7 @@ export const CartProvider = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, getTotalItems }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, getTotalItems, clearCart }}>
       {children}
     </CartContext.Provider>
   );

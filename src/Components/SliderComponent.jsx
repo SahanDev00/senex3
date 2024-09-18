@@ -20,8 +20,6 @@ const SliderComponent = () => {
         if (data.success && data.data) {
           // Process the fetched data and set it to state
           setDetails(data.data);
-        } else {
-          console.error('Failed to fetch data:', data.errorMessage);
         }
       })
       .catch(error => {

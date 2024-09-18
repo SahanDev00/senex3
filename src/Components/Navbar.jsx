@@ -1,14 +1,16 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { TiShoppingCart } from 'react-icons/ti';
 import { FaUserLarge } from 'react-icons/fa6';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { CartContext } from '../Components/CartContext'; // Adjust the path as needed
 import { IoClose, IoMenu } from 'react-icons/io5';
 import Sidebar2 from './Sidebar2';
 import logo from "../Assets/Images/logo.png"
+import Cookies from 'js-cookie'; 
 
 const Navbar = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const { getTotalItems } = useContext(CartContext); // Get the total number of items from the context
 
     const isActive = (path) => {
@@ -71,7 +73,21 @@ const Navbar = () => {
             document.body.classList.remove('no-scroll');
         }
     };
+
+        // Check if the user is logged in by looking for customerDetails in cookies or sessionStorage
+        const isLoggedIn = () => {
+            const customerDetails = Cookies.get('customerDetails') || sessionStorage.getItem('customerDetails');
+            return !!customerDetails;
+        };
     
+        const handleProfileClick = () => {
+            if (isLoggedIn()) {
+                navigate('/profile');
+            } else {
+                navigate('/login');
+            }
+        };
+
     return (
         <div className='w-[90%] md:w-[95%] lg:w-[85%] mx-auto relative'>
             <div className='flex justify-between items-center w-full h-[100px] md:h-[120px]'>
@@ -99,9 +115,9 @@ const Navbar = () => {
                                 )}
                             </div>
                         </Link>
-                        <Link to='/profile'>
+                        <div onClick={handleProfileClick}>
                             <FaUserLarge className={`hover:text-red-600 cursor-pointer ${isActive('/profile') ? 'text-red-500' : 'text-white'}`} size={25}/>
-                        </Link>
+                        </div>
                     </div>
 
                     <div onClick={handleNav} className='block md:hidden z-10 cursor-pointer text-white'>
@@ -143,9 +159,9 @@ const Navbar = () => {
                             </div>
                         </Link>
 
-                        <Link to='/profile'>
+                        <div onClick={handleProfileClick}>
                             <FaUserLarge className={`hover:text-red-600 cursor-pointer ${isActive('/profile') ? 'text-red-500' : 'text-white'}`} size={25}/>
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </div>

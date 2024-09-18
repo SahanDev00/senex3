@@ -19,7 +19,6 @@ const ProductsPage = () => {
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
     const url = `https://extremeadmin.worldpos.biz/API/Item?CategoryMainID=${categoryName}&CategorySubID=${subCategoryID || ''}&BrandID=`;
-   // console.log('Fetching URL:', url);
 
     fetch(url,{
       method: 'GET',
@@ -35,7 +34,6 @@ const ProductsPage = () => {
       .then((result) => {
         if (result.success && Array.isArray(result.data)) {
           setProducts(result.data); // Set the products to state
-         // console.log(result.data)
 
           // Check if there are products and extract categoryMainName from the first product
           if (result.data.length > 0) {

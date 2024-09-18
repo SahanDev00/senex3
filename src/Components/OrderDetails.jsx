@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 const OrderDetails = () => {
   const [orderItems, setOrderItems] = useState([]);
-  const orderId = 'ORD00001'; // You can pass this dynamically if needed
+  const { orderID } = useParams();
 
   useEffect(() => {
     const fetchOrderItems = async () => {
-      const api = `https://extremeadmin.worldpos.biz/Api/OrderItem?Page=0&OrderID=${orderId}`;
+      const api = `https://extremeadmin.worldpos.biz/Api/OrderItem?Page=0&OrderID=${orderID}`;
       
       try {
         const apiKey = process.env.REACT_APP_API_KEY;
@@ -20,8 +21,6 @@ const OrderDetails = () => {
         
         if (response.ok && result.success) {
           setOrderItems(result.data);
-        } else {
-          console.error('Error fetching order items:', result.errorMessage);
         }
       } catch (error) {
         console.error('Error:', error);
@@ -29,7 +28,7 @@ const OrderDetails = () => {
     };
 
     fetchOrderItems();
-  }, [orderId]);
+  }, [orderID]);
 
   if (orderItems.length === 0) {
     return <div className='text-white'>No order details available</div>;
@@ -37,7 +36,7 @@ const OrderDetails = () => {
 
   return (
     <div className='w-full min-h-[750px] mb-5 mx-auto relative'>
-      <h1 className='text-3xl text-center my-8 font-bold text-white font-poppins'>Order Details: {orderId}</h1>
+      <h1 className='text-3xl text-center my-8 font-bold text-white font-poppins'>Order Details: {orderID}</h1>
       <div className='overflow-x-auto container mx-auto'>
         <table className='min-w-full bg-black/70 text-white border border-gray-200'>
           <thead>

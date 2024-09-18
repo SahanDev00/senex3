@@ -24,12 +24,13 @@ const countries2 = [
   "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
 ];
 
-const CountryDropdown = () => {
+const CountryDropdown = ({value, onChange,}) => {
   return (
     <div>
       <select 
         id="country" 
         name="country" 
+        value={value} onChange={onChange}
         className='w-full cursor-pointer h-12 mx-auto rounded-lg pl-3 py-1 border-red-500 border-2 mb-2 mt-1' 
         required
       >

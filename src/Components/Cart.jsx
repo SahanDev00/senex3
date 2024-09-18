@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../Components/CartContext';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import logo from "../Assets/Images/logo.png"
+import Cookies from 'js-cookie';
 import { Helmet } from 'react-helmet';
 
 const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
+  const navigate = useNavigate();
 
   const formatPrice = (price) => {
     const priceString = typeof price === 'number' ? price.toString() : price; 
@@ -50,6 +52,20 @@ const Cart = () => {
     doc.save('senex_quotation.pdf');
   };
 
+    // Function to check if the user is logged in
+    const isLoggedIn = () => {
+      const customerDetails = Cookies.get('customerDetails') || sessionStorage.getItem('customerDetails');
+      return !!customerDetails;
+    };
+
+    const handleCheckout = () => {
+      if (isLoggedIn()) {
+        navigate('/checkout');
+      } else {
+        navigate('/login');
+      }
+    };
+
   return (
     <div className="w-[95%] mx-auto mt-10 lg:min-h-[600px] xl:min-h-[730px] relative pb-5">
       <Helmet><title>SENEX | Cart</title></Helmet>
@@ -90,9 +106,9 @@ const Cart = () => {
           </ul>
           <div className="flex items-center justify-end mt-4">
             <p className="text-lg sm:text-xl text-white font-semibold font-poppins mr-4">Total: ${calculateTotal()}</p>
-            <Link to='/checkout'>
+            <div onClick={handleCheckout}>
               <button className="bg-blue-500 text-white py-2 px-4 rounded font-poppins">Checkout</button>
-            </Link>
+            </div>
           </div>
           <div className="flex items-center justify-end mt-4">
             <button onClick={generatePDF} className="bg-green-500 text-white py-2 px-4 rounded font-poppins">Download Quotation</button>

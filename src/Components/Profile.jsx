@@ -5,40 +5,57 @@ import { FaRegEdit } from "react-icons/fa";
 import { IoIosLogOut } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import Cookies from 'js-cookie'; 
 
 const Profile = () => {
   const [profileData, setProfileData] = useState(null);
+  const [customerId, setCustomerId] = useState(null);
 
   useEffect(() => {
-    // Fetch profile data from API
-    const fetchProfileData = async () => {
-      const api = process.env.REACT_APP_API_URL;
-      const apiURL = `${api}/api/Customer/CUS_00009`; // Adjust with dynamic ID as necessary
-
-      try {
-        const apiKey = process.env.REACT_APP_API_KEY;
-        const response = await fetch(apiURL, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'APIKey': apiKey,
-          },
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-          setProfileData(result.data);
-        } else {
-          console.error('Error fetching profile data:', result.errorMessage);
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-
-    fetchProfileData();
+    // Retrieve customer ID from cookies or session storage
+    const customerDetails = Cookies.get('customerDetails') || sessionStorage.getItem('customerDetails');
+    if (customerDetails) {
+      const parsedDetails = JSON.parse(customerDetails);
+      setCustomerId(parsedDetails.customerID);
+    }
   }, []);
+
+  const handleLogout = () => {
+    // Clear cookies and session storage on logout
+    Cookies.remove('customerDetails');
+    sessionStorage.removeItem('customerDetails');
+  };
+  
+
+  useEffect(() => {
+    if (customerId) {
+      // Fetch profile data from API
+      const fetchProfileData = async () => {
+        const api = process.env.REACT_APP_API_URL;
+        const apiURL = `${api}/api/Customer`; // Adjust with dynamic ID as necessary
+
+        try {
+          const apiKey = process.env.REACT_APP_API_KEY;
+          const response = await fetch(`${apiURL}/${customerId}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'APIKey': apiKey,
+            },
+          });
+          const result = await response.json();
+
+          if (response.ok) {
+            setProfileData(result.data);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      };
+
+      fetchProfileData();
+    }
+  }, [customerId]);
 
   if (!profileData) {
     return <div>Loading...</div>; // or a spinner/loading component
@@ -82,10 +99,10 @@ const Profile = () => {
           <RiLockPasswordLine size={25} />
           <h1>Edit Password</h1>
         </Link>
-        <div className='flex mx-auto items-center gap-2 font-semibold cursor-pointer hover:text-red-500 text-white'>
+        <Link onClick={handleLogout} to='/' className='flex mx-auto items-center gap-2 font-semibold cursor-pointer hover:text-red-500 text-white'>
           <IoIosLogOut size={25} />
           <h1>Log Out</h1>
-        </div>
+        </Link>
       </div>
     </div>
   );

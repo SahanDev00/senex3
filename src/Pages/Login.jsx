@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import loginPic from '../Assets/Images/login.webp';
 import signUpPic from '../Assets/Images/signup.webp';
 import Countries from '../Components/Countries';
 import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie'; // Import js-cookie for handling cookies
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
   const [isLogin, setIsLogin] = useState(true); // State to track whether it's login or sign-up view
   const [formData, setFormData] = useState({
     email: '',
@@ -20,17 +24,104 @@ const Login = () => {
     country: '',
     mobile: '',
     confirmPassword: '',
+    rememberMe: false, // New field
   });
+
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+    firstName: '',
+    lastName: '',
+    addressLine1: '',
+    city: '',
+    state: '',
+    postalCode: '',
+    mobile: '',
+    // Add other fields as necessary
+  });
+
+  // Validate fields before submitting
+const validateForm = () => {
+  let newErrors = {};
+  
+  // Email validation
+  if (!formData.email) {
+    newErrors.email = 'Email is required';
+  } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    newErrors.email = 'Email address is invalid';
+  }
+
+  // Password validation
+  if (!formData.password) {
+    newErrors.password = 'Password is required';
+  } else if (formData.password.length < 6) {
+    newErrors.password = 'Password must be at least 6 characters';
+  }
+
+  // Confirm password validation
+  if (formData.confirmPassword !== formData.password) {
+    newErrors.confirmPassword = 'Passwords do not match';
+  }
+
+  // First name validation
+  if (!formData.firstName) {
+    newErrors.firstName = 'First name is required';
+  }
+
+  // Last name validation
+  if (!formData.lastName) {
+    newErrors.lastName = 'Last name is required';
+  }
+
+  // Address Line 1 validation
+  if (!formData.addressLine1) {
+    newErrors.addressLine1 = 'Address Line 1 is required';
+  }
+
+  // City validation
+  if (!formData.city) {
+    newErrors.city = 'City is required';
+  }
+
+  // State validation
+  if (!formData.state) {
+    newErrors.state = 'State is required';
+  }
+
+  // Postal code validation
+  if (!formData.postalCode) {
+    newErrors.postalCode = 'Postal code is required';
+  } else if (!/^\d+$/.test(formData.postalCode)) {
+    newErrors.postalCode = 'Postal code must be a number';
+  }
+
+  // Mobile number validation
+  if (!formData.mobile) {
+    newErrors.mobile = 'Mobile number is required';
+  } else if (!/^\+\d{10,15}$/.test(formData.mobile)) {
+    newErrors.mobile = 'Mobile number must start with "+" and be between 10 to 15 digits long.';
+  }
+
+  setErrors(newErrors);
+
+  // If no errors, return true
+  return Object.keys(newErrors).length === 0;
+};
 
   const handleSwitch = () => {
     setIsLogin(!isLogin); // Toggle the state between login and sign-up
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
+    
+    // Handle checkbox/radio button differently
+    const updatedValue = type === 'checkbox' ? checked : value;
+  
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: updatedValue,
     }));
   };
 
@@ -39,6 +130,7 @@ const Login = () => {
     const api = process.env.REACT_APP_API_URL;
     const apiURL = `${api}/api/customer`; // Adjust the URL as necessary
 
+    if (validateForm()) {
     let dataToSubmit = {
         customerID: "", // Assuming this will be generated on the backend if left empty
         facebookID: formData.facebookID || "", // Default or from form data
@@ -83,6 +175,7 @@ const Login = () => {
         shipAwayBool: formData.shipAway || false, // Boolean for shipping away
         activeStatusBool: formData.activeStatusBool || true // Boolean for active status
     };
+  
     
     try {
       const apiKey = process.env.REACT_APP_API_KEY;
@@ -97,63 +190,91 @@ const Login = () => {
     
       const result = await response.json();
     
+
       if (response.ok) {
-        console.log('Success:', result);
-      } else {
-        console.error('Error:', result);
-        console.error('Validation Errors:', result.errors); // Log validation errors
+        if (result.success) {
+          navigate('/')
+        }
+        setErrorMessage(result.errorMessage);
       }
     } catch (error) {
       console.error('Error:', error);
     }
-    
+  }
   };
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-  
+
     const api = process.env.REACT_APP_API_URL;
     const apiURL = `${api}/api/Customer/GetByEmail?EmailAddress=${encodeURIComponent(formData.email)}`;
-  
+
     try {
       const apiKey = process.env.REACT_APP_API_KEY;
-  
+      
       // Step 1: Check if the email exists
       const emailCheckResponse = await fetch(apiURL, {
-        method: 'GET', // Change to GET method
+        method: 'GET', 
         headers: {
           'Content-Type': 'application/json',
           'APIKey': apiKey,
         },
       });
-  
+
       const emailCheckResult = await emailCheckResponse.json();
-  
+
       if (emailCheckResponse.ok && emailCheckResult.success) {
         const customerData = emailCheckResult.data;
-  
+
         // Step 2: Check if the entered password matches
         const enteredPassword = formData.password;
         const storedPassword = customerData.loginPassword;
-  
-        // Assuming the password is hashed; you should hash the entered password and compare with stored hash.
-        // Here is an example check, but in practice, you should use appropriate hashing and comparison techniques.
+
         if (storedPassword === enteredPassword) {
-          console.log('Login successful', customerData);
-          // Handle successful login, like saving the customer data or redirecting the user
+
+          // Step 3: Store customer data in session storage or cookie
+          const customerDetails = {
+            customerID: customerData.customerID,
+            email: customerData.loginEmail,
+            firstName: customerData.firstName,
+            lastName: customerData.lastName,
+            // Add any other relevant fields
+          };
+
+          if (formData.rememberMe) {
+            // Store in cookie with 30-day expiration
+            Cookies.set('customerDetails', JSON.stringify(customerDetails), { expires: 30 });
+          } else {
+            // Store in session storage for the current session
+            sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
+          }
+
+          // Handle successful login (e.g., redirect user, update UI, etc.)
+          navigate('/'); // Redirect to the homepage or any other page you want
         } else {
-          console.error('Password does not match');
+          setErrorMessage('Password does not match');
           // Show error message to the user
         }
       } else {
-        console.error('Email not found');
+        setErrorMessage('Email not found');
         // Show an error message that the email doesn't exist
       }
     } catch (error) {
       console.error('Error:', error);
     }
   };
+
+  useEffect(() => {
+    // Check for customer details in cookies or session storage
+    const customerDetails = Cookies.get('customerDetails') 
+      ? JSON.parse(Cookies.get('customerDetails')) 
+      : JSON.parse(sessionStorage.getItem('customerDetails'));
   
+    if (customerDetails) {
+      // Handle auto-login or redirect based on customer data
+      navigate('/')
+    }
+  }, [navigate]);
   
   
 
@@ -172,15 +293,24 @@ const Login = () => {
                 <label className='font-semibold ml-5 md:ml-16 text-white md:text-black'>Email</label>
                 <input className='block w-[95%] md:w-[80%] mx-auto rounded-lg pl-4 py-2 border-red-500 border-2 mb-2 mt-1' name="email"
                   value={formData.email}
-                  onChange={handleChange} 
-                  type="email" placeholder='example@gmail.com' required />
+                  type="email" placeholder='example@gmail.com' onChange={handleChange}  required />
                 <label className='font-semibold ml-5 md:ml-16 text-white md:text-black'>Password</label>
-                <input className='block w-[95%] md:w-[80%] mx-auto rounded-lg pl-4 py-2 border-red-500 border-2 mb-5 mt-1'
+                <input className='block w-[95%] md:w-[80%] mx-auto rounded-lg pl-4 py-2 border-red-500 border-2 mb-3 mt-1'
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
                  type="password" placeholder='••••••••' required />
-                <button onClick={handleLoginSubmit} className='block w-[95%] md:w-[80%] mx-auto rounded-lg bg-red-500 py-2 text-white font-semibold hover:bg-red-600'>Login</button>
+                 {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
+                     <label className='ml-12'>
+                        <input
+                          type="checkbox"
+                          name="rememberMe"
+                          checked={formData.rememberMe}
+                          onChange={handleChange}
+                        />
+                        Remember Me
+                      </label>
+                <button onClick={handleLoginSubmit} className='block mt-2 w-[95%] md:w-[80%] mx-auto rounded-lg bg-red-500 py-2 text-white font-semibold hover:bg-red-600'>Login</button>
               </form>
               <p className='text-center mt-3 font-semibold text-gray-400 md:text-gray-600'>Haven't registered yet? <span className='text-red-500 font-bold cursor-pointer hover:text-red-600' onClick={handleSwitch}>Sign Up</span></p>
             </div>
@@ -190,11 +320,11 @@ const Login = () => {
           </div>
         ) : (
           // Sign Up
-          <div className='w-full h-[800px] md:h-[1000px] xl:h-[850px] rounded-3xl md:bg-white items-center md:grid grid-cols-2'>
+          <div className='w-full min-h-[800px] md:min-h-[1000px] xl:min-h-[850px] rounded-3xl md:bg-white items-center md:grid grid-cols-2'>
             <div className='w-full h-full rounded-3xl bg-black md:block hidden'>
               <img src={signUpPic} alt="Sign Up" className='w-full h-full object-cover rounded-l-3xl' />
             </div>
-            <div className='w-full'>
+            <div className='w-full py-3'>
               <h1 className='text-xl font-bold text-red-600 cursor-pointer text-center'>SENƎX</h1>
               <h1 className='text-2xl font-semibold text-center text-white md:text-black'>SIGN UP !</h1>
               <p className='text-gray-300 md:text-gray-800 font-semibold text-center'>Please enter your details...</p>
@@ -219,6 +349,7 @@ const Login = () => {
                           <option value="Rev.">Rev.</option>
                         </select>
                     </div>
+                    {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
                   </div>
                   <div className='w-full'>
                     <label className='font-semibold text-sm text-white md:text-black'>Last Name</label>
@@ -227,6 +358,7 @@ const Login = () => {
                     value={formData.lastName}
                     onChange={handleChange}
                     type="text" placeholder='Nester' required />
+                    {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName}</p>}
                   </div>
                 </div>
                 <div className='lg:flex gap-4 w-[98%] md:w-[80%] mx-auto'>
@@ -237,6 +369,7 @@ const Login = () => {
                     value={formData.addressLine1}
                     onChange={handleChange}
                     type="text" placeholder='' required />
+                    {errors.addressLine1 && <p className="text-red-500 text-sm">{errors.addressLine1}</p>}
                   </div>
                   <div className='w-full'>
                     <label className='font-semibold text-sm text-white md:text-black'>Address Line 2</label>
@@ -255,6 +388,7 @@ const Login = () => {
                     value={formData.city}
                     onChange={handleChange}
                     type="text" placeholder='' required />
+                    {errors.city && <p className="text-red-500 text-sm">{errors.city}</p>}
                   </div>
                   <div className='w-full'>
                     <label className='font-semibold text-sm text-white md:text-black'>State</label>
@@ -263,6 +397,7 @@ const Login = () => {
                     value={formData.state}
                     onChange={handleChange}
                     type="text" placeholder='' required />
+                    {errors.state && <p className="text-red-500 text-sm">{errors.state}</p>}
                   </div>
                 </div>
                 <div className='flex gap-4 w-[98%] md:w-[80%] mx-auto'>
@@ -273,6 +408,7 @@ const Login = () => {
                     value={formData.postalCode}
                     onChange={handleChange}
                     type="number" placeholder='' required />
+                    {errors.postalCode && <p className="text-red-500 text-sm">{errors.postalCode}</p>}
                   </div>
                   <div className='w-full'>
                     <Countries 
@@ -287,25 +423,30 @@ const Login = () => {
                                     name="mobile"
                                     value={formData.mobile}
                                     onChange={handleChange}
-                                    type="text" placeholder='94712345678' required />
+                                    type="text" placeholder='+94712345678' required />
+                                    {errors.mobile && <p className="text-red-500 text-sm text-center">{errors.mobile}</p>}
                 <label className='font-semibold text-sm ml-7 md:ml-16 text-white md:text-black'>Email</label>
                 <input className='block w-[98%] md:w-[80%] mx-auto rounded-lg pl-4 py-1 border-red-500 border-2 mb-2 mt-1' 
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 type="email" placeholder='example@gmail.com' required />
+                {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
+                {errors.email && <p className="text-red-500 text-sm text-center">{errors.email}</p>}
                 <label className='font-semibold text-sm ml-7 md:ml-16 text-white md:text-black'>Password</label>
                 <input className='block w-[98%] md:w-[80%] mx-auto rounded-lg pl-4 py-1 border-red-500 border-2 mb-2 mt-1' 
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
                 type="password" placeholder='••••••••' required />
+                {errors.password && <p className="text-red-500 text-sm text-center">{errors.password}</p>}
                 <label className='font-semibold text-sm ml-7 md:ml-16 text-white md:text-black'>Confirm Password</label>
                 <input className='block w-[98%] md:w-[80%] mx-auto rounded-lg pl-4 py-1 border-red-500 border-2 mb-5 mt-1' 
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 type="password" placeholder='••••••••' required />
+                {errors.confirmPassword && <p className="text-red-500 text-sm">{errors.confirmPassword}</p>}
                   <button disabled={formData.password !== formData.confirmPassword} onClick={handleSubmit} className={`block w-[98%] md:w-[80%] mx-auto rounded-lg py-1 text-white font-semibold hover:bg-red-600 ${
                     formData.password === formData.confirmPassword ? 'bg-red-500' : 'bg-gray-400 cursor-not-allowed hover:bg-gray-400'
                   }`}>Sign Up</button>
