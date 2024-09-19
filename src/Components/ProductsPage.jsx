@@ -87,7 +87,7 @@ const ProductsPage = () => {
   if (error) return <p className='text-white'>Error: {error.message}</p>;
 
   return (
-    <div className="xl:w-[91%] p-4 relative font-poppins ml-3">
+    <div className="xl:w-[91%] p-4 relative font-poppins sm:ml-3">
       <h1 className="text-2xl text-white font-bold mb-3">{categoryMainName} Products</h1>
       {products.length > 0 ? (
         <div>
@@ -163,7 +163,7 @@ const ProductsPage = () => {
             >
               &times;
             </button>
-            <FilterSection2 />
+           <FilterSection2 />
           </div>
         </div>
       )}
