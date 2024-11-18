@@ -1,5 +1,4 @@
 import React from 'react'
-import { CiDeliveryTruck } from "react-icons/ci";
 import centerPic from '../Assets/Center.png'
 import servicePic from '../Assets/service.png'
 import warrentyPic from '../Assets/warranty.png'
