@@ -192,7 +192,15 @@ const validateForm = () => {
     
 
       if (response.ok) {
+        const customerDetails = {
+          customerID: result.data.customerID,
+          email: result.data.loginEmail,
+          firstName: result.data.firstName,
+          lastName: result.data.lastName,
+          // Add any other relevant fields
+        };
         if (result.success) {
+          sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
           navigate('/')
         }
         setErrorMessage(result.errorMessage);
