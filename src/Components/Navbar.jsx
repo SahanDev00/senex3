@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { CartContext } from '../Components/CartContext'; // Adjust the path as needed
 import { IoClose, IoMenu } from 'react-icons/io5';
 import Sidebar2 from './Sidebar2';
-import logo from "../Assets/Images/logo.png"
+import logo from "../Assets/Images/logo.jpeg"
 import Cookies from 'js-cookie'; 
 
 const Navbar = () => {
