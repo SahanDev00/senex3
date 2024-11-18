@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Hero from './Hero'
 import Difference from '../Components/Difference'
 import Brands from '../Components/Brands'
@@ -9,6 +9,11 @@ import { Helmet } from 'react-helmet'
 
 
 const Home = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
       <div>
         <Helmet><title>SENEX | Best Computer Shop in Gampaha, Sri Lanka You'll Ever Find.</title></Helmet>

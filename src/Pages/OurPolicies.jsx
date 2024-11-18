@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const OurPolicies = () => {
 
     const [isTerms, setIsTerms] = useState(true);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
   return (
     <div className='w-full min-h-screen relative font-poppins'>

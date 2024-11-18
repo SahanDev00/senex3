@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
 import emailjs from 'emailjs-com';
 
@@ -22,6 +22,10 @@ const Contact = () => {
     
     e.target.reset(); // Reset the form after submission
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="flex w-full flex-col relative items-center mt-3 h-full">

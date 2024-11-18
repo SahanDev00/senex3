@@ -7,6 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'; // Import js-cookie for handling cookies
 
 const Login = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
   const [isLogin, setIsLogin] = useState(true); // State to track whether it's login or sign-up view

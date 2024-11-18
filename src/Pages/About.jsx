@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ComputerPic1 from "../Assets/Images/Computer1.webp"
 import ComputerPic2 from "../Assets/Images/Computer2.webp"
 import KeyboardPic from "../Assets/Images/keyboard.webp"
@@ -7,6 +7,11 @@ import { Helmet } from 'react-helmet'
 
 
 const About = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className='w-full lg:h-[740px] mxl:h-[740px] 2xl:h-[770px] md:h-[700px] h-[750px] sm:h-[600px] relative mx-auto '>
       <Helmet><title>SENEX | Computer Shop in Gampaha</title></Helmet>
