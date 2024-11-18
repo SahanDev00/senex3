@@ -19,7 +19,8 @@ module.exports = {
     },
     fontFamily: {
       poppins: ['Poppins', 'sans-serif'],
-      mono: ["Share Tech Mono", "monospace"]
+      mono: ["Share Tech Mono", "monospace"],
+      abhaya: ["Abhaya Libre", "serif"],
     },
     extend: {},
   },

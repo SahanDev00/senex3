@@ -22,6 +22,7 @@ import EditPassword from './Components/EditPassword';
 import { PrimeReactProvider } from 'primereact/api';
 import Footer2 from './Components/Footer2';
 import Tabs from './Components/Tabs';
+import OurPolicies from './Pages/OurPolicies';
 
 function BackgroundImages() {
   const location = useLocation();
@@ -70,6 +71,7 @@ function App() {
                 <Route path="/order-details/:orderID" element={<OrderDetails />} />
                 <Route path="/edit-profile" element={<EditProfile />} />
                 <Route path="/edit-password" element={<EditPassword />} />
+                <Route path="/our-policies" element={<OurPolicies />} />
               </Routes>
               <Footer2 />
             </Router>
