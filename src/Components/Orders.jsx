@@ -41,7 +41,7 @@ const Orders = () => {
   }, [customerId]);
 
   if (orders.length === 0) {
-    return <div className='text-white h-[85vh] w-[80%] mx-auto relative'>
+    return <div className='text-white h-[95vh] pt-28 w-[80%] mx-auto relative'>
       <h1 className='font-semibold mt-5'>You Don't Have Orders Yet!!!</h1>
     </div>
   }

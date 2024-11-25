@@ -89,8 +89,8 @@ const Navbar = () => {
         };
 
     return (
-        <div className='w-[90%] md:w-[95%] lg:w-[85%] mx-auto relative'>
-            <div className='flex justify-between items-center w-full h-[100px] md:h-[120px]'>
+        <div className='w-full mx-auto left-0 right-0 z-50 fixed backdrop-blur-sm'>
+            <div className='flex justify-between items-center w-[90%] md:w-[95%] lg:w-[85%] h-[100px] mx-auto md:h-[120px]'>
                 <div>
                     <Link to='/' className='text-3xl md:text-4xl lg:text-6xl font-bold text-red-600 cursor-pointer mr-2 md:mr-0 flex justify-center items-center'>
                         <img src={logo} alt="" className='w-[180px] lg:w-[200px] bg-black/50' />
@@ -126,8 +126,8 @@ const Navbar = () => {
 
                 </div>
 
-                <div ref={navRef} className={nav ? "md:hidden fixed left-0 top-0 w-[80%] border h-full bg-black/90 ease-in-out duration-500 z-20" : 'fixed left-[-100%]'}>
-                    <div className='mt-8'>
+                <div ref={navRef} className={nav ? "md:hidden fixed left-0 top-0 w-[80%] border h-full bg-black/90 ease-in-out duration-500 z-50" : 'fixed left-[-100%]'}>
+                    <div className='mt-8 bg-black'>
                         <div>
                             <Link to='/' className='text-3xl font-bold text-red-600 cursor-pointer ml-5 mb-4'>SENƎX</Link>
                         </div>
@@ -142,12 +142,12 @@ const Navbar = () => {
                             </ul>
                         </div>
                     </div>
-                    <div ref={navRef2} className={nav2 ? "md:hidden fixed left-0 top-0 w-[80%] border h-full bg-black/90 ease-in-out duration-500 z-20" : 'fixed left-[-100%]'}>
-                    <div className='w-full h-full'>
+                    <div ref={navRef2} className={nav2 ? "md:hidden  fixed left-0 top-0 w-[80%] h-screen bg-black/90 ease-in-out duration-500 z-20" : 'fixed left-[-100%]'}>
+                    <div className='w-full h-full '>
                         <Sidebar2/>
                     </div>
                     </div>
-                    <div className='mt-7 flex ml-5 gap-10 items-center'> 
+                    <div className='pt-7 flex pl-5 pb-4 gap-10 items-center h-screen bg-black'> 
                         <Link to='/cart'>
                             <div className='relative'>
                                 <TiShoppingCart className={`hover:text-red-600 cursor-pointer ${isActive('/cart') || isActive('/checkout') ? 'text-red-500' : 'text-white'}`} size={35}/>

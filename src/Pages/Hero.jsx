@@ -58,7 +58,7 @@ const Hero = () => {
   }
 
   return (
-    <div className='w-[87%] md:w-[93%] mx-auto relative mb-14'>
+    <div className='w-[87%] md:w-[93%] mx-auto relative pt-28 mb-14'>
       <Slider {...settings} className='h-[83vh]'>
         {slides.map((slide) => (
           <div key={slide.slideBannerID} className='w-full h-full flex items-center justify-center'>

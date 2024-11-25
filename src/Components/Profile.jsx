@@ -62,7 +62,7 @@ const Profile = () => {
   }
 
   return (
-    <div className='w-[90%] mx-auto relative font-poppins 2xl:h-[98vh]'>
+    <div className='w-[90%] mx-auto relative font-poppins pt-28 2xl:h-screen overflow-hidden'>
       <Helmet><title>SENEX | Profile</title></Helmet>
       <h1 className='text-3xl md:text-4xl text-white font-bold text-center my-10 uppercase'>Personal Details</h1>
       <div className='grid grid-cols-1 md:grid-cols-3 gap-5 my-5'>

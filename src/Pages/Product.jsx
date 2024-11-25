@@ -11,7 +11,7 @@ const Product = () => {
     return (
         <div>
             <Helmet><title>SENEX | Computer Parts, Computer Hardware & Computer Software</title></Helmet>
-            <div className="flex w-full mx-auto mb-14 relative">
+            <div className="flex w-full pt-28 mx-auto mb-14 relative">
                 <div className="">
                     <Sidebar />
                 </div>

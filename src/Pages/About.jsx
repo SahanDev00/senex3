@@ -13,7 +13,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className='w-full lg:h-[740px] mxl:h-[740px] 2xl:h-[770px] md:h-[700px] h-[750px] sm:h-[600px] relative mx-auto '>
+    <div className='w-full pt-16 lg:h-[740px] mxl:h-[740px] 2xl:h-[890px] md:h-[700px] h-[750px] sm:h-[600px] relative mx-auto '>
       <Helmet><title>SENEX | Computer Shop in Gampaha</title></Helmet>
       <div className='w-full h-full absolute z-10'>
         <div className='absolute mt-[120px] mxl:mt-[90px] 2xl:mt-[120px] md:mx-10'>

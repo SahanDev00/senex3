@@ -195,21 +195,34 @@ const validateForm = () => {
     
       const result = await response.json();
     
-
       if (response.ok) {
-        const customerDetails = {
-          customerID: result.data.customerID,
-          email: result.data.loginEmail,
-          firstName: result.data.firstName,
-          lastName: result.data.lastName,
-          // Add any other relevant fields
-        };
         if (result.success) {
-          sessionStorage.setItem('customerDetails', JSON.stringify(customerDetails));
-          navigate('/')
+          const customerID = result.data.customerID; // Access customerID from the data object
+          if (isLogin) {
+            // Set cookies if Remember Me is checked
+              // Store data in session
+              const customerDetails = {
+                customerID: customerID,
+                email: result.data.loginEmail,
+                firstName: result.data.firstName,
+                lastName: result.data.lastName,
+                // Add any other relevant fields
+              };
+              sessionStorage.setItem('customerDetails', customerDetails);
+          }
+          
+          setTimeout(() => {
+            navigate('/');
+          }, 2000);
         }
         setErrorMessage(result.errorMessage);
+      } else {
+        setErrorMessage(result.errorMessage);
+        
+        console.error('Error:', result);
+        console.error('Validation Errors:', result.errors); // Log validation errors
       }
+      
     } catch (error) {
       console.error('Error:', error);
     }
@@ -292,7 +305,7 @@ const validateForm = () => {
   
 
   return (
-    <div className={`w-full relative flex items-center py-5 ${isLogin ? 'h-[70vh] sm:h-[95vh] md:h-[85vh] lg:h-[95vh]' : ''}`}>
+    <div className={`w-full relative flex pt-36 items-center py-5 ${isLogin ? 'h-[70vh] sm:h-[95vh] md:h-[85vh] lg:h-[95vh]' : ''}`}>
       <Helmet><title>SENEX | Account Center</title></Helmet>
       <div className={`h-full flex mx-auto items-center  rounded-3xl ${isLogin ? 'w-[90%] lg:w-[70%] ' : 'w-[90%] xl:w-[80%]'} `}>
         {isLogin ? (

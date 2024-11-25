@@ -67,7 +67,7 @@ const Cart = () => {
     };
 
   return (
-    <div className="w-[95%] mx-auto mt-10 lg:min-h-[600px] xl:min-h-[730px] relative pb-5">
+    <div className="w-[95%] mx-auto  pt-36 lg:min-h-[600px] xl:min-h-[890px] relative pb-5">
       <Helmet><title>SENEX | Cart</title></Helmet>
       <h1 className="text-2xl md:text-3xl font-bold mb-4 text-white text-center font-poppins">Shopping Cart</h1>
       {cartItems.length === 0 ? (

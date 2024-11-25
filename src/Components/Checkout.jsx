@@ -204,7 +204,7 @@ const Checkout = () => {
   
 
   return (
-    <div className='w-full xl:h-[75vh] mx-auto'>
+    <div className='w-full xl:min-h-screen pt-28 mx-auto'>
       <Helmet><title>SENEX | Checkout</title></Helmet>
       <div className='w-full mx-auto relative mb-7 md:mb-20'>
         <h1 className='mt-10 md:mt-20 md:mb-5 text-2xl md:text-4xl text-white font-bold text-center font-poppins'>Place Order</h1>

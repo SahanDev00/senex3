@@ -28,7 +28,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="flex w-full flex-col relative items-center mt-3 h-full">
+    <div className="flex w-full flex-col relative items-center mt-3 h-full pt-28">
       <Helmet><title>SENEX | Contact Us</title></Helmet>
       
       {/* Map */}
@@ -39,7 +39,7 @@ const Contact = () => {
         <p className="text-lg mb-6 font-semibold text-white mt-2 text-center">Find us here:</p>
         <div className='flex justify-center float-up'>
           <iframe title='map'
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15837.232602223477!2d79.890112!3d7.0902333!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2f1ca7b5ee0dd%3A0x4d5d1bdf422f29f8!2sMICROSIS%20COMPUTER!5e0!3m2!1sen!2slk!4v1721362612424!5m2!1sen!2slk" 
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d19652.741520516345!2d79.8913512!3d7.0773171!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2f15fc18fa75b%3A0x23aa32c1a78677d!2sSenex%20Computer%20Solutions%20(Pvt)%20Ltd!5e1!3m2!1sen!2slk!4v1732516211126!5m2!1sen!2slk" 
             width="1850" 
             height="600" 
             style={{ border: 0 }} 

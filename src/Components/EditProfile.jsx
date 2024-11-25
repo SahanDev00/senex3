@@ -177,7 +177,7 @@ const EditProfile = () => {
 
 
   return (
-    <div className='relative xl:h-[720px] container xl:mt-20 mx-auto'>
+    <div className='relative xl:h-[890px] container xl:pt-36 mx-auto'>
       <Helmet><title>SENEX | Edit Profile</title></Helmet>
       <div>
         <h1 className='text-3xl text-white mt-5 font-bold text-center font-poppins'>Edit Your Details</h1>
@@ -294,8 +294,8 @@ const EditProfile = () => {
               />
                {errors.postalCode && <p className='text-red-500 text-xs'>{errors.postalCode}</p>}
             </div>
-            <div className='w-full text-gray-400'>
-              <Countries value={formData.country} />
+            <div className='w-full text-gray-500'>
+              <Countries value={formData.country} onChange={handleChange}  name="country" />
             </div>
           </div>
 

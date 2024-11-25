@@ -32,7 +32,7 @@ function BackgroundImages() {
   return (
     <div className='absolute opacity-25'>
       <img 
-        className={`object-cover ${isActive('/') ||  isActive('/product') ||  isActive('/edit-password') ||  isActive('/edit-profile') || isActive('/order-details') || isActive('/orders') || isActive('/cart') || isActive('/login') || isActive('/checkout') || isActive('/about-us') || isActive('/contact-us') ? 'h-screen w-screen' : 'min-h-[120vh] w-screen'}`} 
+        className={`object-cover ${isActive('/') ||  isActive('/product') ||  isActive('/edit-password') ||  isActive('/edit-profile') || isActive('/order-details') || isActive('/orders') || isActive('/cart') || isActive('/login') || isActive('/checkout') || isActive('/about-us') || isActive('/profile') || isActive('/contact-us') ? 'h-screen w-screen' : 'min-h-[120vh] w-screen'}`} 
         src={bgPic} 
         alt="background" 
       />
