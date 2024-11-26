@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../Components/Sidebar';
 import Searchbar from '../Components/Searchbar';
@@ -7,6 +7,10 @@ import { Helmet } from 'react-helmet';
 
 const Product = () => {
     const { setSearchQuery } = useContext(SearchContext);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
     return (
         <div>

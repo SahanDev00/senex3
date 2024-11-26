@@ -8,7 +8,7 @@ import { SearchProvider } from './SearchContext';
 import SliderComponent from './Components/SliderComponent';
 import Home from './Pages/Home';
 import Product from './Pages/Product';
-import bgPic from "./Assets/Images/BackgroundPic.jpg";
+//import bgPic from "./Assets/Images/BackgroundPic.jpg";
 import Login from './Pages/Login';
 import ProductDescription from './Components/ProductDescription';
 import Cart from './Components/Cart';
@@ -23,6 +23,8 @@ import { PrimeReactProvider } from 'primereact/api';
 import Footer2 from './Components/Footer2';
 import Tabs from './Components/Tabs';
 import OurPolicies from './Pages/OurPolicies';
+import ServiceCenter from './Pages/ServiceCenter';
+import HomeDelivery from './Pages/HomeDelivery';
 
 function BackgroundImages() {
   const location = useLocation();
@@ -33,7 +35,7 @@ function BackgroundImages() {
     <div className='absolute opacity-25'>
       <img 
         className={`object-cover ${isActive('/') ||  isActive('/product') ||  isActive('/edit-password') ||  isActive('/edit-profile') || isActive('/order-details') || isActive('/orders') || isActive('/cart') || isActive('/login') || isActive('/checkout') || isActive('/about-us') || isActive('/profile') || isActive('/contact-us') ? 'h-screen w-screen' : 'min-h-[120vh] w-screen'}`} 
-        src={bgPic} 
+        src='https://w0.peakpx.com/wallpaper/138/244/HD-wallpaper-gray-and-black-laptop-computer-on-surface.jpg'
         alt="background" 
       />
     </div>
@@ -72,6 +74,8 @@ function App() {
                 <Route path="/edit-profile" element={<EditProfile />} />
                 <Route path="/edit-password" element={<EditPassword />} />
                 <Route path="/our-policies" element={<OurPolicies />} />
+                <Route path="/service-center" element={<ServiceCenter />} />
+                <Route path="/home-delivery" element={<HomeDelivery />} />
               </Routes>
               <Footer2 />
             </Router>

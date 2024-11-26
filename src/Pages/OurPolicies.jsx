@@ -9,7 +9,7 @@ const OurPolicies = () => {
       }, []);
 
   return (
-    <div className='w-full min-h-screen relative font-poppins'>
+    <div className='w-full min-h-screen relative pt-28 font-poppins'>
         <div className='w-[80%] mx-auto'>
             <h1 className='mt-5 text-3xl font-poppins font-bold text-white'>Our Policies</h1>
             <hr />

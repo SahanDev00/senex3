@@ -3,11 +3,17 @@ import reviewPic from '../Assets/Images/review.jpg'
 import servicePic from '../Assets/Images/Service.jpg'
 import performancePic from '../Assets/Images/performance.jpg'
 import starsPic from '../Assets/Images/stars.jpg'
+import { Link } from 'react-router-dom'
 
 const Difference = () => {
   return (
     <div className='w-[95%] xl:w-[80%] h-full mx-auto relative mb-10 mt-24'>
-        <h1 className='text-4xl font-poppins font-semibold text-white my-14 text-center'>THE SENEX <span className='text-red-600'>DIFFERENCE</span></h1>
+        <div className='w-full flex justify-center'>
+            <Link to='/product'>
+                <button className='text-white mx-auto border-2 py-2 px-4 rounded-full hover:border-red-500 hover:text-red-500 uppercase font-semibold'>To Our Store</button>
+            </Link>
+        </div>
+        <h1 className='text-4xl font-poppins font-semibold text-white my-10 text-center'>THE SENEX <span className='text-red-600'>DIFFERENCE</span></h1>
         <div className='w-full xl:w-[80%] h-full flex items-center justify-between mx-auto'>
             <div className='w-[80%] h-full flex flex-col items-center justify-center mx-auto'>
                 <img src={reviewPic} alt="" className='mb-3 w-[50px] md:w-[60px] lg:w-[70px] xl:w-[90px]'/>
