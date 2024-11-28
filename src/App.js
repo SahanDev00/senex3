@@ -8,7 +8,7 @@ import { SearchProvider } from './SearchContext';
 import SliderComponent from './Components/SliderComponent';
 import Home from './Pages/Home';
 import Product from './Pages/Product';
-//import bgPic from "./Assets/Images/BackgroundPic.jpg";
+import bgPic from "./Assets/Images/hero.jpg";
 import Login from './Pages/Login';
 import ProductDescription from './Components/ProductDescription';
 import Cart from './Components/Cart';
@@ -35,7 +35,7 @@ function BackgroundImages() {
     <div className='absolute opacity-25'>
       <img 
         className={`object-cover ${isActive('/') ||  isActive('/product') ||  isActive('/edit-password') ||  isActive('/edit-profile') || isActive('/order-details') || isActive('/orders') || isActive('/cart') || isActive('/login') || isActive('/checkout') || isActive('/about-us') || isActive('/profile') || isActive('/contact-us') ? 'h-screen w-screen' : 'min-h-[120vh] w-screen'}`} 
-        src='https://w0.peakpx.com/wallpaper/138/244/HD-wallpaper-gray-and-black-laptop-computer-on-surface.jpg'
+        src={bgPic}
         alt="background" 
       />
     </div>

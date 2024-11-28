@@ -9,10 +9,15 @@ const Difference = () => {
   return (
     <div className='w-[95%] xl:w-[80%] h-full mx-auto relative mb-10 mt-24'>
         <div className='w-full flex justify-center'>
-            <Link to='/product'>
-                <button className='text-white mx-auto border-2 py-2 px-4 rounded-full hover:border-red-500 hover:text-red-500 uppercase font-semibold'>To Our Store</button>
-            </Link>
-        </div>
+    <Link to='/product'>
+        <button className='text-white mx-auto border-2 py-2 px-4 rounded-full uppercase font-semibold 
+        bg-red-500 shadow-[0_0_20px_rgba(255,0,0,0.8)] 
+        animate-pulse2 transition-none'>
+            To Our Store
+        </button>
+    </Link>
+</div>
+
         <h1 className='text-4xl font-poppins font-semibold text-white my-10 text-center'>THE SENEX <span className='text-red-600'>DIFFERENCE</span></h1>
         <div className='w-full xl:w-[80%] h-full flex items-center justify-between mx-auto'>
             <div className='w-[80%] h-full flex flex-col items-center justify-center mx-auto'>
