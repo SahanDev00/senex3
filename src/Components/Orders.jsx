@@ -18,7 +18,7 @@ const Orders = () => {
   useEffect(() => {
     // Fetch order data from API
     const fetchOrders = async () => {
-      const api = 'https://extremeadmin.worldpos.biz/Api/Order?CustomerID=';
+      const api = 'https://senexadmin.worldpos.biz/Api/Order?CustomerID=';
       
       try {
         const apiKey = process.env.REACT_APP_API_KEY;

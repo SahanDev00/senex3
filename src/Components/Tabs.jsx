@@ -14,7 +14,7 @@ const Tabs = () => {
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
     if (activeTab === 'specialOffers') {
-      fetch('https://extremeadmin.worldpos.biz/Api/Item?KeyW=tower&IsSpecial=y',{
+      fetch('https://senexadmin.worldpos.biz/Api/Item?KeyW=tower&IsSpecial=y',{
         method: 'GET',
         headers: {
           'APIKey': apiKey,
@@ -34,7 +34,7 @@ const Tabs = () => {
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
     if (activeTab === 'newArrivals') {
-      fetch('https://extremeadmin.worldpos.biz/Api/Item?KeyW=tower&IsNew=y',{
+      fetch('https://senexadmin.worldpos.biz/Api/Item?KeyW=tower&IsNew=y',{
         method: 'GET',
         headers: {
           'APIKey': apiKey,
@@ -90,7 +90,7 @@ const Tabs = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 font-poppins mt-5">
               {specialOffers.map(product => (
                 <div key={product.itemID} className="product-card p-4 shadow-md border rounded hover:scale-105 duration-300 cursor-pointer" onClick={() => setSelectedProduct(product)}>
-                  <img src={`https://extremeadmin.worldpos.biz/Uploads/${product.cacheID}.jpg` || 'placeholder.jpg'} alt={product.itemName} className='w-full mx-auto' />
+                  <img src={`https://senexadmin.worldpos.biz/Uploads/${product.cacheID}.jpg` || 'placeholder.jpg'} alt={product.itemName} className='w-full mx-auto' />
                   <h2 className="text-xl font-bold text-white text-center mt-1">{product.itemName}</h2>
                   <p className="text-xl text-white text-center">${product.retailPrice}</p>
                   <p className={`text-center ${product.stockAvailableBool ? 'text-green-500' : 'text-red-500'}`}>
@@ -118,7 +118,7 @@ const Tabs = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 font-poppins mt-5">
               {newArrivals.map(product => (
                 <div key={product.itemID} className="product-card p-4 shadow-md border rounded hover:scale-105 duration-300 cursor-pointer" onClick={() => setSelectedProduct(product)}>
-                  <img src={`https://extremeadmin.worldpos.biz/Uploads/${product.cacheID}.jpg` || 'placeholder.jpg'} alt={product.itemName} className='w-full mx-auto' />
+                  <img src={`https://senexadmin.worldpos.biz/Uploads/${product.cacheID}.jpg` || 'placeholder.jpg'} alt={product.itemName} className='w-full mx-auto' />
                   <h2 className="text-xl mt-1 font-bold text-white text-center">{product.itemName}</h2>
                   <p className="text-xl text-white text-center">${product.retailPrice}</p>
                   <p className={`text-center ${product.stockAvailableBool ? 'text-green-500' : 'text-red-500'}`}>

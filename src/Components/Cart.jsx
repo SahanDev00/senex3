@@ -20,7 +20,7 @@ const Cart = () => {
 
   const calculateTotal = () => {
     return cartItems.reduce((total, item) => {
-      const itemPrice = parseFloat(formatPrice(item.retailPrice)) * (item.quantity || 1); 
+      const itemPrice = parseFloat(formatPrice(item.retailPrice)) * (item.quantity); 
       return total + itemPrice;
     }, 0).toFixed(2);
   };
@@ -78,7 +78,7 @@ const Cart = () => {
           {cartItems.map((item) => (
             <li key={item.itemID} className="flex justify-between mb-4 p-4 border-b">
               <div className="flex items-center">
-                <img src={`https://extremeadmin.worldpos.biz/Uploads/${item.cacheID}.jpg`} alt={item.itemName} className="w-16 h-16 object-cover mr-4" />
+                <img src={`https://senexadmin.worldpos.biz/Uploads/${item.cacheID}.jpg`} alt={item.itemName} className="w-16 h-16 object-cover mr-4" />
                 <div>
                   <h2 className="sm:text-xl text-white font-semibold">{item.itemName}</h2>
                   <p className="text-white">Quantity: {isNaN(item.quantity) ? '0' : item.quantity}</p> {/* Safe handling for NaN */}

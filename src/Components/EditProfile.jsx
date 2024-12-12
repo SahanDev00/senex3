@@ -44,7 +44,7 @@ const EditProfile = () => {
     if (customerId) {
       const fetchCustomerData = async () => {
         try {
-          const response = await fetch(`https://extremeadmin.worldpos.biz/api/Customer/${customerId}`, {
+          const response = await fetch(`https://senexadmin.worldpos.biz/api/Customer/${customerId}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ const EditProfile = () => {
     };
 
     try {
-      const response = await fetch('https://extremeadmin.worldpos.biz/api/Customer', {
+      const response = await fetch('https://senexadmin.worldpos.biz/api/Customer', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

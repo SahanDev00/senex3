@@ -21,6 +21,7 @@ const Brands = () => {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 2000,
+    pauseOnHover: false,
     appendDots: dots => (
       <div>
         <ul style={{ margin: "0px" }}> {dots} </ul>

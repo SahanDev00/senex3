@@ -40,7 +40,7 @@ const Sidebar = () => {
   
     // Define the API key and URL
     const apiKey = process.env.REACT_APP_API_KEY;
-    const url = `https://extremeadmin.worldpos.biz/API/CategorySub?CategoryMainID=${categoryMainID}`;
+    const url = `https://senexadmin.worldpos.biz/API/CategorySub?CategoryMainID=${categoryMainID}`;
   
     // Fetch subcategories from the API
     fetch(url, {
@@ -89,7 +89,7 @@ const Sidebar = () => {
   }, [location.pathname]);
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
-    fetch('https://extremeadmin.worldpos.biz/Api/CategoryMain', {
+    fetch('https://senexadmin.worldpos.biz/Api/CategoryMain', {
       method: 'GET',
       headers: {
         'APIKey': apiKey,
@@ -123,7 +123,7 @@ const Sidebar = () => {
 
   return (
     <div className="md:flex font-poppins hidden">
-      <div className='lg:w-[200px] xl:w-[200px] mxl:h-[570px] 2xl:w-[300px] mt-4 h-[780px] lg:h-[600px] xl:h-[550px] 2xl:h-[780px]'>
+      <div className='md:w-[165px] lg:w-[200px] xl:w-[200px] mxl:h-[570px] 2xl:w-[300px] mt-4 h-[780px] lg:h-[600px] xl:h-[550px] 2xl:h-[780px]'>
         <ul>
           {data.map((item, index) => (
             <li 

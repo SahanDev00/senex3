@@ -60,7 +60,7 @@ const Checkout = () => {
   const sendConfirmationEmail = async (orderID) => {
     const templateParams = {
       to_name: billingDetails.firstName + ' ' + billingDetails.lastName,
-      from_name: 'Extreme Computers',
+      from_name: 'senex Computers',
       order_id: orderID
     };
 
@@ -108,7 +108,7 @@ const Checkout = () => {
       const apiKey = process.env.REACT_APP_API_KEY;
       
       // First, place the order
-      const orderResponse = await fetch('https://extremeadmin.worldpos.biz/Api/Order', {
+      const orderResponse = await fetch('https://senexadmin.worldpos.biz/Api/Order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ const Checkout = () => {
           };
   
           // Send each item to the OrderItem API
-          const orderItemResponse = await fetch('https://extremeadmin.worldpos.biz/Api/OrderItem', {
+          const orderItemResponse = await fetch('https://senexadmin.worldpos.biz/Api/OrderItem', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -174,7 +174,7 @@ const Checkout = () => {
         };
   
         // Post to the OrderAction API
-        const orderActionResponse = await fetch('https://extremeadmin.worldpos.biz/Api/OrderAction', {
+        const orderActionResponse = await fetch('https://senexadmin.worldpos.biz/Api/OrderAction', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -200,6 +200,48 @@ const Checkout = () => {
       alert("Failed to place order.");
     }
   };
+
+  useEffect(() => {
+    const fetchCustomerDetails = async () => {
+      // Retrieve customer ID from cookies or session storage
+      const customerDetails = Cookies.get('customerDetails') || sessionStorage.getItem('customerDetails');
+      if (customerDetails) {
+        const parsedDetails = JSON.parse(customerDetails);
+        setCustomerId(parsedDetails.customerID);
+
+        // Fetch customer billing details from the API
+        try {
+          const apiKey = process.env.REACT_APP_API_KEY;
+          const response = await fetch(
+            `https://senexadmin.worldpos.biz/Api/Customer/${parsedDetails.customerID}`,
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                'APIKey': apiKey
+              }
+            }
+          );
+         
+            const data = await response.json();
+              setBillingDetails({
+                firstName: data.data.firstName || 'ss',
+                lastName: data.billingDetails.lastName || '',
+                streetAddress: data.billingDetails.streetAddress || '',
+                city: data.billingDetails.city || '',
+                state: data.billingDetails.state || '',
+                postalCode: data.billingDetails.postalCode || '',
+                country: data.billingDetails.country || ''
+              });
+            
+          
+        } catch (error) {
+          console.error('Error fetching customer details:', error);
+        }
+      }
+    };
+
+    fetchCustomerDetails();
+  }, []);
   
   
 

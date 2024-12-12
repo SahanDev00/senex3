@@ -28,7 +28,7 @@ const SearchResults = () => {
         setError('');
         
         const apiKey = process.env.REACT_APP_API_KEY;
-        const response = await fetch(`https://extremeadmin.worldpos.biz/Api/Item?KeyW=${query}`, {
+        const response = await fetch(`https://senexadmin.worldpos.biz/Api/Item?KeyW=${query}`, {
           method: 'GET',
           headers: {
             'APIKey': apiKey,
@@ -113,7 +113,7 @@ const SearchResults = () => {
                     className="border bg-black/40 hover:scale-105 duration-300 m-1 p-5 rounded hover:shadow-lg shadow cursor-pointer"
                     onClick={() => setSelectedProduct(product)}
                   >
-                    <img src={`https://extremeadmin.worldpos.biz/Uploads/${product.cacheID}.jpg`} alt={product.itemName} className="w-full mb-4" />
+                    <img src={`https://senexadmin.worldpos.biz/Uploads/${product.cacheID}.jpg`} alt={product.itemName} className="w-full mb-4" />
                     <h2 className="text-xl text-white text-center font-semibold">{product.itemName}</h2>
                     <p className="text-center text-white">${Number(product.retailPrice).toFixed(2)}</p>
                     <p className={`text-center ${product.stockAvailable === 'A' ? 'text-green-500' : 'text-red-500'}`}>

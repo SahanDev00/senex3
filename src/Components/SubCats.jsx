@@ -7,7 +7,7 @@ const SubCats = ({ subCategories = [], onClose, onSelectSubCategory, categoryID,
   }
 
   return (
-    <div className="lg:w-[170px] relative z-10 mt-5 xl:w-[180px] mxl:w-[224px] border-r bg-black/30 border-red-600 py-5 text-white pl-3">
+    <div className="lg:w-[170px]  mt-5 xl:w-[180px] mxl:w-[224px] border-r bg-black/30 border-red-600 py-5 text-white pl-3">
       <h2 className='text-lg mt-3 font-bold uppercase'>Subcategories</h2>
       <ul>
         {subCategories.map((subCat, index) => (

@@ -26,7 +26,7 @@ const Trusted = () => {
   };
 
   return (
-    <div className='w-[80%] h-full mx-auto mt-24 mb-20'>
+    <div className='w-[80%] h-full mx-auto mt-24 mb-20 relative'>
       <h1 className='text-white text-2xl text-center font-poppins font-semibold mb-2'>TRUSTED BY</h1>
       <div className='w-full bg-red-600 rounded h-[10px]'>
         <div 

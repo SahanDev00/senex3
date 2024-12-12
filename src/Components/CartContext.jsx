@@ -15,14 +15,14 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const addToCart = (product) => {
+  const addToCart = (product, quantity = 1) => {
     setCartItems((prevItems) => {
       const existingProductIndex = prevItems.findIndex(item => item.itemID === product.itemID);
   
       if (existingProductIndex !== -1) {
         // If the product is already in the cart, increase the quantity
         const updatedCartItems = [...prevItems];
-        updatedCartItems[existingProductIndex].quantity = (updatedCartItems[existingProductIndex].quantity || 1) + 1;
+        updatedCartItems[existingProductIndex].quantity = (updatedCartItems[existingProductIndex].quantity || 0) + quantity;
         return updatedCartItems;
       } else {
         // Add new product to the cart with default quantity of 1

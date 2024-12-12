@@ -2,7 +2,7 @@ import React from 'react'
 
 const NewsPaper = () => {
   return (
-    <div className='w-full h-[100px] mt-10 mb-10'>
+    <div className='w-full h-[100px] mt-10 mb-10 relative'>
         <div className='w-[80%] h-full mx-auto'>
             <h1 className='text-xl text-white font-mono text-center'>REGISTER YOUR EMAIL FOR EXCLUSIVE NEW, OFFERS AND GIVEAWAYS!</h1>
             <form className='mt-5 flex items-center justify-center'>

@@ -219,7 +219,7 @@ export const Categories = [
             name: 'Tuf Monitor 1', 
             price: '950', 
             image: monitor,
-            description: "Rugged monitor built for long-lasting performance in extreme conditions.",
+            description: "Rugged monitor built for long-lasting performance in senex conditions.",
             specs: "28-inch, 4K UHD, 120Hz, TN panel",
             stock: '1',
             SubImage: [

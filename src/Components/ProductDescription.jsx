@@ -5,7 +5,7 @@ const ProductDescription = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const [showMessage, setShowMessage] = useState(false); // State for showing the message
   const [view, setView] = useState('description'); // State for toggling between description and specifications
-  const [selectedImage, setSelectedImage] = useState(`https://extremeadmin.worldpos.biz/Uploads/${product.cacheID}.jpg`); // State for selected image
+  const [selectedImage, setSelectedImage] = useState(`https://senexadmin.worldpos.biz/Uploads/${product.cacheID}.jpg`); // State for selected image
   const [specifications, setSpecifications] = useState([]); // State for specifications
   const { addToCart } = useContext(CartContext); // Use CartContext
   const [thumbnails, setThumbnails] = useState([]); // State for thumbnails
@@ -15,14 +15,14 @@ const ProductDescription = ({ product }) => {
     const apiKey = process.env.REACT_APP_API_KEY;
     const fetchImages = async () => {
       try {
-        const response = await fetch(`https://extremeadmin.worldpos.biz/Api/ImageData/${product.itemID}`,{
+        const response = await fetch(`https://senexadmin.worldpos.biz/Api/ImageData/${product.itemID}`,{
           headers: {
             'APIKey': apiKey,
           },
         });
         const data = await response.json();
         if (data.success) {
-          const imageUrls = data.data.map(image => `https://extremeadmin.worldpos.biz/Uploads/${image.imageID}.jpg`,{
+          const imageUrls = data.data.map(image => `https://senexadmin.worldpos.biz/Uploads/${image.imageID}.jpg`,{
             headers: {
               'APIKey': apiKey,
             },
@@ -43,7 +43,7 @@ const ProductDescription = ({ product }) => {
     const fetchSpecifications = async () => {
       const apiKey = process.env.REACT_APP_API_KEY;
       try {
-        const response = await fetch('https://extremeadmin.worldpos.biz/Api/Specification',{
+        const response = await fetch('https://senexadmin.worldpos.biz/Api/Specification',{
           headers: {
             'APIKey': apiKey,
           },
@@ -77,6 +77,7 @@ const ProductDescription = ({ product }) => {
     setShowMessage(true); // Show success message
     setTimeout(() => setShowMessage(false), 2000); // Hide message after 2 seconds
   };
+
   
 
   // Ensure product.price is a number
@@ -157,7 +158,7 @@ const ProductDescription = ({ product }) => {
             <button
               onClick={handleDecrease}
               className="bg-gray-200 text-gray-700 px-3 py-1 rounded-l focus:outline-none"
-              disabled={product.stock <= 0} // Disable if out of stock
+              disabled={product.stockAvailable !== 'A'} // Disable if out of stock
             >
               -
             </button>
@@ -170,7 +171,7 @@ const ProductDescription = ({ product }) => {
             <button
               onClick={handleIncrease}
               className="bg-gray-200 text-gray-700 px-3 py-1 rounded-r focus:outline-none"
-              disabled={product.stock <= 0} // Disable if out of stock
+              disabled={product.stockAvailable !== 'A'} // Disable if out of stock
             >
               +
             </button>
@@ -178,8 +179,8 @@ const ProductDescription = ({ product }) => {
 
           <button
             onClick={handleAddToCart}
-            className={`bg-blue-500 font-poppins text-white py-2 px-4 rounded ${product.stock <= 0 ? 'cursor-not-allowed opacity-50' : ''}`}
-            disabled={product.stock <= 0} // Disable if out of stock
+            className={`bg-blue-500 font-poppins text-white py-2 px-4 rounded ${product.stockAvailable !== 'A' ? 'cursor-not-allowed opacity-50' : ''}`}
+            disabled={product.stockAvailable !== 'A'} // Disable if out of stock
           >
             Add to Cart
           </button>

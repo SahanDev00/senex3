@@ -25,7 +25,7 @@ const Searchbar = () => {
     // Make API call to search the product
     try {
       const apiKey = process.env.REACT_APP_API_KEY;
-      const response = await fetch(`https://extremeadmin.worldpos.biz/Api/Item?KeyW=${searchQuery}`, {
+      const response = await fetch(`https://senexadmin.worldpos.biz/Api/Item?KeyW=${searchQuery}`, {
         method: 'GET',
         headers: {
           'APIKey': apiKey,

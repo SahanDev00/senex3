@@ -22,7 +22,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
-    const url = `https://extremeadmin.worldpos.biz/API/Item?CategoryMainID=${categoryName}&CategorySubID=${subCategoryID || ''}&BrandID=`;
+    const url = `https://senexadmin.worldpos.biz/API/Item?CategoryMainID=${categoryName}&CategorySubID=${subCategoryID || ''}&BrandID=`;
 
     fetch(url,{
       method: 'GET',
@@ -103,7 +103,7 @@ const ProductsPage = () => {
             {currentProducts.map((product) => (
               <div key={product.itemID} className="border bg-black/40 hover:scale-105 duration-300 m-1 p-5 rounded hover:shadow-lg shadow cursor-pointer" onClick={() => setSelectedProduct(product)}>
                 <Helmet><title>SENEX | {categoryMainName}</title></Helmet>
-                <img src={`https://extremeadmin.worldpos.biz/Uploads/${product.cacheID}.jpg`} alt={product.name} className="w-full mb-4" />
+                <img src={`https://senexadmin.worldpos.biz/Uploads/${product.cacheID}.jpg`} alt={product.name} className="w-full mb-4" />
                 <h2 className="text-xl text-white text-center font-semibold">{product.itemName}</h2>
                 <p className="text-center text-white">${Number(product.retailPrice).toFixed(2)}</p>
                 <p className={`text-center ${product.stockAvailable === "A" ? 'text-green-500' : 'text-red-500'}`}>

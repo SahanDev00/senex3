@@ -27,7 +27,7 @@ const EditPassword = () => {
   useEffect(() => {
     if (customerId) {
       const apiKey = process.env.REACT_APP_API_KEY;
-      fetch(`https://extremeadmin.worldpos.biz/api/Customer/${customerId}`, {
+      fetch(`https://senexadmin.worldpos.biz/api/Customer/${customerId}`, {
         headers: {
           'APIKey': apiKey,
         },
@@ -78,7 +78,7 @@ const EditPassword = () => {
     if (hasError) return; // Stop form submission if there are validation errors
 
     // Call API to change the password with PUT method and query parameters
-    fetch(`https://extremeadmin.worldpos.biz/api/Customer/EditPassword?CustomerID=${customerId}&LoginPassword=${encodeURIComponent(newPassword)}`, {
+    fetch(`https://senexadmin.worldpos.biz/api/Customer/EditPassword?CustomerID=${customerId}&LoginPassword=${encodeURIComponent(newPassword)}`, {
       method: 'PUT',
       headers: {
         'APIKey': apiKey,

@@ -24,8 +24,8 @@ export default function BasicDemo({ product }) {
         if (product) {
             setImages(product.map((subImage, index) => ({
                 itemID: index, // Using index as a unique identifier
-                itemImageSrc: 'http://extreme.exesmart.com/Uploads/ITM_00021.jpg', // Static image URL
-                thumbnailImageSrc: 'http://extreme.exesmart.com/Uploads/ITM_00021.jpg', // Static image URL
+                itemImageSrc: 'http://senex.exesmart.com/Uploads/ITM_00021.jpg', // Static image URL
+                thumbnailImageSrc: 'http://senex.exesmart.com/Uploads/ITM_00021.jpg', // Static image URL
                 alt: subImage.alt || 'Image' // Default alt text if none provided
             })));
         }

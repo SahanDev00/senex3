@@ -14,7 +14,7 @@ const Sidebar2 = () => {
   // Fetch categories from API
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
-    fetch('https://extremeadmin.worldpos.biz/API/CategoryMain', {
+    fetch('https://senexadmin.worldpos.biz/API/CategoryMain', {
       method: 'GET',
       headers: {
         'APIKey': apiKey,
@@ -48,7 +48,7 @@ const Sidebar2 = () => {
     if (!subCategories[category]) {
       // Fetch subcategories only if they are not already loaded
       const apiKey = process.env.REACT_APP_API_KEY;
-      const url = `https://extremeadmin.worldpos.biz/API/CategorySub?CategoryMainID=${categories.find(cat => cat.categoryMainName === category)?.categoryMainID}`;
+      const url = `https://senexadmin.worldpos.biz/API/CategorySub?CategoryMainID=${categories.find(cat => cat.categoryMainName === category)?.categoryMainID}`;
   
       fetch(url, {
         method: 'GET',
@@ -78,7 +78,7 @@ const Sidebar2 = () => {
     // Fetch items for the selected subcategory
     setLoading(true);
     const apiKey = process.env.REACT_APP_API_KEY;
-    const url = `https://extremeadmin.worldpos.biz/Api/Item?CategorySubID=${subCategory.categorySubID}`;
+    const url = `https://senexadmin.worldpos.biz/Api/Item?CategorySubID=${subCategory.categorySubID}`;
   
     fetch(url, {
       method: 'GET',
@@ -125,7 +125,7 @@ const Sidebar2 = () => {
                   </h3>
                 </Link>
                 {collapsedSections[category.categoryMainName] && (
-                  <ul>
+                  <ul className=''>
                     {subCategories[category.categoryMainName]?.map((subCategory, subIndex) => (
                         <Link 
                         to={`/product/products/${category.categoryMainID}/${subCategory.categorySubID}`}
