@@ -81,13 +81,12 @@ const Contact = () => {
             <div className='w-full'>
               <div>
                 <h1 className='text-white text-xl font-semibold'>Address</h1>
-                <p className='text-white mt-2'>No 29 UC Shipping Complex<br/>Ja-Ela 11350<br/>Sri Lanka</p>
+                <p className='text-white mt-2'>129/A New Colombo Road,<br/>Ja-Ela 11350<br/>Sri Lanka</p>
               </div>
               <div className='text-white mt-8 md:mt-4'>
                 <h1 className='text-white text-xl font-semibold mb-2'>Customer Support</h1>
-                <p>HotLine: 0777-300-288</p>
-                <p>Showroom: 011-446-8500</p> 
-                <p>Workshop: 011-467-3950 / 011-419-9941</p>
+                <p>HotLine: 077 795 9706</p>
+                <p>Phone: 0112 997 878</p> 
                 <p>Email: msds.net@live.com</p>
               </div>
               <div className='text-white md:w-[50%] mt-8 md:mt-4'>
