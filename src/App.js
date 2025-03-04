@@ -32,9 +32,9 @@ function BackgroundImages() {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <div className='absolute opacity-25'>
+    <div className='absolute opacity-80'>
       <img 
-        className={`object-cover ${isActive('/') ? 'md:h-[2200px] lg:h-[2500px]' : ''} ${isActive('/product') ||  isActive('/edit-password') ||  isActive('/edit-profile') || isActive('/order-details') || isActive('/orders') || isActive('/cart') || isActive('/login') || isActive('/checkout') || isActive('/about-us') || isActive('/profile') || isActive('/contact-us') ? 'h-screen w-screen' : 'min-h-[120vh] w-screen'}`} 
+        className={`object-cover ${isActive('/') ? 'md:h-[2200px] lg:h-[2500px]' : ''} ${isActive('/product') ||  isActive('/edit-password') ||  isActive('/edit-profile') ||     isActive('/order-details') || isActive('/orders') || isActive('/cart') || isActive('/login') || isActive('/checkout') || isActive('/about-us') || isActive('/profile') || isActive('/contact-us') ? 'h-screen w-screen' : 'max-h-[120vh] w-screen'}`} 
         src={bgPic}
         alt="background" 
       />

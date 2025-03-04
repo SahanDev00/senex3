@@ -91,7 +91,7 @@ const Navbar = () => {
 
     return (
         <div className='w-full mx-auto left-0 right-0 z-50 fixed backdrop-blur-sm'>
-            <p className='text-white absolute right-2 top-2 text-[16px] flex items-center gap-1'><IoIosPhonePortrait className='size-7 text-white'/> 0777777777</p>
+            <p className='text-white absolute right-5 top-2 text-sm flex items-center gap-1 font-poppins'><IoIosPhonePortrait className='size-5 text-white'/> 0777777777</p>
             <div className='flex justify-between items-center w-[90%] md:w-[95%] lg:w-[85%] h-[100px] mx-auto md:h-[120px]'>
                 <div>
                     <Link to='/' className='text-3xl md:text-4xl lg:text-6xl font-bold text-red-600 cursor-pointer mr-2 md:mr-0 flex justify-center items-center'>

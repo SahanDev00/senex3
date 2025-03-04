@@ -123,7 +123,7 @@ const Sidebar = () => {
 
   return (
     <div className="md:flex font-poppins hidden">
-      <div className='md:w-[165px] lg:w-[200px] xl:w-[200px] mxl:h-[570px] 2xl:w-[300px] mt-4 h-[780px] lg:h-[600px] xl:h-[550px] 2xl:h-[780px]'>
+      <div className='md:w-[165px] lg:w-[200px] xl:w-[200px] mxl:h-[570px] 2xl:w-[300px] mt-4 h-[780px] lg:h-[600px] xl:h-[550px] 2xl:h-[780px] overflow-y-auto overflow-x-hidden scrollbar-none hover:scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-zinc-300/0'>
         <ul>
           {data.map((item, index) => (
             <li 
