@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./Components/Navbar";
 import About from './Pages/About';
 import Contact from './Pages/Contact';
@@ -8,7 +8,7 @@ import { SearchProvider } from './SearchContext';
 import SliderComponent from './Components/SliderComponent';
 import Home from './Pages/Home';
 import Product from './Pages/Product';
-import bgPic from "./Assets/Images/hero.png";
+//import bgPic from "./Assets/Images/hero.png";
 import Login from './Pages/Login';
 import ProductDescription from './Components/ProductDescription';
 import Cart from './Components/Cart';
@@ -26,7 +26,7 @@ import OurPolicies from './Pages/OurPolicies';
 import ServiceCenter from './Pages/ServiceCenter';
 import HomeDelivery from './Pages/HomeDelivery';
 
-function BackgroundImages() {
+/*function BackgroundImages() {
   const location = useLocation();
 
   const isActive = (path) => location.pathname === path;
@@ -40,7 +40,7 @@ function BackgroundImages() {
       />
     </div>
   );
-}
+}*/
 
 function App() {
   return (
@@ -49,7 +49,6 @@ function App() {
         <CartProvider>
           <div className="App bg-black">
             <Router>
-              <BackgroundImages />
               <Navbar />
               <Routes>
                 <Route index path="/" element={<Home />} />

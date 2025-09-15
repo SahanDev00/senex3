@@ -132,7 +132,7 @@ const RecentlyViewed = () => {
                 >
                   <img className='w-full h-40 object-cover mb-4 rounded-xl border-white' src={product.image} alt={product.name} />
                   <h1 className='text-xl text-center mt-2 font-poppins font-semibold text-white'>{product.name}</h1>
-                  <p className='text-white text-center font-poppins'>${product.price}</p>
+                  <p className='text-white text-center font-poppins'>Rs.{product.price}</p>
                   <p className={`text-center font-poppins mb-2 ${product.stock > 0 ? 'text-green-500' : 'text-red-500'}`}>
                     {product.stock > 0 ? 'In Stock' : 'Out of Stock'}
                   </p>

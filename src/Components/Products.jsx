@@ -24,7 +24,7 @@ const Products = () => {
                     <div key={product.id} className="product-card p-4 bg-white shadow-md">
                         <h2 className="text-lg font-bold">{product.name}</h2>
                         <p>{product.description}</p>
-                        <p className="text-xl font-bold">${product.price}</p>
+                        <p className="text-xl font-bold">Rs.{product.price}</p>
                     </div>
                 ))}
             </div>

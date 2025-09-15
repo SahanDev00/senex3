@@ -7,7 +7,6 @@ import { IoClose, IoMenu } from 'react-icons/io5';
 import Sidebar2 from './Sidebar2';
 import logo from "../Assets/Images/logo.png"
 import Cookies from 'js-cookie'; 
-import { IoIosPhonePortrait } from "react-icons/io";
 
 const Navbar = () => {
     const location = useLocation();
@@ -91,7 +90,6 @@ const Navbar = () => {
 
     return (
         <div className='w-full mx-auto left-0 right-0 z-50 fixed backdrop-blur-sm'>
-            <p className='text-white absolute right-5 top-2 text-sm flex items-center gap-1 font-poppins'><IoIosPhonePortrait className='size-5 text-white'/> 0777777777</p>
             <div className='flex justify-between items-center w-[90%] md:w-[95%] lg:w-[85%] h-[100px] mx-auto md:h-[120px]'>
                 <div>
                     <Link to='/' className='text-3xl md:text-4xl lg:text-6xl font-bold text-red-600 cursor-pointer mr-2 md:mr-0 flex justify-center items-center'>

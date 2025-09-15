@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { SearchContext } from '../SearchContext';
-import { CartContext } from '../Components/CartContext';
-import ProductDescription from './ProductDescription';
-import FilterSection2 from './FilterSection2';
-import { Helmet } from 'react-helmet';
+import React, { useContext, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { SearchContext } from "../SearchContext";
+import { CartContext } from "../Components/CartContext";
+import ProductDescription from "./ProductDescription";
+import FilterSection2 from "./FilterSection2";
+import { Helmet } from "react-helmet";
 
 const SearchResults = () => {
   const location = useLocation();
@@ -12,31 +12,34 @@ const SearchResults = () => {
   const { addToCart } = useContext(CartContext);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [notification, setNotification] = useState('');
+  const [notification, setNotification] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
   const searchParams = new URLSearchParams(location.search);
-  const query = searchParams.get('q') || searchQuery;
+  const query = searchParams.get("q") || searchQuery;
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        setError('');
-        
+        setError("");
+
         const apiKey = process.env.REACT_APP_API_KEY;
-        const response = await fetch(`https://senexadmin.worldpos.biz/Api/Item?KeyW=${query}`, {
-          method: 'GET',
-          headers: {
-            'APIKey': apiKey,
-          },
-        });
+        const response = await fetch(
+          `https://admin.senex.lk/Api/Item?KeyW=${query}`,
+          {
+            method: "GET",
+            headers: {
+              APIKey: apiKey,
+            },
+          }
+        );
 
         if (!response.ok) {
-          throw new Error('Failed to fetch products');
+          throw new Error("Failed to fetch products");
         }
 
         const data = await response.json();
@@ -44,11 +47,11 @@ const SearchResults = () => {
         if (data.success && data.data.length > 0) {
           setProducts(data.data);
         } else {
-          setError('No products found.');
+          setError("No products found.");
           setProducts([]);
         }
       } catch (err) {
-        setError('Error fetching products. Please try again later.');
+        setError("Error fetching products. Please try again later.");
         setProducts([]);
       } finally {
         setLoading(false);
@@ -61,26 +64,29 @@ const SearchResults = () => {
   const productsPerPage = 16;
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
   const totalPages = Math.ceil(products.length / productsPerPage);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleAddToCart = (product, e) => {
     e.stopPropagation();
-    if (product.stockAvailable === 'A') {
+    if (product.stockAvailable === "A") {
       addToCart(product);
       setNotification(`${product.itemName} has been added to the cart.`);
       setTimeout(() => {
-        setNotification('');
+        setNotification("");
       }, 3000);
     } else {
       setNotification(`${product.itemName} is out of stock.`);
       setTimeout(() => {
-        setNotification('');
+        setNotification("");
       }, 3000);
     }
   };
@@ -91,8 +97,12 @@ const SearchResults = () => {
 
   return (
     <div className="sm:w-[97%] xl:w-[91%] p-4 relative font-poppins ml-3">
-      <Helmet><title>SENEX | {query}</title></Helmet>
-      <h1 className="text-2xl text-white font-bold mb-3">Search Results for: {query}</h1>
+      <Helmet>
+        <title>SENEX | {query}</title>
+      </Helmet>
+      <h1 className="text-2xl text-white font-bold mb-3">
+        Search Results for: {query}
+      </h1>
 
       {loading ? (
         <p className="text-white">Loading...</p>
@@ -102,9 +112,16 @@ const SearchResults = () => {
         <>
           {products.length > 0 ? (
             <div>
-              <p className="text-white md:mb-2">{products.length} products found</p>
-              <div className='w-[200px] mb-2 h-[50px] flex md:hidden items-center'>
-                <button className='px-4 py-1 text-white border' onClick={toggleSidebar}>Filters</button>
+              <p className="text-white md:mb-2">
+                {products.length} products found
+              </p>
+              <div className="w-[200px] mb-2 h-[50px] flex md:hidden items-center">
+                <button
+                  className="px-4 py-1 text-white border"
+                  onClick={toggleSidebar}
+                >
+                  Filters
+                </button>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
                 {currentProducts.map((product) => (
@@ -113,16 +130,36 @@ const SearchResults = () => {
                     className="border bg-black/40 hover:scale-105 duration-300 m-1 p-5 rounded hover:shadow-lg shadow cursor-pointer"
                     onClick={() => setSelectedProduct(product)}
                   >
-                    <img src={`https://senexadmin.worldpos.biz/Uploads/${product.cacheID}.jpg`} alt={product.itemName} className="w-full mb-4" />
-                    <h2 className="text-xl text-white text-center font-semibold">{product.itemName}</h2>
-                    <p className="text-center text-white">${Number(product.retailPrice).toFixed(2)}</p>
-                    <p className={`text-center ${product.stockAvailable === 'A' ? 'text-green-500' : 'text-red-500'}`}>
-                      {product.stockAvailable === 'A' ? 'In Stock' : 'Out of Stock'}
+                    <img
+                      src={`https://admin.senex.lk/Uploads/${product.cacheID}.jpeg`}
+                      alt={product.itemName}
+                      className="w-full mb-4"
+                    />
+                    <h2 className="text-xl text-white text-center font-semibold">
+                      {product.itemName}
+                    </h2>
+                    <p className="text-center text-white">
+                      Rs.{Number(product.retailPrice).toFixed(2)}
+                    </p>
+                    <p
+                      className={`text-center ${
+                        product.stockAvailable === "A"
+                          ? "text-green-500"
+                          : "text-red-500"
+                      }`}
+                    >
+                      {product.stockAvailable === "A"
+                        ? "In Stock"
+                        : "Out of Stock"}
                     </p>
                     <button
-                      className={`mt-2 text-xs md:text-sm flex mx-auto ${product.stockAvailable === 'A' ? 'bg-red-500' : 'bg-gray-500'} text-white py-2 px-4 rounded`}
+                      className={`mt-2 text-xs md:text-sm flex mx-auto ${
+                        product.stockAvailable === "A"
+                          ? "bg-red-500"
+                          : "bg-gray-500"
+                      } text-white py-2 px-4 rounded`}
                       onClick={(e) => handleAddToCart(product, e)}
-                      disabled={product.stockAvailable !== 'A'} // Disable button if out of stock
+                      disabled={product.stockAvailable !== "A"} // Disable button if out of stock
                     >
                       Add to Cart
                     </button>
@@ -134,7 +171,11 @@ const SearchResults = () => {
                   <button
                     key={i}
                     onClick={() => paginate(i + 1)}
-                    className={`px-4 py-2 mx-1 border rounded ${currentPage === i + 1 ? 'bg-blue-500 text-white' : 'bg-white text-blue-500'}`}
+                    className={`px-4 py-2 mx-1 border rounded ${
+                      currentPage === i + 1
+                        ? "bg-blue-500 text-white"
+                        : "bg-white text-blue-500"
+                    }`}
                   >
                     {i + 1}
                   </button>
@@ -142,7 +183,9 @@ const SearchResults = () => {
               </div>
             </div>
           ) : (
-            <h1 className="text-lg text-white mb-3">Sorry, the item "{query}" is not available !!!</h1>
+            <h1 className="text-lg text-white mb-3">
+              Sorry, the item "{query}" is not available !!!
+            </h1>
           )}
         </>
       )}

@@ -40,8 +40,8 @@ const FilterPrice = ({ minPrice = 1500, maxPrice = 3000, onPriceChange }) => {
         />
       </div>
       <div className="flex justify-between mt-2 text-sm text-white w-[90%]">
-        <span>${minValue}</span>
-        <span>${maxValue}</span>
+        <span>Rs.{minValue}</span>
+        <span>Rs.{maxValue}</span>
       </div>
     </div>
   );

@@ -1,52 +1,54 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { CartContext } from '../Components/CartContext';
-import ProductDescription from './ProductDescription';
+import React, { useState, useEffect, useContext } from "react";
+import { CartContext } from "../Components/CartContext";
+import ProductDescription from "./ProductDescription";
 
 const Tabs = () => {
-  const [activeTab, setActiveTab] = useState('specialOffers');
+  const [activeTab, setActiveTab] = useState("specialOffers");
   const [specialOffers, setSpecialOffers] = useState([]);
   const [newArrivals, setNewArrivals] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const { addToCart } = useContext(CartContext);
-  const [notification, setNotification] = useState('');
+  const [notification, setNotification] = useState("");
 
   // Fetch special offers
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
-    if (activeTab === 'specialOffers') {
-      fetch('https://senexadmin.worldpos.biz/Api/Item?KeyW=tower&IsSpecial=y',{
-        method: 'GET',
+    if (activeTab === "specialOffers") {
+      fetch("https://admin.senex.lk/Api/Item?KeyW=tower&IsSpecial=y", {
+        method: "GET",
         headers: {
-          'APIKey': apiKey,
+          APIKey: apiKey,
         },
       })
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           if (data.success) {
             setSpecialOffers(data.data);
           }
         })
-        .catch(error => console.error('Error fetching special offers:', error));
+        .catch((error) =>
+          console.error("Error fetching special offers:", error)
+        );
     }
   }, [activeTab]);
 
   // Fetch new arrivals
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
-    if (activeTab === 'newArrivals') {
-      fetch('https://senexadmin.worldpos.biz/Api/Item?KeyW=tower&IsNew=y',{
-        method: 'GET',
+    if (activeTab === "newArrivals") {
+      fetch("https://admin.senex.lk/Api/Item?KeyW=tower&IsNew=y", {
+        method: "GET",
         headers: {
-          'APIKey': apiKey,
+          APIKey: apiKey,
         },
       })
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           if (data.success) {
             setNewArrivals(data.data);
           }
         })
-        .catch(error => console.error('Error fetching new arrivals:', error));
+        .catch((error) => console.error("Error fetching new arrivals:", error));
     }
   }, [activeTab]);
 
@@ -55,49 +57,81 @@ const Tabs = () => {
       addToCart(product);
       setNotification(`${product.itemName} has been added to the cart.`);
       setTimeout(() => {
-        setNotification('');
+        setNotification("");
       }, 3000);
     } else {
       setNotification(`${product.itemName} is out of stock.`);
       setTimeout(() => {
-        setNotification('');
+        setNotification("");
       }, 3000);
     }
   };
 
-
   return (
-    <div className='font-poppins mt-20 mx-auto w-[90%]'>
-      <div className='flex border-b border-white/20 mb-4'>
+    <div className="font-poppins mt-20 mx-auto w-[90%]">
+      <div className="flex border-b border-white/20 mb-4">
         <button
-          className={`py-2 px-4 text-xl font-semibold ${activeTab === 'specialOffers' ? 'border-b-2 border-red-500 text-red-500' : 'text-gray-500'}`}
-          onClick={() => setActiveTab('specialOffers')}
+          className={`py-2 px-4 text-xl font-semibold ${
+            activeTab === "specialOffers"
+              ? "border-b-2 border-red-500 text-red-500"
+              : "text-gray-500"
+          }`}
+          onClick={() => setActiveTab("specialOffers")}
         >
           Special Offers
         </button>
         <button
-          className={`py-2 px-4 text-xl font-semibold ${activeTab === 'newArrivals' ? 'border-b-2 border-red-500 text-red-500' : 'text-gray-500'}`}
-          onClick={() => setActiveTab('newArrivals')}
+          className={`py-2 px-4 text-xl font-semibold ${
+            activeTab === "newArrivals"
+              ? "border-b-2 border-red-500 text-red-500"
+              : "text-gray-500"
+          }`}
+          onClick={() => setActiveTab("newArrivals")}
         >
           New Arrivals
         </button>
       </div>
 
-      <div className='p-4'>
-        {activeTab === 'specialOffers' && (
+      <div className="p-4">
+        {activeTab === "specialOffers" && (
           <div>
-            <h2 className='text-2xl font-bold mb-2 text-white'>Special Offers</h2>
+            <h2 className="text-2xl font-bold mb-2 text-white">
+              Special Offers
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 font-poppins mt-5">
-              {specialOffers.map(product => (
-                <div key={product.itemID} className="product-card p-4 shadow-md border rounded hover:scale-105 duration-300 cursor-pointer" onClick={() => setSelectedProduct(product)}>
-                  <img src={`https://senexadmin.worldpos.biz/Uploads/${product.cacheID}.jpg` || 'placeholder.jpg'} alt={product.itemName} className='w-full mx-auto' />
-                  <h2 className="text-xl font-bold text-white text-center mt-1">{product.itemName}</h2>
-                  <p className="text-xl text-white text-center">${product.retailPrice}</p>
-                  <p className={`text-center ${product.stockAvailableBool ? 'text-green-500' : 'text-red-500'}`}>
+              {specialOffers.map((product) => (
+                <div
+                  key={product.itemID}
+                  className="product-card p-4 shadow-md border rounded hover:scale-105 duration-300 cursor-pointer"
+                  onClick={() => setSelectedProduct(product)}
+                >
+                  <img
+                    src={
+                      `https://admin.senex.lk/Uploads/${product.cacheID}.jpeg` ||
+                      "placeholder.jpg"
+                    }
+                    alt={product.itemName}
+                    className="w-full mx-auto"
+                  />
+                  <h2 className="text-xl font-bold text-white text-center mt-1">
+                    {product.itemName}
+                  </h2>
+                  <p className="text-xl text-white text-center">
+                    ${product.retailPrice}
+                  </p>
+                  <p
+                    className={`text-center ${
+                      product.stockAvailableBool
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }`}
+                  >
                     {product.stockAvailableText}
                   </p>
                   <button
-                    className={`mt-2 text-xs md:text-sm flex mx-auto ${product.stockAvailableBool ? 'bg-red-500' : 'bg-gray-500'} text-white py-2 px-4 rounded`}
+                    className={`mt-2 text-xs md:text-sm flex mx-auto ${
+                      product.stockAvailableBool ? "bg-red-500" : "bg-gray-500"
+                    } text-white py-2 px-4 rounded`}
                     onClick={(e) => {
                       e.stopPropagation();
                       handleAddToCart(product);
@@ -112,20 +146,43 @@ const Tabs = () => {
           </div>
         )}
 
-        {activeTab === 'newArrivals' && (
+        {activeTab === "newArrivals" && (
           <div>
-            <h2 className='text-2xl font-bold mb-2 text-white'>New Arrivals</h2>
+            <h2 className="text-2xl font-bold mb-2 text-white">New Arrivals</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 font-poppins mt-5">
-              {newArrivals.map(product => (
-                <div key={product.itemID} className="product-card p-4 shadow-md border rounded hover:scale-105 duration-300 cursor-pointer" onClick={() => setSelectedProduct(product)}>
-                  <img src={`https://senexadmin.worldpos.biz/Uploads/${product.cacheID}.jpg` || 'placeholder.jpg'} alt={product.itemName} className='w-full mx-auto' />
-                  <h2 className="text-xl mt-1 font-bold text-white text-center">{product.itemName}</h2>
-                  <p className="text-xl text-white text-center">${product.retailPrice}</p>
-                  <p className={`text-center ${product.stockAvailableBool ? 'text-green-500' : 'text-red-500'}`}>
+              {newArrivals.map((product) => (
+                <div
+                  key={product.itemID}
+                  className="product-card p-4 shadow-md border rounded hover:scale-105 duration-300 cursor-pointer"
+                  onClick={() => setSelectedProduct(product)}
+                >
+                  <img
+                    src={
+                      `https://admin.senex.lk/Uploads/${product.cacheID}.jpeg` ||
+                      "placeholder.jpg"
+                    }
+                    alt={product.itemName}
+                    className="w-full mx-auto"
+                  />
+                  <h2 className="text-xl mt-1 font-bold text-white text-center">
+                    {product.itemName}
+                  </h2>
+                  <p className="text-xl text-white text-center">
+                    ${product.retailPrice}
+                  </p>
+                  <p
+                    className={`text-center ${
+                      product.stockAvailableBool
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }`}
+                  >
                     {product.stockAvailableText}
                   </p>
                   <button
-                    className={`mt-2 text-xs md:text-sm flex mx-auto ${product.stockAvailableBool ? 'bg-red-500' : 'bg-gray-500'} text-white py-2 px-4 rounded`}
+                    className={`mt-2 text-xs md:text-sm flex mx-auto ${
+                      product.stockAvailableBool ? "bg-red-500" : "bg-gray-500"
+                    } text-white py-2 px-4 rounded`}
                     onClick={(e) => {
                       e.stopPropagation();
                       handleAddToCart(product);
