@@ -52,7 +52,7 @@ const ProductDescription = ({ product }) => {
       const apiKey = process.env.REACT_APP_API_KEY;
       try {
         const response = await fetch(
-          "https://admin.senex.lk/Api/Specification",
+          "https://admin.senex.lk/Api/Specification?ItemID=" + product.itemID,
           {
             headers: {
               APIKey: apiKey,
@@ -61,11 +61,7 @@ const ProductDescription = ({ product }) => {
         );
         const data = await response.json();
         if (data.success) {
-          // Filter specifications to find the one matching the product's itemID
-          const matchedSpecs = data.data.find(
-            (spec) => spec.itemID === product.itemID
-          );
-          setSpecifications(matchedSpecs ? [matchedSpecs] : []);
+          setSpecifications(data.data);
         }
       } catch (error) {
         console.error("Error fetching specifications:", error);
@@ -137,10 +133,10 @@ const ProductDescription = ({ product }) => {
           {/* Stock Status */}
           <p
             className={`mb-4 ${
-              product.stockAvailable === "A" ? "text-green-500" : "text-red-500"
+              product.stockBalance > 0 ? "text-green-500" : "text-red-500"
             }`}
           >
-            {product.stockAvailable === "A" ? "In Stock" : "Out of Stock"}
+            {product.stockBalance > 0 ? "In Stock" : "Out of Stock"}
           </p>
 
           {/* Toggle Buttons */}
@@ -198,7 +194,7 @@ const ProductDescription = ({ product }) => {
             <button
               onClick={handleDecrease}
               className="bg-gray-200 text-gray-700 px-3 py-1 rounded-l focus:outline-none"
-              disabled={product.stockAvailable !== "A"} // Disable if out of stock
+              disabled={product.stockBalance <= 0} // Disable if out of stock
             >
               -
             </button>
@@ -211,7 +207,7 @@ const ProductDescription = ({ product }) => {
             <button
               onClick={handleIncrease}
               className="bg-gray-200 text-gray-700 px-3 py-1 rounded-r focus:outline-none"
-              disabled={product.stockAvailable !== "A"} // Disable if out of stock
+              disabled={product.stockBalance <= 0} // Disable if out of stock
             >
               +
             </button>
@@ -220,11 +216,9 @@ const ProductDescription = ({ product }) => {
           <button
             onClick={handleAddToCart}
             className={`bg-blue-500 font-poppins text-white py-2 px-4 rounded ${
-              product.stockAvailable !== "A"
-                ? "cursor-not-allowed opacity-50"
-                : ""
+              product.stockBalance <= 0 ? "cursor-not-allowed opacity-50" : ""
             }`}
-            disabled={product.stockAvailable !== "A"} // Disable if out of stock
+            disabled={product.stockBalance <= 0} // Disable if out of stock
           >
             Add to Cart
           </button>

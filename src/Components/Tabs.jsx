@@ -53,7 +53,7 @@ const Tabs = () => {
   }, [activeTab]);
 
   const handleAddToCart = (product) => {
-    if (product.stockAvailableBool) {
+    if (product.stockBalance > 0) {
       addToCart(product);
       setNotification(`${product.itemName} has been added to the cart.`);
       setTimeout(() => {
@@ -121,22 +121,22 @@ const Tabs = () => {
                   </p>
                   <p
                     className={`text-center ${
-                      product.stockAvailableBool
+                      product.stockBalance > 0
                         ? "text-green-500"
                         : "text-red-500"
                     }`}
                   >
-                    {product.stockAvailableText}
+                    {product.stockBalance > 0 ? "In Stock" : "Out of Stock"}
                   </p>
                   <button
                     className={`mt-2 text-xs md:text-sm flex mx-auto ${
-                      product.stockAvailableBool ? "bg-red-500" : "bg-gray-500"
+                      product.stockBalance > 0 ? "bg-red-500" : "bg-gray-500"
                     } text-white py-2 px-4 rounded`}
                     onClick={(e) => {
                       e.stopPropagation();
                       handleAddToCart(product);
                     }}
-                    disabled={!product.stockAvailableBool}
+                    disabled={!product.stockBalance > 0}
                   >
                     Add to Cart
                   </button>
@@ -172,22 +172,22 @@ const Tabs = () => {
                   </p>
                   <p
                     className={`text-center ${
-                      product.stockAvailableBool
+                      product.stockBalance > 0
                         ? "text-green-500"
                         : "text-red-500"
                     }`}
                   >
-                    {product.stockAvailableText}
+                    {product.stockBalance > 0 ? "In Stock" : "Out of Stock"}
                   </p>
                   <button
                     className={`mt-2 text-xs md:text-sm flex mx-auto ${
-                      product.stockAvailableBool ? "bg-red-500" : "bg-gray-500"
+                      product.stockBalance > 0 ? "bg-red-500" : "bg-gray-500"
                     } text-white py-2 px-4 rounded`}
                     onClick={(e) => {
                       e.stopPropagation();
                       handleAddToCart(product);
                     }}
-                    disabled={!product.stockAvailableBool}
+                    disabled={product.stockBalance <= 0}
                   >
                     Add to Cart
                   </button>

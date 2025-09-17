@@ -77,7 +77,7 @@ const SearchResults = () => {
 
   const handleAddToCart = (product, e) => {
     e.stopPropagation();
-    if (product.stockAvailable === "A") {
+    if (product.stockBalance > 0) {
       addToCart(product);
       setNotification(`${product.itemName} has been added to the cart.`);
       setTimeout(() => {
@@ -143,23 +143,19 @@ const SearchResults = () => {
                     </p>
                     <p
                       className={`text-center ${
-                        product.stockAvailable === "A"
+                        product.stockBalance > 0
                           ? "text-green-500"
                           : "text-red-500"
                       }`}
                     >
-                      {product.stockAvailable === "A"
-                        ? "In Stock"
-                        : "Out of Stock"}
+                      {product.stockBalance > 0 ? "In Stock" : "Out of Stock"}
                     </p>
                     <button
                       className={`mt-2 text-xs md:text-sm flex mx-auto ${
-                        product.stockAvailable === "A"
-                          ? "bg-red-500"
-                          : "bg-gray-500"
+                        product.stockBalance > 0 ? "bg-red-500" : "bg-gray-500"
                       } text-white py-2 px-4 rounded`}
                       onClick={(e) => handleAddToCart(product, e)}
-                      disabled={product.stockAvailable !== "A"} // Disable button if out of stock
+                      disabled={product.stockBalance <= 0} // Disable button if out of stock
                     >
                       Add to Cart
                     </button>
