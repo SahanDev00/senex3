@@ -125,7 +125,7 @@ const ProductsPage = () => {
                   <title>SENEX | {categoryMainName}</title>
                 </Helmet>
                 <img
-                  src={`https://admin.senex.lk/Uploads/${product.cacheID}.jpeg`}
+                  src={`https://admin.senex.lk/Uploads/${product.cacheID}.png`}
                   alt={product.name}
                   className="w-full mb-4"
                 />

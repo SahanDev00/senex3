@@ -6,7 +6,7 @@ const ProductDescription = ({ product }) => {
   const [showMessage, setShowMessage] = useState(false); // State for showing the message
   const [view, setView] = useState("description"); // State for toggling between description and specifications
   const [selectedImage, setSelectedImage] = useState(
-    `https://admin.senex.lk/Uploads/${product.cacheID}.jpeg`
+    `https://admin.senex.lk/Uploads/${product.cacheID}.png`
   ); // State for selected image
   const [specifications, setSpecifications] = useState([]); // State for specifications
   const { addToCart } = useContext(CartContext); // Use CartContext
@@ -28,7 +28,7 @@ const ProductDescription = ({ product }) => {
         const data = await response.json();
         if (data.success) {
           const imageUrls = data.data.map(
-            (image) => `https://admin.senex.lk/Uploads/${image.imageID}.jpeg`,
+            (image) => `https://admin.senex.lk/Uploads/${image.imageID}.png`,
             {
               headers: {
                 APIKey: apiKey,
